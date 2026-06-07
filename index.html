@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyKick – Organizza partite di calcio</title>
+  <meta name="description" content="EasyKick ti aiuta a organizzare e trovare partite di calcio nella tua città. Disponibile su App Store e Google Play." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0F172A;
+      --surface: #1E293B;
+      --border:  #334155;
+      --text:    #F1F5F9;
+      --muted:   #94A3B8;
+      --green:   #4ADE80;
+      --green2:  #22C55E;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    header {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 64px 24px 48px;
+    }
+
+    .hero-icon {
+      width: 88px; height: 88px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      border-radius: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 46px;
+      margin-bottom: 28px;
+      box-shadow: 0 0 40px rgba(74,222,128,0.25);
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    .hero h2 span { color: var(--green); }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 360px;
+      margin-inline: auto;
+      margin-bottom: 36px;
+    }
+
+    /* ── DOWNLOAD BUTTONS ───────────────────────── */
+    .store-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-store {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn-store:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-store .icon { font-size: 20px; }
+
+    .btn-android {
+      background: linear-gradient(135deg, #34A853, #1E7D32);
+      color: #fff;
+    }
+
+    .btn-ios {
+      background: linear-gradient(135deg, #1C1C1E, #3A3A3C);
+      color: #fff;
+      border: 1px solid #48484A;
+    }
+
+    /* ── FEATURES ───────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 780px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+    }
+
+    .feature-card .emoji {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── LINKS SECTION ──────────────────────────── */
+    .links-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+
+    .links-section h2 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    .links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      transition: border-color 0.15s, background 0.15s;
+      min-width: 180px;
+    }
+
+    .link-card:hover {
+      border-color: var(--green);
+      background: #1E293B;
+    }
+
+    .link-card .link-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .link-card .link-text small {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      color: #334155;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-icon">⚽</div>
+    <h1>EasyKick</h1>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-icon">⚽</div>
+    <h2>Organizza e trova <span>partite di calcio</span> vicino a te</h2>
+    <p>Crea partite, invita amici e unisciti a sfide nella tua città. Tutto in un'app.</p>
+
+    <div class="store-buttons">
+      <a class="btn-store btn-ios"
+         href="https://apps.apple.com/app/easykick/id6768992875">
+        <span class="icon"></span> App Store
+      </a>
+      <a class="btn-store btn-android"
+         href="https://play.google.com/store/apps/details?id=it.easykick.app">
+        <span class="icon">▶</span> Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="emoji">📅</div>
+      <h3>Crea partite</h3>
+      <p>Organizza una partita in pochi secondi: scegli data, luogo e numero di giocatori.</p>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🔗</div>
+      <h3>Invita con un link</h3>
+      <p>Condividi un link di invito e i tuoi amici entrano direttamente nella partita.</p>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">📍</div>
+      <h3>Trova partite vicine</h3>
+      <p>Scopri partite aperte nella tua città e candidati con un tap.</p>
+    </div>
+    <div class="feature-card">
+      <div class="emoji">🏆</div>
+      <h3>Statistiche e formazioni</h3>
+      <p>Gestisci le squadre, visualizza le formazioni e tieni traccia dei risultati.</p>
+    </div>
+  </section>
+
+  <!-- USEFUL LINKS -->
+  <section class="links-section">
+    <h2>Link utili</h2>
+    <div class="links-grid">
+      <a class="link-card" href="/privacy.html">
+        <span class="link-icon">🔒</span>
+        <span class="link-text">
+          Privacy Policy
+          <small>Informativa sul trattamento dei dati</small>
+        </span>
+      </a>
+      <a class="link-card" href="/app-ads.txt">
+        <span class="link-icon">📄</span>
+        <span class="link-text">
+          app-ads.txt
+          <small>Autorizzazioni pubblicitarie</small>
+        </span>
+      </a>
+      <a class="link-card" href="https://apps.apple.com/app/easykick/id6768992875">
+        <span class="link-icon"></span>
+        <span class="link-text">
+          App Store
+          <small>Scarica su iPhone e iPad</small>
+        </span>
+      </a>
+      <a class="link-card" href="https://play.google.com/store/apps/details?id=it.easykick.app">
+        <span class="link-icon">▶</span>
+        <span class="link-text">
+          Google Play
+          <small>Scarica su Android</small>
+        </span>
+      </a>
+      <a class="link-card" href="mailto:info@easykick.it">
+        <span class="link-icon">✉️</span>
+        <span class="link-text">
+          Contattaci
+          <small>info@easykick.it</small>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 EasyKick ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="mailto:info@easykick.it">info@easykick.it</a>
+  </footer>
+
+</body>
+</html>
