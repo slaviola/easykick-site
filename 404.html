@@ -95,6 +95,21 @@
 
     .btn-icon { font-size: 22px; }
 
+    .redirect-msg {
+      font-size: 14px;
+      color: #94A3B8;
+      margin-bottom: 8px;
+    }
+
+    .redirect-msg strong { color: #4ADE80; }
+
+    .btn.btn-primary {
+      box-shadow: 0 0 20px rgba(74,222,128,0.3);
+      transform: scale(1.03);
+    }
+
+    .btn.btn-secondary { opacity: 0.55; }
+
     .footer {
       margin-top: 40px;
       font-size: 13px;
@@ -122,7 +137,8 @@
     <h1>Sei stato invitato a una partita!</h1>
     <p class="subtitle">Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.</p>
     <div id="code-badge" class="code-badge hidden"></div>
-    <p class="download-label">Scegli la tua piattaforma</p>
+    <p id="redirect-msg" class="redirect-msg" style="display:none">Redirect allo store tra <strong id="countdown">3</strong>s&hellip; <a href="#" id="cancel-redirect" style="color:#94A3B8;font-size:13px;">annulla</a></p>
+    <p class="download-label" id="download-label">Scegli la tua piattaforma</p>
     <a id="btn-android" class="btn btn-android" href="https://play.google.com/store/apps/details?id=it.easykick.app">
       <span class="btn-icon">▶</span> Google Play
     </a>
@@ -143,28 +159,71 @@
   <script>
     (function () {
       var path = window.location.pathname;
-
-      // Controlla se il path è del tipo /join/{code}
       var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
 
-      if (joinMatch) {
-        var code = joinMatch[1].toUpperCase();
-        var badge = document.getElementById('code-badge');
-        badge.textContent = code;
-        badge.classList.remove('hidden');
-
-        // Appende il codice come query param ai link store, così il server
-        // (quando sarà disponibile) potrà fare redirect diretto alla partita.
-        var androidBtn = document.getElementById('btn-android');
-        var iosBtn    = document.getElementById('btn-ios');
-        androidBtn.href += '&referrer=code%3D' + code;
-        // Su iOS non esiste un meccanismo di deferred deep link nativo senza
-        // Firebase Dynamic Links, quindi lasciamo il link store pulito.
-      } else {
-        // Non è una rotta /join/* — mostra la 404 generica
+      if (!joinMatch) {
         document.getElementById('join-section').style.display = 'none';
         document.getElementById('notfound-section').style.display = 'block';
+        return;
       }
+
+      // Mostra il codice
+      var code = joinMatch[1].toUpperCase();
+      var badge = document.getElementById('code-badge');
+      badge.textContent = code;
+      badge.classList.remove('hidden');
+
+      var androidBtn = document.getElementById('btn-android');
+      var iosBtn     = document.getElementById('btn-ios');
+      var redirectMsg  = document.getElementById('redirect-msg');
+      var countdownEl  = document.getElementById('countdown');
+      var cancelBtn    = document.getElementById('cancel-redirect');
+      var downloadLabel = document.getElementById('download-label');
+
+      // Appende referrer con il codice per Android
+      androidBtn.href += '&referrer=code%3D' + code;
+
+      // Rileva OS
+      var ua = navigator.userAgent;
+      var isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      var isAndroid = /Android/.test(ua);
+
+      if (!isIOS && !isAndroid) {
+        // Desktop: mostra entrambi i bottoni, nessun auto-redirect
+        return;
+      }
+
+      // Mobile: evidenzia il bottone corretto, nascondi l'altro
+      var primaryBtn   = isIOS ? iosBtn     : androidBtn;
+      var secondaryBtn = isIOS ? androidBtn : iosBtn;
+
+      primaryBtn.classList.add('btn-primary');
+      secondaryBtn.classList.add('btn-secondary');
+      downloadLabel.style.display = 'none';
+      redirectMsg.style.display = 'block';
+
+      // Countdown 3 → 2 → 1 → redirect
+      var seconds = 3;
+      var cancelled = false;
+
+      cancelBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        cancelled = true;
+        redirectMsg.style.display = 'none';
+        downloadLabel.style.display = 'block';
+        primaryBtn.classList.remove('btn-primary');
+        secondaryBtn.classList.remove('btn-secondary');
+      });
+
+      var timer = setInterval(function () {
+        if (cancelled) { clearInterval(timer); return; }
+        seconds--;
+        countdownEl.textContent = seconds;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = primaryBtn.href;
+        }
+      }, 1000);
     })();
   </script>
 
