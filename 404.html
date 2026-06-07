@@ -65,35 +65,27 @@
     }
 
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 300px;
-      padding: 16px 24px;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 600;
+      display: block;
       text-decoration: none;
       margin-bottom: 12px;
       transition: opacity 0.15s;
     }
 
-    .btn:hover { opacity: 0.85; }
+    .btn:hover .store-badge { opacity: 0.85; transform: translateY(-2px); }
 
-    .btn-android {
-      background: linear-gradient(135deg, #34A853, #1E7D32);
-      color: #fff;
+    .store-badge {
+      height: 58px;
+      width: auto;
+      display: block;
+      transition: opacity 0.15s, transform 0.15s;
     }
 
-    .btn-ios {
-      background: linear-gradient(135deg, #1C1C1E, #3A3A3C);
-      color: #fff;
-      border: 1px solid #48484A;
+    a.btn-primary .store-badge {
+      filter: drop-shadow(0 0 10px rgba(74,222,128,0.4));
+      transform: scale(1.04);
     }
 
-    .btn-icon { font-size: 22px; }
+    a.btn-secondary .store-badge { opacity: 0.45; }
 
     .redirect-msg {
       font-size: 14px;
@@ -139,11 +131,11 @@
     <div id="code-badge" class="code-badge hidden"></div>
     <p id="redirect-msg" class="redirect-msg" style="display:none">Redirect allo store tra <strong id="countdown">3</strong>s&hellip; <a href="#" id="cancel-redirect" style="color:#94A3B8;font-size:13px;">annulla</a></p>
     <p class="download-label" id="download-label">Scegli la tua piattaforma</p>
-    <a id="btn-android" class="btn btn-android" href="https://play.google.com/store/apps/details?id=it.easykick.app">
-      <span class="btn-icon">▶</span> Google Play
+    <a id="btn-android" class="btn" href="https://play.google.com/store/apps/details?id=it.easykick.app">
+      <img class="store-badge" src="/badge_google_play.svg" alt="Disponibile su Google Play" />
     </a>
-    <a id="btn-ios" class="btn btn-ios" href="https://apps.apple.com/app/easykick/id6768992875">
-      <span class="btn-icon"></span> App Store
+    <a id="btn-ios" class="btn" href="https://apps.apple.com/app/easykick/id6768992875">
+      <img class="store-badge" src="/badge_app_store.svg" alt="Scarica su App Store" />
     </a>
   </div>
 

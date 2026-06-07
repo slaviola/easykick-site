@@ -82,31 +82,14 @@
       margin-bottom: 16px;
     }
 
-    .btn-store {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
+    .store-badge {
+      height: 58px;
+      width: auto;
+      display: block;
       transition: opacity 0.15s, transform 0.15s;
     }
 
-    .btn-store:hover { opacity: 0.85; transform: translateY(-1px); }
-    .btn-store .icon { font-size: 20px; }
-
-    .btn-android {
-      background: linear-gradient(135deg, #34A853, #1E7D32);
-      color: #fff;
-    }
-
-    .btn-ios {
-      background: linear-gradient(135deg, #1C1C1E, #3A3A3C);
-      color: #fff;
-      border: 1px solid #48484A;
-    }
+    a:hover .store-badge { opacity: 0.85; transform: translateY(-2px); }
 
     /* ── FEATURES ───────────────────────────────── */
     .features {
@@ -229,13 +212,11 @@
     <p>Crea partite, invita amici e unisciti a sfide nella tua città. Tutto in un'app.</p>
 
     <div class="store-buttons">
-      <a class="btn-store btn-ios"
-         href="https://apps.apple.com/app/easykick/id6768992875">
-        <span class="icon"></span> App Store
+      <a href="https://apps.apple.com/app/easykick/id6768992875">
+        <img class="store-badge" src="/badge_app_store.svg" alt="Scarica su App Store" />
       </a>
-      <a class="btn-store btn-android"
-         href="https://play.google.com/store/apps/details?id=it.easykick.app">
-        <span class="icon">▶</span> Google Play
+      <a href="https://play.google.com/store/apps/details?id=it.easykick.app">
+        <img class="store-badge" src="/badge_google_play.svg" alt="Disponibile su Google Play" />
       </a>
     </div>
   </section>
@@ -282,19 +263,11 @@
           <small>Autorizzazioni pubblicitarie</small>
         </span>
       </a>
-      <a class="link-card" href="https://apps.apple.com/app/easykick/id6768992875">
-        <span class="link-icon"></span>
-        <span class="link-text">
-          App Store
-          <small>Scarica su iPhone e iPad</small>
-        </span>
+      <a href="https://apps.apple.com/app/easykick/id6768992875">
+        <img class="store-badge" src="/badge_app_store.svg" alt="Scarica su App Store" />
       </a>
-      <a class="link-card" href="https://play.google.com/store/apps/details?id=it.easykick.app">
-        <span class="link-icon">▶</span>
-        <span class="link-text">
-          Google Play
-          <small>Scarica su Android</small>
-        </span>
+      <a href="https://play.google.com/store/apps/details?id=it.easykick.app">
+        <img class="store-badge" src="/badge_google_play.svg" alt="Disponibile su Google Play" />
       </a>
       <a class="link-card" href="mailto:info@easykick.it">
         <span class="link-icon">✉️</span>
