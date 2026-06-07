@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyKick</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0F172A;
+      color: #F1F5F9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+
+    .logo-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #4ADE80, #22C55E);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #F1F5F9;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #94A3B8;
+      text-align: center;
+      margin-bottom: 8px;
+      max-width: 320px;
+    }
+
+    .code-badge {
+      display: inline-block;
+      background-color: #1E293B;
+      border: 1px solid #4ADE80;
+      border-radius: 12px;
+      padding: 8px 20px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #4ADE80;
+      margin: 20px 0 32px;
+    }
+
+    .code-badge.hidden { display: none; }
+
+    .download-label {
+      font-size: 14px;
+      color: #64748B;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 300px;
+      padding: 16px 24px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    .btn-android {
+      background: linear-gradient(135deg, #34A853, #1E7D32);
+      color: #fff;
+    }
+
+    .btn-ios {
+      background: linear-gradient(135deg, #1C1C1E, #3A3A3C);
+      color: #fff;
+      border: 1px solid #48484A;
+    }
+
+    .btn-icon { font-size: 22px; }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #334155;
+      text-align: center;
+    }
+
+    /* Pagina 404 generica (path non /join/) */
+    .notfound { display: none; text-align: center; }
+    .notfound h1 { font-size: 80px; color: #4ADE80; margin-bottom: 8px; }
+    .notfound p { color: #94A3B8; margin-bottom: 24px; }
+    .back-link {
+      color: #4ADE80;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sezione invito partita (visibile solo per /join/*) -->
+  <div id="join-section">
+    <div class="logo-icon">⚽</div>
+    <h1>Sei stato invitato a una partita!</h1>
+    <p class="subtitle">Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.</p>
+    <div id="code-badge" class="code-badge hidden"></div>
+    <p class="download-label">Scegli la tua piattaforma</p>
+    <a id="btn-android" class="btn btn-android" href="https://play.google.com/store/apps/details?id=it.easykick.app">
+      <span class="btn-icon">▶</span> Google Play
+    </a>
+    <a id="btn-ios" class="btn btn-ios" href="https://apps.apple.com/app/easykick/id0000000000">
+      <span class="btn-icon"></span> App Store
+    </a>
+  </div>
+
+  <!-- Sezione 404 generica -->
+  <div class="notfound" id="notfound-section">
+    <h1>404</h1>
+    <p>Pagina non trovata.</p>
+    <a class="back-link" href="/">← Torna alla home</a>
+  </div>
+
+  <p class="footer">© 2026 EasyKick · <a href="mailto:info@easykick.it" style="color:#4ADE80;">info@easykick.it</a></p>
+
+  <script>
+    (function () {
+      var path = window.location.pathname;
+
+      // Controlla se il path è del tipo /join/{code}
+      var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+
+      if (joinMatch) {
+        var code = joinMatch[1].toUpperCase();
+        var badge = document.getElementById('code-badge');
+        badge.textContent = code;
+        badge.classList.remove('hidden');
+
+        // Appende il codice come query param ai link store, così il server
+        // (quando sarà disponibile) potrà fare redirect diretto alla partita.
+        var androidBtn = document.getElementById('btn-android');
+        var iosBtn    = document.getElementById('btn-ios');
+        androidBtn.href += '&referrer=code%3D' + code;
+        // Su iOS non esiste un meccanismo di deferred deep link nativo senza
+        // Firebase Dynamic Links, quindi lasciamo il link store pulito.
+      } else {
+        // Non è una rotta /join/* — mostra la 404 generica
+        document.getElementById('join-section').style.display = 'none';
+        document.getElementById('notfound-section').style.display = 'block';
+      }
+    })();
+  </script>
+
+</body>
+</html>

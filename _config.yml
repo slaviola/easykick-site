@@ -1,0 +1,5 @@
+# GitHub Pages serve per default solo i file che non iniziano con '.'
+# Questa direttiva include esplicitamente la cartella .well-known,
+# necessaria per Android App Links e iOS Universal Links.
+include:
+  - ".well-known"

@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "it.easykick.app",
+      "sha256_cert_fingerprints": [
+        "03:4B:27:5F:C7:86:D7:21:AE:CD:78:9B:42:77:D7:DE:6B:BB:85:E4:41:17:96:8D:1A:71:27:23:42:2D:C2:19",
+        "6F:9B:7C:46:F4:01:67:67:F8:BB:B5:D1:0B:BC:09:B0:C3:56:B7:56:C9:7A:30:7E:74:01:30:D1:53:27:E9:F7"
+      ]
+    }
+  }
+]

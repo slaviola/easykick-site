@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appID": "WAS9523H39.it.easykick.app",
+        "paths": ["/join/*"]
+      }
+    ]
+  }
+}
