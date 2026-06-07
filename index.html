@@ -34,21 +34,11 @@
       padding: 16px 24px;
       display: flex;
       align-items: center;
-      gap: 12px;
     }
 
-    .logo-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    header h1 {
-      font-size: 20px;
-      font-weight: 700;
+    header img.header-logo {
+      height: 36px;
+      width: auto;
     }
 
     /* ── HERO ────────────────────────────────────── */
@@ -57,14 +47,11 @@
       padding: 64px 24px 48px;
     }
 
-    .hero-icon {
-      width: 88px; height: 88px;
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      border-radius: 22px;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 46px;
+    .hero-logo {
+      height: 80px;
+      width: auto;
       margin-bottom: 28px;
-      box-shadow: 0 0 40px rgba(74,222,128,0.25);
+      filter: drop-shadow(0 0 20px rgba(74,222,128,0.3));
     }
 
     .hero h2 {
@@ -232,13 +219,12 @@
 <body>
 
   <header>
-    <div class="logo-icon">⚽</div>
-    <h1>EasyKick</h1>
+    <img class="header-logo" src="/easykick_logo_horizontal.svg" alt="EasyKick" />
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-icon">⚽</div>
+    <img class="hero-logo" src="/easykick_logo_horizontal.svg" alt="EasyKick" />
     <h2>Organizza e trova <span>partite di calcio</span> vicino a te</h2>
     <p>Crea partite, invita amici e unisciti a sfide nella tua città. Tutto in un'app.</p>
 
