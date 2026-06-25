@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sei stato invitato a giocare una partita di calcio! Scarica EasyKick per iOS o Android." />
+  <meta property="og:title" content="Invito a una partita di calcio" />
+  <meta property="og:description" content="Sei stato invitato a giocare una partita! Scarica EasyKick e unisciti." />
+  <meta property="og:image" content="/assets/easykick_logo_horizontal.svg" />
+  <meta property="og:url" content="https://www.easykick.it/join/" />
+  <title>EasyKick - Invito partita</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: #F1F5F9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+
+    .site-logo {
+      height: 56px;
+      width: auto;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 12px rgba(74,222,128,0.25));
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.25rem);
+      font-weight: 700;
+      color: #F1F5F9;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 0.5vw + 0.9rem, 1.125rem);
+      color: #94A3B8;
+      text-align: center;
+      margin-bottom: 8px;
+      max-width: 380px;
+    }
+
+    .code-badge {
+      display: inline-block;
+      background-color: #1E293B;
+      border: 2px solid #4ADE80;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #4ADE80;
+      margin: 24px 0 32px;
+      box-shadow: 0 0 20px rgba(74,222,128,0.2);
+    }
+
+    .code-badge.hidden { display: none; }
+
+    .download-label {
+      font-size: clamp(0.875rem, 0.5vw, 1rem);
+      color: #64748B;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: block;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn:hover .store-badge { 
+      opacity: 0.9; 
+      transform: translateY(-3px);
+    }
+
+    .store-badge {
+      height: 58px;
+      width: auto;
+      display: block;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    a.btn.btn-primary .store-badge {
+      filter: drop-shadow(0 0 10px rgba(74,222,128,0.4));
+      transform: scale(1.04);
+    }
+
+    a.btn.btn-secondary .store-badge { 
+      opacity: 0.45;
+      transition: opacity 0.15s;
+    }
+
+    a.btn.btn-secondary:hover .store-badge {
+      opacity: 0.7;
+    }
+
+    .redirect-msg {
+      font-size: clamp(0.875rem, 0.5vw, 1rem);
+      color: #94A3B8;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .redirect-msg strong { color: #4ADE80; }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #334155;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #4ADE80;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .code-badge {
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="join-container">
+    <img class="site-logo" src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
+    <h1>Sei stato invitato a una partita!</h1>
+    <p class="subtitle">Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.</p>
+    <div id="code-badge" class="code-badge hidden"></div>
+    <p id="redirect-msg" class="redirect-msg" style="display:none">Redirect allo store tra <strong id="countdown">3</strong>s&hellip; <a href="#" id="cancel-redirect" style="color:#94A3B8;font-size:13px;text-decoration:none;">annulla</a></p>
+    <p class="download-label" id="download-label">Scegli la tua piattaforma</p>
+    <div class="btn-container">
+      <a id="btn-android" class="btn" href="https://play.google.com/store/apps/details?id=it.easykick.app">
+        <img class="store-badge" src="/assets/badge_google_play.svg" alt="Disponibile su Google Play" />
+      </a>
+      <a id="btn-ios" class="btn" href="https://apps.apple.com/app/easykick/id6768992875">
+        <img class="store-badge" src="/assets/badge_app_store.svg" alt="Scarica su App Store" />
+      </a>
+    </div>
+  </div>
+
+  <p class="footer">© 2026 EasyKick · <a href="mailto:info@easykick.it">info@easykick.it</a></p>
+
+  <script>
+    (function () {
+      // Estrai il codice dal pathname: /join/CODICE -> CODICE
+      var path = window.location.pathname;
+      var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+
+      if (!joinMatch) {
+        document.getElementById('code-badge').classList.add('hidden');
+        document.getElementById('download-label').textContent = 'Codice invito non valido. Torna alla';
+        return;
+      }
+
+      var code = joinMatch[1].toUpperCase();
+      var badge = document.getElementById('code-badge');
+      badge.textContent = code;
+      badge.classList.remove('hidden');
+
+      var androidBtn = document.getElementById('btn-android');
+      var iosBtn     = document.getElementById('btn-ios');
+      var redirectMsg  = document.getElementById('redirect-msg');
+      var countdownEl  = document.getElementById('countdown');
+      var cancelBtn    = document.getElementById('cancel-redirect');
+      var downloadLabel = document.getElementById('download-label');
+
+      // Appende referrer con il codice per Android
+      androidBtn.href += '&referrer=code%3D' + code;
+
+      // Rileva OS
+      var ua = navigator.userAgent;
+      var isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      var isAndroid = /Android/.test(ua);
+
+      if (!isIOS && !isAndroid) {
+        // Desktop: mostra entrambi i bottoni, nessun auto-redirect
+        return;
+      }
+
+      // Mobile: evidenzia il bottone corretto, nascondi l'altro
+      var primaryBtn   = isIOS ? iosBtn     : androidBtn;
+      var secondaryBtn = isIOS ? androidBtn : iosBtn;
+
+      primaryBtn.classList.add('btn-primary');
+      secondaryBtn.classList.add('btn-secondary');
+      downloadLabel.style.display = 'none';
+      redirectMsg.style.display = 'block';
+
+      // Countdown 3 → 2 → 1 → redirect
+      var seconds = 3;
+      var cancelled = false;
+
+      cancelBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        cancelled = true;
+        redirectMsg.style.display = 'none';
+        downloadLabel.style.display = 'block';
+        primaryBtn.classList.remove('btn-primary');
+        secondaryBtn.classList.remove('btn-secondary');
+      });
+
+      var timer = setInterval(function () {
+        if (cancelled) { clearInterval(timer); return; }
+        seconds--;
+        countdownEl.textContent = seconds;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = primaryBtn.href;
+        }
+      }, 1000);
+    })();
+  </script>
+
+</body>
+</html>
