@@ -153,6 +153,12 @@
       var path = window.location.pathname;
       var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
 
+      // Se il path è /join/CODICE valido, carica /join/index.html
+      if (joinMatch) {
+        window.location.href = '/join/index.html?code=' + joinMatch[1];
+        return;
+      }
+
       if (!joinMatch) {
         document.getElementById('join-section').style.display = 'none';
         document.getElementById('notfound-section').style.display = 'block';
