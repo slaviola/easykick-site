@@ -2,21 +2,66 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EasyKick – Organizza partite di calcio</title>
-  <meta name="description" content="EasyKick ti aiuta a organizzare e trovare partite di calcio nella tua città. Disponibile su App Store e Google Play." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>EasyKick – Organizza partite di calcio con un tap</title>
+  <meta name="description" content="EasyKick organizza partite di calcio, forma le squadre in automatico e ti fa trovare giocatori vicino a te. Scarica gratis su iOS e Android." />
+
+  <!-- Apple Smart App Banner: mostra una barra nativa in Safari iOS con CTA "Apri/Scarica" -->
+  <meta name="apple-itunes-app" content="app-id=6768992875" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EasyKick – Organizza partite di calcio con un tap" />
+  <meta property="og:description" content="Crea partite, invita amici, trova giocatori. Tutto in un'app." />
+  <meta property="og:url" content="https://www.easykick.it/" />
+  <meta property="og:image" content="https://www.easykick.it/easykick_symbol.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="/easykick_symbol.svg" />
+  <link rel="apple-touch-icon" href="/easykick_symbol.svg" />
+
+  <!-- JSON-LD: rich result Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "EasyKick",
+    "operatingSystem": "ANDROID, IOS",
+    "applicationCategory": "SportsApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #0F172A;
-      --surface: #1E293B;
-      --border:  #334155;
-      --text:    #F1F5F9;
-      --muted:   #94A3B8;
-      --green:   #4ADE80;
-      --green2:  #22C55E;
+      --bg:        #0F172A;
+      --bg-2:      #0B1220;
+      --surface:   #1E293B;
+      --surface-2: #233047;
+      --border:    #334155;
+      --text:      #F1F5F9;
+      --muted:     #94A3B8;
+      --muted-2:   #64748B;
+      --green:     #4ADE80;
+      --green-2:   #22C55E;
+      --green-3:   #16A34A;
+
+      /* Fluid typography */
+      --fs-hero:   clamp(2rem, 5vw + 0.5rem, 3.75rem);
+      --fs-h2:     clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+      --fs-body:   clamp(1rem, 0.5vw + 0.9rem, 1.125rem);
+
+      /* Layout */
+      --container: 1120px;
+      --gutter:    clamp(1rem, 3vw, 2rem);
+      --radius:    16px;
+      --radius-lg: 24px;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -25,265 +70,632 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
     }
 
     /* ── HEADER ─────────────────────────────────── */
-    header {
-      background-color: var(--surface);
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+    }
+
+    .site-header .container {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 14px;
+    }
+
+    .site-header img { height: 32px; }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: #052e16;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .15s, background .15s;
+    }
+    .header-cta:hover { background: var(--green-2); transform: translateY(-1px); }
+
+    /* ── HERO ──────────────────────────────────── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(48px, 8vw, 96px);
+    }
+
+    /* gradient + glow background */
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(60% 60% at 50% 0%, rgba(74,222,128,0.18), transparent 70%),
+        radial-gradient(40% 50% at 100% 100%, rgba(34,197,94,0.10), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 6vw, 64px);
       align-items: center;
     }
 
-    header img.header-logo {
-      height: 36px;
-      width: auto;
+    @media (min-width: 860px) {
+      .hero .container { grid-template-columns: 1.1fr 0.9fr; }
+      .hero-content { text-align: left; }
+      .hero-content .store-buttons { justify-content: flex-start; }
     }
 
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      text-align: center;
-      padding: 64px 24px 48px;
+    .hero-content { text-align: center; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(74,222,128,0.12);
+      border: 1px solid rgba(74,222,128,0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
     }
 
-    .hero-logo {
-      height: 80px;
-      width: auto;
-      margin-bottom: 28px;
-      filter: drop-shadow(0 0 20px rgba(74,222,128,0.3));
-    }
-
-    .hero h2 {
-      font-size: 32px;
+    .hero-content h1 {
+      font-size: var(--fs-hero);
       font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      max-width: 480px;
-      margin-inline: auto;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
     }
 
-    .hero h2 span { color: var(--green); }
+    .hero-content h1 .accent {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
 
-    .hero p {
-      font-size: 17px;
+    .hero-content .lede {
+      font-size: var(--fs-body);
       color: var(--muted);
-      max-width: 360px;
-      margin-inline: auto;
-      margin-bottom: 36px;
+      max-width: 520px;
+      margin: 0 auto 32px;
     }
 
-    /* ── DOWNLOAD BUTTONS ───────────────────────── */
+    @media (min-width: 860px) {
+      .hero-content .lede { margin-inline: 0; }
+    }
+
     .store-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       justify-content: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .store-badge {
-      height: 58px;
-      width: auto;
-      display: block;
-      transition: opacity 0.15s, transform 0.15s;
+    .store-buttons a { transition: transform .15s, filter .15s; }
+    .store-buttons a:hover { transform: translateY(-2px); }
+    .store-buttons img { height: 56px; width: auto; }
+
+    .hero-meta {
+      font-size: 13px;
+      color: var(--muted-2);
     }
 
-    a:hover .store-badge { opacity: 0.85; transform: translateY(-2px); }
-
-    /* ── FEATURES ───────────────────────────────── */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      max-width: 780px;
-      margin: 0 auto 64px;
-      padding: 0 24px;
+    /* ── PHONE MOCKUP (CSS-only) ────────────────── */
+    .phone-mockup {
+      position: relative;
+      width: clamp(220px, 60vw, 300px);
+      aspect-ratio: 9 / 19;
+      margin: 0 auto;
+      border-radius: 38px;
+      background: linear-gradient(160deg, #1E293B 0%, #0B1220 100%);
+      padding: 14px;
+      box-shadow:
+        0 30px 60px -20px rgba(0,0,0,0.6),
+        0 0 0 1.5px rgba(255,255,255,0.06) inset,
+        0 0 40px rgba(74,222,128,0.15);
     }
 
-    .feature-card {
+    .phone-mockup::before {
+      /* notch */
+      content: "";
+      position: absolute;
+      top: 14px; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 22px;
+      background: #0B1220;
+      border-radius: 0 0 14px 14px;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      width: 100%; height: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      background: var(--bg);
+      display: flex; flex-direction: column;
+      padding: 40px 14px 14px;
+      position: relative;
+    }
+
+    .phone-screen .ps-greeting {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .phone-screen .ps-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .phone-screen .ps-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .feature-card .emoji {
-      font-size: 28px;
+    .phone-screen .ps-avatar {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      flex-shrink: 0;
+      display: grid; place-items: center;
+      font-size: 14px;
+    }
+
+    .phone-screen .ps-info { flex: 1; min-width: 0; }
+    .phone-screen .ps-info .ps-line-1 {
+      font-size: 11px; font-weight: 700;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .phone-screen .ps-info .ps-line-2 {
+      font-size: 9px; color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .phone-screen .ps-badge {
+      font-size: 8px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(74,222,128,0.15);
+      color: var(--green);
+      border: 1px solid rgba(74,222,128,0.3);
+      flex-shrink: 0;
+    }
+
+    .phone-screen .ps-badge.full {
+      background: rgba(148,163,184,0.12);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+
+    .phone-screen .ps-fab {
+      position: absolute;
+      bottom: 18px; right: 18px;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      display: grid; place-items: center;
+      color: #052e16; font-weight: 800; font-size: 18px;
+      box-shadow: 0 8px 16px -4px rgba(34,197,94,0.6);
+    }
+
+    /* ── FEATURES ──────────────────────────────── */
+    section.features {
+      padding-block: clamp(48px, 8vw, 80px);
+    }
+
+    section.features h2,
+    section.howto h2,
+    section.cta-final h2 {
+      font-size: var(--fs-h2);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-align: center;
       margin-bottom: 12px;
     }
 
+    section.features .section-lede,
+    section.howto .section-lede {
+      text-align: center;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      font-size: var(--fs-body);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(74,222,128,0.4);
+    }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(74,222,128,0.12);
+      border: 1px solid rgba(74,222,128,0.3);
+      display: grid; place-items: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
     .feature-card h3 {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       margin-bottom: 6px;
     }
 
     .feature-card p {
-      font-size: 14px;
+      font-size: 14.5px;
       color: var(--muted);
       line-height: 1.6;
     }
 
-    /* ── LINKS SECTION ──────────────────────────── */
-    .links-section {
+    /* ── HOW IT WORKS ──────────────────────────── */
+    section.howto {
+      padding-block: clamp(48px, 8vw, 80px);
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(74,222,128,0.04) 50%, transparent 100%);
+    }
+
+    .howto-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 28px 20px 20px;
       background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      counter-increment: step;
     }
 
-    .links-section h2 {
-      text-align: center;
-      font-size: 18px;
-      font-weight: 700;
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      top: -18px; left: 20px;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      color: #052e16;
+      font-weight: 800;
+      font-size: 16px;
+      display: grid; place-items: center;
+      box-shadow: 0 6px 14px -4px rgba(34,197,94,0.6);
+    }
+
+    .step h3 {
+      font-size: 17px; font-weight: 700;
+      margin-bottom: 8px; margin-top: 8px;
+    }
+
+    .step p {
+      font-size: 14.5px;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
-    .links-grid {
+    /* ── FINAL CTA ─────────────────────────────── */
+    section.cta-final {
+      padding-block: clamp(48px, 8vw, 80px);
+      text-align: center;
+    }
+
+    section.cta-final h2 { margin-bottom: 12px; }
+    section.cta-final p {
+      color: var(--muted);
+      font-size: var(--fs-body);
+      margin-bottom: 28px;
+    }
+
+    /* ── FOOTER ────────────────────────────────── */
+    footer.site-footer {
+      margin-top: auto;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding-block: 32px 24px;
+    }
+
+    footer.site-footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    footer.site-footer img { height: 28px; opacity: 0.9; }
+
+    .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 18px;
       justify-content: center;
-      max-width: 640px;
-      margin: 0 auto;
+      font-size: 14px;
     }
 
-    .link-card {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 20px;
-      text-decoration: none;
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 600;
-      transition: border-color 0.15s, background 0.15s;
-      min-width: 180px;
-    }
-
-    .link-card:hover {
-      border-color: var(--green);
-      background: #1E293B;
-    }
-
-    .link-card .link-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .link-card .link-text small {
-      display: block;
-      font-size: 12px;
-      font-weight: 400;
+    .footer-links a {
       color: var(--muted);
-      margin-top: 2px;
+      transition: color .15s;
     }
+    .footer-links a:hover { color: var(--green); }
 
-    /* ── FOOTER ─────────────────────────────────── */
-    footer {
+    .footer-copy {
+      font-size: 12.5px;
+      color: var(--muted-2);
       text-align: center;
-      padding: 28px 24px;
-      font-size: 13px;
-      color: #334155;
-      border-top: 1px solid var(--border);
-      margin-top: auto;
     }
 
-    footer a { color: var(--green); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    /* ── REVEAL ANIMATION ──────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s ease-out, transform .6s ease-out;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Touch target safety on mobile ─────────── */
+    @media (max-width: 480px) {
+      .store-buttons img { height: 50px; }
+      .feature-card { padding: 20px; }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <img class="header-logo" src="/easykick_logo_horizontal.svg" alt="EasyKick" />
+  <header class="site-header">
+    <div class="container">
+      <a href="/" aria-label="EasyKick home">
+        <img src="/easykick_logo_horizontal.svg" alt="EasyKick" />
+      </a>
+      <a class="header-cta" href="#scarica">
+        Scarica
+      </a>
+    </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-logo" src="/easykick_logo_horizontal.svg" alt="EasyKick" />
-    <h2>Organizza e trova <span>partite di calcio</span> vicino a te</h2>
-    <p>Crea partite, invita amici e unisciti a sfide nella tua città. Tutto in un'app.</p>
+    <div class="container">
+      <div class="hero-content reveal">
+        <span class="hero-eyebrow">⚽ Gratis su iOS e Android</span>
+        <h1>Organizza partite di calcio <span class="accent">in un tap</span></h1>
+        <p class="lede">
+          Crea la partita, condividi il link, le squadre si formano da sole.
+          Niente più chat infinite per mettere insieme 10 amici.
+        </p>
+        <div class="store-buttons" id="scarica">
+          <a href="https://apps.apple.com/app/easykick/id6768992875" aria-label="Scarica EasyKick su App Store">
+            <img src="/badge_app_store.svg" alt="Scarica su App Store" />
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=it.easykick.app" aria-label="Disponibile su Google Play">
+            <img src="/badge_google_play.svg" alt="Disponibile su Google Play" />
+          </a>
+        </div>
+        <p class="hero-meta">Senza account a pagamento · Zero pubblicità invadente</p>
+      </div>
 
-    <div class="store-buttons">
-      <a href="https://apps.apple.com/app/easykick/id6768992875">
-        <img class="store-badge" src="/badge_app_store.svg" alt="Scarica su App Store" />
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=it.easykick.app">
-        <img class="store-badge" src="/badge_google_play.svg" alt="Disponibile su Google Play" />
-      </a>
+      <!-- CSS-only phone mockup -->
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="ps-greeting">Ciao Marco 👋</div>
+            <div class="ps-title">Prossime partite</div>
+
+            <div class="ps-card">
+              <div class="ps-avatar">⚽</div>
+              <div class="ps-info">
+                <div class="ps-line-1">Calcetto al Park</div>
+                <div class="ps-line-2">Ven 21 · 19:00 · 8/10</div>
+              </div>
+              <span class="ps-badge">Aperta</span>
+            </div>
+
+            <div class="ps-card">
+              <div class="ps-avatar">⚽</div>
+              <div class="ps-info">
+                <div class="ps-line-1">Sfida Centro Sportivo</div>
+                <div class="ps-line-2">Sab 22 · 21:00 · 10/10</div>
+              </div>
+              <span class="ps-badge full">Piena</span>
+            </div>
+
+            <div class="ps-card">
+              <div class="ps-avatar">⚽</div>
+              <div class="ps-info">
+                <div class="ps-line-1">Partita di lavoro</div>
+                <div class="ps-line-2">Dom 23 · 11:00 · 6/10</div>
+              </div>
+              <span class="ps-badge">Aperta</span>
+            </div>
+
+            <div class="ps-fab">+</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FEATURE CARDS -->
+  <!-- FEATURES -->
   <section class="features">
-    <div class="feature-card">
-      <div class="emoji">📅</div>
-      <h3>Crea partite</h3>
-      <p>Organizza una partita in pochi secondi: scegli data, luogo e numero di giocatori.</p>
-    </div>
-    <div class="feature-card">
-      <div class="emoji">🔗</div>
-      <h3>Invita con un link</h3>
-      <p>Condividi un link di invito e i tuoi amici entrano direttamente nella partita.</p>
-    </div>
-    <div class="feature-card">
-      <div class="emoji">📍</div>
-      <h3>Trova partite vicine</h3>
-      <p>Scopri partite aperte nella tua città e candidati con un tap.</p>
-    </div>
-    <div class="feature-card">
-      <div class="emoji">🏆</div>
-      <h3>Statistiche e formazioni</h3>
-      <p>Gestisci le squadre, visualizza le formazioni e tieni traccia dei risultati.</p>
-    </div>
-  </section>
-
-  <!-- USEFUL LINKS -->
-  <section class="links-section">
-    <h2>Link utili</h2>
-    <div class="links-grid">
-      <a class="link-card" href="/privacy.html">
-        <span class="link-icon">🔒</span>
-        <span class="link-text">
-          Privacy Policy
-          <small>Informativa sul trattamento dei dati</small>
-        </span>
-      </a>
-      <a class="link-card" href="/app-ads.txt">
-        <span class="link-icon">📄</span>
-        <span class="link-text">
-          app-ads.txt
-          <small>Autorizzazioni pubblicitarie</small>
-        </span>
-      </a>
-      <a href="https://apps.apple.com/app/easykick/id6768992875">
-        <img class="store-badge" src="/badge_app_store.svg" alt="Scarica su App Store" />
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=it.easykick.app">
-        <img class="store-badge" src="/badge_google_play.svg" alt="Disponibile su Google Play" />
-      </a>
-      <a class="link-card" href="mailto:info@easykick.it">
-        <span class="link-icon">✉️</span>
-        <span class="link-text">
-          Contattaci
-          <small>info@easykick.it</small>
-        </span>
-      </a>
+    <div class="container">
+      <h2 class="reveal">Tutto quello che ti serve</h2>
+      <p class="section-lede reveal">
+        Strumenti veri per chi gioca davvero: niente fronzoli, solo quello che usi ogni domenica.
+      </p>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">📅</div>
+          <h3>Crea in 30 secondi</h3>
+          <p>Data, luogo, numero giocatori. La partita è online e condivisibile.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🔗</div>
+          <h3>Invita con un link</h3>
+          <p>Un tap sul link e i tuoi amici entrano nella partita — senza registrazioni complicate.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">⚖️</div>
+          <h3>Squadre bilanciate</h3>
+          <p>Algoritmo snake-draft basato su ruoli e rating: niente più formazioni sbilanciate.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">📍</div>
+          <h3>Partite vicino a te</h3>
+          <p>Scopri match aperti nella tua città e candidati con un tap.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">⭐</div>
+          <h3>Rating reciproci</h3>
+          <p>Dopo la partita i giocatori si valutano: emergono i veri talenti del quartiere.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">🔔</div>
+          <h3>Promemoria smart</h3>
+          <p>Notifiche per nuovi giocatori, formazioni pronte, partita imminente.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    © 2026 EasyKick ·
-    <a href="/privacy.html">Privacy Policy</a> ·
-    <a href="mailto:info@easykick.it">info@easykick.it</a>
+  <!-- HOW IT WORKS -->
+  <section class="howto">
+    <div class="container">
+      <h2 class="reveal">Come funziona</h2>
+      <p class="section-lede reveal">Tre passi e sei in campo.</p>
+      <div class="howto-steps">
+        <div class="step reveal">
+          <h3>Scarica gratis</h3>
+          <p>Disponibile su App Store e Google Play. Accedi col numero di telefono in 10 secondi.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Crea o trova partita</h3>
+          <p>Organizza il tuo match o entra in una partita aperta vicino a te.</p>
+        </div>
+        <div class="step reveal">
+          <h3>Gioca e valuta</h3>
+          <p>Le squadre vengono bilanciate in automatico. Alla fine vota i compagni.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2 class="reveal">Pronto a giocare?</h2>
+      <p class="reveal">Unisciti agli altri appassionati e organizza la tua prossima partita oggi.</p>
+      <div class="store-buttons reveal" style="justify-content:center;">
+        <a href="https://apps.apple.com/app/easykick/id6768992875" aria-label="Scarica EasyKick su App Store">
+          <img src="/badge_app_store.svg" alt="Scarica su App Store" />
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=it.easykick.app" aria-label="Disponibile su Google Play">
+          <img src="/badge_google_play.svg" alt="Disponibile su Google Play" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <img src="/easykick_logo_horizontal.svg" alt="EasyKick" />
+      <nav class="footer-links" aria-label="Link utili">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@easykick.it">Contattaci</a>
+        <a href="https://apps.apple.com/app/easykick/id6768992875">App Store</a>
+        <a href="https://play.google.com/store/apps/details?id=it.easykick.app">Google Play</a>
+      </nav>
+      <p class="footer-copy">© 2026 EasyKick · Tutti i diritti riservati</p>
+    </div>
   </footer>
+
+  <script>
+    // Reveal-on-scroll (no dipendenze)
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
 </body>
 </html>
