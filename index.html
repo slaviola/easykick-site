@@ -844,5 +844,40 @@
     })();
   </script>
 
+  <script>
+    // Device detection: iOS vs Android
+    (function () {
+      var ua = navigator.userAgent;
+      var isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      var isAndroid = /Android/.test(ua);
+      var isMobile  = isIOS || isAndroid;
+
+      if (!isMobile) return; // Desktop: non fare nulla, mostra entrambi i bottoni
+
+      // Su mobile: nascondi il bottone "sbagliato" e reindirizza al giusto store
+      var appStoreLink = 'https://apps.apple.com/app/easykick/id6768992875';
+      var googlePlayLink = 'https://play.google.com/store/apps/details?id=it.easykick.app';
+      var targetLink = isIOS ? appStoreLink : googlePlayLink;
+
+      // 1. Header CTA
+      var headerCta = document.querySelector('.header-cta');
+      if (headerCta) {
+        headerCta.href = targetLink;
+        if (isAndroid) headerCta.target = '_blank';
+      }
+
+      // 2. Hide Apple Store button su Android, Google Play su iOS
+      document.querySelectorAll('.store-buttons a').forEach(function (link) {
+        var href = link.getAttribute('href');
+        var isAppStore = href && href.includes('apps.apple.com');
+        var isGooglePlay = href && href.includes('play.google.com');
+
+        if ((isAppStore && isAndroid) || (isGooglePlay && isIOS)) {
+          link.style.display = 'none';
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
