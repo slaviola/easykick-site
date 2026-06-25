@@ -165,17 +165,34 @@
 
   <script>
     (function () {
-      // Estrai il codice dal pathname: /join/CODICE -> CODICE
+      // 1) Estrai codice: prima dal pathname canonico /join/{CODE}, poi da ?code= legacy
       var path = window.location.pathname;
-      var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+      var search = window.location.search;
+      var pathMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+      var queryMatch = search.match(/[?&]code=([A-Za-z0-9]{4,10})(?:&|$)/);
+      var code = null;
 
-      if (!joinMatch) {
+      if (pathMatch) {
+        code = pathMatch[1].toUpperCase();
+      } else if (queryMatch) {
+        code = queryMatch[1].toUpperCase();
+        // Normalizza URL al formato canonico senza ricaricare
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '/join/' + code);
+        }
+      }
+
+      if (!code) {
+        // Codice non valido: messaggio user-friendly, non rompere il flusso
         document.getElementById('code-badge').classList.add('hidden');
-        document.getElementById('download-label').textContent = 'Codice invito non valido. Torna alla';
+        document.getElementById('download-label').innerHTML = 
+          'Codice invito non valido. <a href="/" style="color:#4ADE80;">Torna alla home</a>';
+        document.getElementById('btn-android').style.display = 'none';
+        document.getElementById('btn-ios').style.display = 'none';
         return;
       }
 
-      var code = joinMatch[1].toUpperCase();
+      // Mostra il codice
       var badge = document.getElementById('code-badge');
       badge.textContent = code;
       badge.classList.remove('hidden');
@@ -187,7 +204,7 @@
       var cancelBtn    = document.getElementById('cancel-redirect');
       var downloadLabel = document.getElementById('download-label');
 
-      // Appende referrer con il codice per Android
+      // Appende referrer con il codice per Play Install Referrer (Android)
       androidBtn.href += '&referrer=code%3D' + code;
 
       // Rileva OS
@@ -209,7 +226,10 @@
       downloadLabel.style.display = 'none';
       redirectMsg.style.display = 'block';
 
-      // Countdown 3 → 2 → 1 → redirect
+      // Countdown 3 → 2 → 1 → redirect store
+      // Nota: se l'app è installata, Android App Links / iOS Universal Links
+      // intercettano l'URL /join/{CODE} a livello OS prima ancora che questa
+      // pagina venga caricata. Quindi se siamo qui, l'app NON è installata.
       var seconds = 3;
       var cancelled = false;
 

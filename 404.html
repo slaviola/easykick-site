@@ -150,23 +150,33 @@
 
   <script>
     (function () {
+      // Estrai il codice invito da:
+      //   1) pathname canonico: /join/{CODE}  (formato deep link ufficiale)
+      //   2) query string legacy: ?code={CODE}  (fallback temporaneo)
       var path = window.location.pathname;
+      var search = window.location.search;
       var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+      var queryMatch = search.match(/[?&]code=([A-Za-z0-9]{4,10})(?:&|$)/);
+      var code = null;
 
-      // Se il path è /join/CODICE valido, carica /join/index.html
       if (joinMatch) {
-        window.location.href = '/join/index.html?code=' + joinMatch[1];
-        return;
+        code = joinMatch[1].toUpperCase();
+      } else if (queryMatch && path.indexOf('/join') === 0) {
+        code = queryMatch[1].toUpperCase();
+        // Normalizza l'URL al formato canonico /join/{CODE} senza reload
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', '/join/' + code);
+        }
       }
 
-      if (!joinMatch) {
+      if (!code) {
+        // Nessun codice valido: mostra il 404 generico
         document.getElementById('join-section').style.display = 'none';
         document.getElementById('notfound-section').style.display = 'block';
         return;
       }
 
       // Mostra il codice
-      var code = joinMatch[1].toUpperCase();
       var badge = document.getElementById('code-badge');
       badge.textContent = code;
       badge.classList.remove('hidden');

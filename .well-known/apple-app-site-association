@@ -2,8 +2,13 @@
   "applinks": {
     "details": [
       {
-        "appID": "WAS9523H39.it.easykick.app",
-        "paths": ["/join/*"]
+        "appIDs": ["WAS9523H39.it.easykick.app"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "EasyKick invite links"
+          }
+        ]
       }
     ]
   }
