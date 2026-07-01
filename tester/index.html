@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0F172A" />
+  <title>Diventa tester di EasyKick – Accesso anteprima Android</title>
+  <meta name="description" content="Aiutaci a lanciare EasyKick su Google Play: diventa tester in anteprima, prova l'app in beta chiusa e ricevi le nuove funzioni prima di tutti." />
+
+  <!-- Non indicizzare pagina di reclutamento tester -->
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/easykick_symbol.svg" />
+  <link rel="apple-touch-icon" href="/assets/easykick_symbol.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Diventa tester di EasyKick" />
+  <meta property="og:description" content="Prova EasyKick in anteprima su Android e aiutaci a migliorare l'app." />
+  <meta property="og:url" content="https://www.easykick.it/tester/" />
+  <meta property="og:image" content="https://www.easykick.it/assets/easykick_symbol.svg" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0F172A;
+      --bg-2:      #0B1220;
+      --surface:   #1E293B;
+      --surface-2: #233047;
+      --border:    #334155;
+      --text:      #F1F5F9;
+      --muted:     #94A3B8;
+      --muted-2:   #64748B;
+      --green:     #4ADE80;
+      --green-2:   #22C55E;
+      --green-3:   #16A34A;
+
+      --fs-hero:   clamp(1.9rem, 4vw + 0.5rem, 3rem);
+      --fs-h2:     clamp(1.35rem, 2vw + 0.5rem, 2rem);
+      --fs-body:   clamp(1rem, 0.5vw + 0.9rem, 1.125rem);
+
+      --container: 880px;
+      --gutter:    clamp(1rem, 3vw, 2rem);
+      --radius:    16px;
+      --radius-lg: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background-color: rgba(15, 23, 42, 0.85);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .container {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-block: 14px;
+    }
+    .site-header img { height: 32px; }
+    .header-link {
+      font-size: 14px; font-weight: 600; color: var(--muted);
+      transition: color .15s;
+    }
+    .header-link:hover { color: var(--green); }
+
+    /* ── HERO ───────────────────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding-block: clamp(40px, 7vw, 72px);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(60% 60% at 50% 0%, rgba(74,222,128,0.18), transparent 70%),
+        radial-gradient(40% 50% at 100% 100%, rgba(34,197,94,0.10), transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero .container { position: relative; z-index: 1; text-align: center; }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--green);
+      background: rgba(74,222,128,0.12);
+      border: 1px solid rgba(74,222,128,0.3);
+      padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: var(--fs-hero);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .hero .lede {
+      font-size: var(--fs-body); color: var(--muted);
+      max-width: 620px; margin: 0 auto 28px;
+    }
+
+    /* Callout iOS */
+    .ios-note {
+      max-width: 620px; margin: 0 auto 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px; color: var(--muted);
+      text-align: left;
+    }
+    .ios-note strong { color: var(--text); }
+
+    /* Bottone CTA */
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      color: #052e16;
+      padding: 14px 24px; border-radius: 999px;
+      font-weight: 800; font-size: 16px;
+      box-shadow: 0 10px 24px -8px rgba(34,197,94,0.6);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -8px rgba(34,197,94,0.7);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text);
+      padding: 12px 20px; border-radius: 999px;
+      font-weight: 600; font-size: 15px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: border-color .15s, background .15s;
+    }
+    .btn-secondary:hover { border-color: rgba(74,222,128,0.5); background: var(--surface-2); }
+
+    /* ── STEPS ──────────────────────────────────── */
+    section.steps { padding-block: clamp(32px, 6vw, 60px); }
+
+    section.steps h2 {
+      font-size: var(--fs-h2); font-weight: 800;
+      letter-spacing: -0.01em; text-align: center;
+      margin-bottom: 12px;
+    }
+    section.steps .section-lede {
+      text-align: center; color: var(--muted);
+      max-width: 560px; margin: 0 auto 40px;
+      font-size: var(--fs-body);
+    }
+
+    .steps-list {
+      display: flex; flex-direction: column; gap: 20px;
+      counter-reset: step;
+    }
+
+    .step-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 24px 24px 76px;
+      counter-increment: step;
+    }
+
+    .step-card::before {
+      content: counter(step);
+      position: absolute;
+      top: 24px; left: 24px;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
+      color: #052e16;
+      font-weight: 800; font-size: 16px;
+      display: grid; place-items: center;
+      box-shadow: 0 6px 14px -4px rgba(34,197,94,0.6);
+    }
+
+    .step-card h3 {
+      font-size: 17px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 15px; color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .step-card p:last-child { margin-bottom: 0; }
+
+    .step-card .step-cta {
+      display: inline-block;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-weight: 700; font-size: 14px;
+      padding: 8px 14px; border-radius: 999px;
+      transition: background .15s, border-color .15s;
+      word-break: break-all;
+    }
+    .step-card .step-cta:hover {
+      background: var(--surface-2);
+      border-color: rgba(74,222,128,0.5);
+    }
+
+    .step-card ul {
+      margin: 8px 0 0 18px;
+      color: var(--muted); font-size: 14.5px;
+    }
+    .step-card ul li { margin-bottom: 4px; }
+
+    /* ── FAQ ────────────────────────────────────── */
+    section.faq {
+      padding-block: clamp(32px, 6vw, 60px);
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(74,222,128,0.04) 50%, transparent 100%);
+    }
+    section.faq h2 {
+      font-size: var(--fs-h2); font-weight: 800;
+      text-align: center; margin-bottom: 32px;
+    }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      margin-bottom: 12px;
+    }
+    .faq-item summary {
+      font-weight: 700; font-size: 15.5px;
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+"; color: var(--green);
+      font-size: 22px; font-weight: 400;
+      transition: transform .2s;
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      margin-top: 12px; color: var(--muted);
+      font-size: 14.5px; line-height: 1.6;
+    }
+    .faq-item a { color: var(--green); text-decoration: underline; }
+
+    /* ── FINAL CTA ──────────────────────────────── */
+    section.cta-final {
+      padding-block: clamp(40px, 7vw, 72px);
+      text-align: center;
+    }
+    section.cta-final h2 {
+      font-size: var(--fs-h2); font-weight: 800;
+      margin-bottom: 12px;
+    }
+    section.cta-final p {
+      color: var(--muted); font-size: var(--fs-body);
+      margin-bottom: 24px;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer.site-footer {
+      margin-top: auto;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding-block: 28px 22px;
+    }
+    footer.site-footer .container {
+      display: flex; flex-direction: column;
+      gap: 14px; align-items: center;
+    }
+    footer.site-footer img { height: 26px; opacity: 0.9; }
+    .footer-links {
+      display: flex; flex-wrap: wrap; gap: 18px;
+      justify-content: center; font-size: 14px;
+    }
+    .footer-links a { color: var(--muted); transition: color .15s; }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy {
+      font-size: 12.5px; color: var(--muted-2); text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .step-card { padding: 20px 18px 20px 18px; }
+      .step-card::before {
+        position: static; margin-bottom: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="/" aria-label="EasyKick home">
+        <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
+      </a>
+      <a class="header-link" href="/">← Torna al sito</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-eyebrow">⚽ Programma tester</span>
+      <h1>Diventa <span class="accent">tester ufficiale</span><br />di EasyKick</h1>
+      <p class="lede">
+        Stiamo per pubblicare EasyKick su Google Play e ci serve il tuo aiuto.
+        Ottieni l'accesso in anteprima all'app, prova nuove funzioni prima di tutti
+        e contribuisci a rendere il calcetto tra amici più semplice per tutti.
+        Bastano <strong>3 semplici passi</strong>.
+      </p>
+
+      <div class="ios-note">
+        <strong>📱 Hai un iPhone?</strong> Il programma tester è dedicato ai dispositivi <strong>Android</strong>.
+        Su iOS puoi già scaricare l'app dall'<a href="https://apps.apple.com/app/easykick/id6768992875" style="color:var(--green);text-decoration:underline;">App Store</a>.
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a class="btn-cta" href="#come-fare">
+          Inizia in 3 passi →
+        </a>
+        <a class="btn-secondary" href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">
+          Vai al gruppo tester
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps" id="come-fare">
+    <div class="container">
+      <h2>Come diventare tester</h2>
+      <p class="section-lede">
+        Bastano pochi minuti. Segui questi passi con lo stesso account Google
+        che usi sul Play Store del tuo dispositivo Android.
+      </p>
+
+      <div class="steps-list">
+
+        <div class="step-card">
+          <h3>Iscriviti al gruppo Google dei tester</h3>
+          <p>
+            Apri il link qui sotto e clicca su <strong>"Iscriviti al gruppo"</strong>
+            usando il tuo account Google. Questo ci permette di aggiungerti
+            automaticamente alla lista tester ufficiale di EasyKick.
+          </p>
+          <a class="step-cta" href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">
+            groups.google.com/g/easy-kick-tester
+          </a>
+          <p style="margin-top:14px;font-size:13.5px;">
+            💡 Se non hai mai usato Google Groups, ti verrà chiesto solo di
+            confermare il tuo nome. Non riceverai spam: usiamo il gruppo solo
+            per gestire i tester.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h3>Attiva il tuo accesso tester</h3>
+          <p>
+            Dopo esserti iscritto al gruppo, apri il link qui sotto e clicca su
+            <strong>"Diventa un tester"</strong>. Assicurati di essere loggato con
+            <strong>lo stesso account Google</strong> con cui ti sei iscritto al gruppo.
+          </p>
+          <a class="step-cta" href="https://play.google.com/apps/testing/it.easykick.app" target="_blank" rel="noopener noreferrer">
+            play.google.com/apps/testing/it.easykick.app
+          </a>
+          <p style="margin-top:14px;font-size:13.5px;">
+            ⏱️ Se vedi il messaggio "Non sei attualmente un tester", attendi
+            qualche minuto: Google impiega un po' a propagare l'iscrizione al gruppo.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h3>Scarica EasyKick dal Play Store</h3>
+          <p>
+            Una volta iscritto, apri il link del Play Store e installa l'app come
+            faresti normalmente. Vedrai la dicitura <strong>"Tester in anteprima"</strong>
+            nella scheda dell'app: significa che sei dentro!
+          </p>
+          <a class="step-cta" href="https://play.google.com/store/apps/details?id=it.easykick.app" target="_blank" rel="noopener noreferrer">
+            Apri EasyKick su Google Play
+          </a>
+          <p style="margin-top:14px;font-size:13.5px;">
+            💡 Se non vedi il pulsante "Installa", attendi qualche minuto: a volte
+            il Play Store impiega fino a un'ora per riconoscere la tua iscrizione.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h3>Usa l'app per almeno 14 giorni consecutivi</h3>
+          <p>
+            Google richiede che i tester usino <strong>attivamente</strong> l'app per
+            almeno 14 giorni consecutivi prima che possiamo pubblicarla in
+            produzione. Ti chiediamo di:
+          </p>
+          <ul>
+            <li>Aprire EasyKick regolarmente</li>
+            <li>Creare o unirti ad almeno una partita</li>
+            <li>Segnalarci bug o suggerimenti via email</li>
+          </ul>
+          <p style="margin-top:14px;">
+            Il tuo feedback vale oro: rispondiamo a tutti.
+          </p>
+          <a class="step-cta" href="mailto:info@easykick.it?subject=Feedback%20tester%20EasyKick">
+            info@easykick.it
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <h2>Domande frequenti</h2>
+
+      <details class="faq-item">
+        <summary>Il test è gratuito?</summary>
+        <p>Sì, completamente. EasyKick è e resterà gratuita per organizzare e giocare partite.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quanti dati/permessi richiede l'app?</summary>
+        <p>
+          Solo i permessi minimi per farla funzionare (notifiche, geolocalizzazione
+          opzionale per trovare partite vicine). Nessun dato personale viene
+          venduto a terzi. Vedi la nostra
+          <a href="/privacy.html">Privacy Policy</a>.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Cosa succede se ho già installato una vecchia versione dell'app?</summary>
+        <p>
+          Ti consigliamo di <strong>disinstallare</strong> la versione precedente e poi reinstallarla
+          dopo esserti iscritto al programma tester, così sei sicuro di scaricare la versione corretta.
+          Se hai ancora problemi, prova a svuotare cache e dati dell'app Google Play
+          dalle impostazioni del telefono.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Posso uscire dal programma quando voglio?</summary>
+        <p>
+          Certo. Puoi disiscriverti dal
+          <a href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">gruppo Google</a>
+          in qualsiasi momento, oppure tornare sul
+          <a href="https://play.google.com/apps/testing/it.easykick.app" target="_blank" rel="noopener noreferrer">link del programma tester</a>
+          e cliccare "Esci dal programma". L'app rimarrà installata ma non riceverai
+          più aggiornamenti in anteprima.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Perché devo iscrivermi a un gruppo Google?</summary>
+        <p>
+          È il modo con cui Google Play gestisce automaticamente la lista dei
+          tester autorizzati. Iscrivendoti al gruppo,
+          <a href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">easy-kick-tester@googlegroups.com</a>,
+          il tuo account viene abilitato in automatico senza che noi dobbiamo
+          aggiungerti manualmente. Non useremo il gruppo per inviarti email
+          promozionali.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Come segnalo un bug o do un suggerimento?</summary>
+        <p>
+          Scrivici a <a href="mailto:info@easykick.it?subject=Bug%20report%20EasyKick">info@easykick.it</a>
+          descrivendo cosa è successo. Se puoi, allega uno screenshot: ci aiuta tantissimo.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Non trovo il pulsante "Installa" sul Play Store, cosa faccio?</summary>
+        <p>
+          Assicurati di:
+        </p>
+        <p>
+          1. Essere loggato sul Play Store con lo <strong>stesso account Google</strong>
+          con cui ti sei iscritto al programma tester.<br />
+          2. Aver <strong>completato l'iscrizione</strong> (vedrai il messaggio
+          "Sei un tester" sulla pagina del programma).<br />
+          3. Aspettare fino a un'ora, poi svuotare cache e dati dell'app Google Play.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final">
+    <div class="container">
+      <h2>Pronto a giocare in anteprima?</h2>
+      <p>
+        Grazie di cuore per il supporto. Ogni tester ci avvicina alla pubblicazione
+        ufficiale su Google Play. ⚽
+      </p>
+      <a class="btn-cta" href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">
+        Iscriviti al gruppo tester →
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
+      <nav class="footer-links" aria-label="Link utili">
+        <a href="/">Home</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@easykick.it">Contattaci</a>
+      </nav>
+      <p class="footer-copy">© 2026 EasyKick · Tutti i diritti riservati</p>
+    </div>
+  </footer>
+
+</body>
+</html>
