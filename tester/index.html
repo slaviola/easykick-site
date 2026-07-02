@@ -316,6 +316,85 @@
         position: static; margin-bottom: 12px;
       }
     }
+
+    /* ── WIZARD (apertura guidata dal bottone hero) ────────────── */
+    .wizard-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(11, 18, 32, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .wizard-overlay[hidden] { display: none; }
+
+    .wizard-modal {
+      position: relative;
+      width: 100%; max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 24px 24px;
+      box-shadow: 0 20px 60px -12px rgba(0,0,0,0.6);
+    }
+
+    .wizard-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px;
+      border: none; border-radius: 8px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 20px; line-height: 1;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .wizard-close:hover { background: var(--border); color: var(--text); }
+
+    .wizard-progress {
+      display: flex; gap: 8px; justify-content: center;
+      margin-bottom: 22px;
+    }
+    .wizard-progress .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border);
+      transition: background .2s, transform .2s;
+    }
+    .wizard-progress .dot.active {
+      background: var(--green);
+      transform: scale(1.25);
+    }
+
+    .wizard-panel h3 {
+      font-size: 18px; font-weight: 800;
+      margin-bottom: 10px; text-align: center;
+    }
+    .wizard-panel p {
+      font-size: 14.5px; color: var(--muted);
+      text-align: center; margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .wizard-panel .btn-cta {
+      width: 100%; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .wizard-back {
+      display: block; width: 100%; text-align: center;
+      background: none; border: none;
+      color: var(--muted); font-size: 14px; font-weight: 600;
+      cursor: pointer; padding: 8px;
+    }
+    .wizard-back:hover { color: var(--text); }
+
+    .wizard-fallback {
+      text-align: center; margin-top: 12px;
+      font-size: 13px;
+    }
+    .wizard-fallback a { color: var(--muted); text-decoration: underline; }
+    .wizard-fallback a:hover { color: var(--green); }
+
+    @media (max-width: 480px) {
+      .wizard-modal { padding: 30px 18px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -347,7 +426,7 @@
       </div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-        <a class="btn-cta" href="#come-fare">
+        <a class="btn-cta" href="#come-fare" id="hero-wizard-cta">
           Inizia in 3 passi →
         </a>
         <a class="btn-secondary" href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer">
@@ -545,6 +624,137 @@
       <p class="footer-copy">© 2026 EasyKick · Tutti i diritti riservati</p>
     </div>
   </footer>
+
+  <!-- WIZARD: apertura guidata dei 3 passi, invocata dal bottone hero.
+       Le 3 card sopra restano invariate come contenuto di dettaglio/fallback. -->
+  <div class="wizard-overlay" id="wizard-overlay" hidden>
+    <div class="wizard-modal" role="dialog" aria-modal="true" aria-labelledby="wizard-title">
+      <button class="wizard-close" id="wizard-close" type="button" aria-label="Chiudi">&times;</button>
+      <div class="wizard-progress" aria-hidden="true">
+        <span class="dot active" data-step="1"></span>
+        <span class="dot" data-step="2"></span>
+        <span class="dot" data-step="3"></span>
+      </div>
+
+      <div class="wizard-panel" data-step="1">
+        <h3 id="wizard-title">1. Iscriviti al gruppo tester</h3>
+        <p>
+          Apri il gruppo Google e clicca <strong>"Iscriviti al gruppo"</strong>
+          con il tuo account Google. Si apre in una nuova scheda: torna qui
+          dopo per il passo successivo.
+        </p>
+        <a class="btn-cta wizard-action" href="https://groups.google.com/g/easy-kick-tester" target="_blank" rel="noopener noreferrer" data-next="2">
+          Apri il gruppo Google →
+        </a>
+      </div>
+
+      <div class="wizard-panel" data-step="2" hidden>
+        <h3>2. Attiva il tuo accesso tester</h3>
+        <p>
+          Con lo <strong>stesso account Google</strong>, clicca
+          <strong>"Diventa un tester"</strong>. Se vedi "Non sei attualmente
+          un tester", attendi qualche minuto e ricarica.
+        </p>
+        <a class="btn-cta wizard-action" href="https://play.google.com/apps/testing/it.easykick.app" target="_blank" rel="noopener noreferrer" data-next="3">
+          Apri l'attivazione tester →
+        </a>
+        <button class="wizard-back" type="button">← Indietro</button>
+      </div>
+
+      <div class="wizard-panel" data-step="3" hidden>
+        <h3>3. Scarica da Google Play</h3>
+        <p>
+          Installa l'app come al solito: vedrai la dicitura
+          <strong>"Tester in anteprima"</strong> nella scheda dell'app.
+        </p>
+        <a class="btn-cta" href="https://play.google.com/store/apps/details?id=it.easykick.app" target="_blank" rel="noopener noreferrer">
+          Apri Google Play →
+        </a>
+        <button class="wizard-back" type="button">← Indietro</button>
+      </div>
+
+      <p class="wizard-fallback">
+        <a href="#come-fare" id="wizard-details-link">Preferisci vedere tutti i dettagli? ↓</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var heroBtn     = document.getElementById('hero-wizard-cta');
+      var overlay     = document.getElementById('wizard-overlay');
+      var closeBtn    = document.getElementById('wizard-close');
+      var detailsLink = document.getElementById('wizard-details-link');
+
+      function showStep(n) {
+        document.querySelectorAll('.wizard-panel').forEach(function (panel) {
+          panel.hidden = panel.getAttribute('data-step') !== String(n);
+        });
+        document.querySelectorAll('.wizard-progress .dot').forEach(function (dot) {
+          dot.classList.toggle('active', dot.getAttribute('data-step') === String(n));
+        });
+      }
+
+      function openWizard() {
+        showStep(1);
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeWizard() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+      }
+
+      if (heroBtn) {
+        heroBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openWizard();
+        });
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeWizard);
+
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeWizard();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !overlay.hidden) closeWizard();
+      });
+
+      if (detailsLink) {
+        // Lascia che l'anchor scrolli a #come-fare: qui chiudiamo solo il wizard.
+        detailsLink.addEventListener('click', closeWizard);
+      }
+
+      // Ogni bottone azione apre il link Google in una nuova scheda (comportamento
+      // nativo dell'anchor con target="_blank", nessun window.open manuale) e,
+      // nello stesso click, avanza il wizard nella scheda corrente.
+      document.querySelectorAll('.wizard-action').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var next = Number(link.getAttribute('data-next'));
+          if (next) showStep(next);
+        });
+      });
+
+      document.querySelectorAll('.wizard-back').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var panel = btn.closest('.wizard-panel');
+          var current = Number(panel.getAttribute('data-step'));
+          showStep(current - 1);
+        });
+      });
+
+      // Se si arriva dal redirect di /scarica (parametro ?src=), il wizard si
+      // apre subito: chi ha già "cliccato per scaricare" sul cartellone non
+      // deve ricliccare "Inizia in 3 passi".
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('src')) {
+        openWizard();
+      }
+    })();
+  </script>
 
 </body>
 </html>
