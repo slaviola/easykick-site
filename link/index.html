@@ -158,7 +158,7 @@
 
     <div class="link-list">
 
-      <a class="link-row link-row-primary" href="https://www.easykick.it/scarica/?src=linktree">
+      <a id="btn-download" class="link-row link-row-primary" href="https://www.easykick.it/scarica/?src=linktree">
         <span class="link-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="#052e16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3v12" /><path d="M7 10l5 5 5-5" /><path d="M5 21h14" />
@@ -230,6 +230,28 @@
       <a href="/privacy.html">Privacy Policy</a>
     </p>
   </div>
+
+  <script>
+    // Pulsante "Scarica l'app": porta l'utente direttamente allo store giusto,
+    // senza passare dalla pagina /scarica. Android → Google Play, iOS → App Store.
+    // Desktop: resta il fallback /scarica (mostra entrambi gli store).
+    (function () {
+      var btn = document.getElementById('btn-download');
+      if (!btn) return;
+
+      var ua = navigator.userAgent;
+      var isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      var isAndroid = /Android/.test(ua);
+
+      if (isAndroid) {
+        btn.href = 'https://play.google.com/store/apps/details?id=it.easykick.app&referrer=' +
+          encodeURIComponent('utm_source=linktree&utm_medium=social');
+      } else if (isIOS) {
+        btn.href = 'https://apps.apple.com/app/easykick/id6768992875';
+      }
+      // Desktop: nessuna modifica, resta https://www.easykick.it/scarica/?src=linktree
+    })();
+  </script>
 
 </body>
 </html>
