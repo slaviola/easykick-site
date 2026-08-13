@@ -5,24 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#0B1220" />
   <title>EasyKick – Organizzare le tue partite non è mai stato così Easy</title>
-  <meta name="description" content="EasyKick organizza le partite di calcetto, forma le squadre in automatico e ti fa trovare giocatori vicino a te. Meno caos in chat, più partite giocate. Gratis su iOS e Android." />
+  <meta name="description" content="Organizza partite di calcio a 5, 7, 8 e 11: squadre bilanciate in automatico, inviti con un link e amichevoli tra squadre. Gratis su iOS e Android." />
+  <link rel="canonical" href="https://www.easykick.it/" />
 
   <!-- Apple Smart App Banner: mostra una barra nativa in Safari iOS con CTA "Apri/Scarica" -->
   <meta name="apple-itunes-app" content="app-id=6768992875" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="EasyKick" />
+  <meta property="og:locale" content="it_IT" />
   <meta property="og:title" content="EasyKick – Organizzare le tue partite non è mai stato così Easy" />
-  <meta property="og:description" content="Crea partite, invita amici, trova giocatori e forma squadre bilanciate. Tutto in un'app." />
+  <meta property="og:description" content="Crea partite, fonda la tua squadra, invita gli amici e organizza amichevoli. Squadre bilanciate in automatico." />
   <meta property="og:url" content="https://www.easykick.it/" />
   <meta property="og:image" content="https://www.easykick.it/assets/web/og-feature.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="586" />
+  <meta property="og:image:alt" content="EasyKick, l'app per organizzare le partite di calcetto" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EasyKick – Organizzare le tue partite non è mai stato così Easy" />
+  <meta name="twitter:description" content="Crea partite, fonda la tua squadra, invita gli amici e organizza amichevoli. Squadre bilanciate in automatico." />
+  <meta name="twitter:image" content="https://www.easykick.it/assets/web/og-feature.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="/assets/easykick_symbol.svg" />
   <link rel="apple-touch-icon" href="/assets/easykick_symbol.svg" />
-  <link rel="preload" as="image" href="/assets/web/card1.jpg" />
+  <link rel="preload" as="image" href="/assets/web/card1.jpg" fetchpriority="high" />
   <link rel="preload" as="image" href="/assets/web/card2.jpg" />
   <link rel="preload" as="image" href="/assets/web/card3.jpg" />
+
+  <!--
+    Device detection PRIMA del paint: evita il flash dei due badge store su mobile.
+    Il badge "sbagliato" viene nascosto via CSS, non con display:none applicato a runtime.
+  -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent;
+      var root = document.documentElement;
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) root.classList.add('is-ios');
+      else if (/Android/.test(ua)) root.classList.add('is-android');
+    })();
+  </script>
 
   <!-- JSON-LD: rich result Google -->
   <script type="application/ld+json">
@@ -30,9 +52,70 @@
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     "name": "EasyKick",
+    "url": "https://www.easykick.it/",
+    "description": "App per organizzare partite di calcio a 5, 7, 8 e 11: crea la partita, invita con un link, forma squadre bilanciate in automatico e vota i compagni a fine gara. Puoi anche fondare la tua squadra, invitare gli amici nella rosa e organizzare o cercare amichevoli contro altre squadre.",
+    "image": "https://www.easykick.it/assets/web/og-feature.jpg",
     "operatingSystem": "ANDROID, IOS",
     "applicationCategory": "SportsApplication",
+    "inLanguage": "it",
+    "installUrl": "https://www.easykick.it/scarica/",
+    "downloadUrl": "https://apps.apple.com/app/easykick/id6768992875",
+    "author": { "@type": "Organization", "name": "EasyKick", "url": "https://www.easykick.it/" },
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto costa EasyKick?",
+        "acceptedAnswer": { "@type": "Answer", "text": "EasyKick è gratis: crei partite, ti candidi e voti senza pagare nulla. L'app è supportata da annunci pubblicitari, mostrati solo previo tuo consenso." }
+      },
+      {
+        "@type": "Question",
+        "name": "Devo registrarmi con email e password?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Accedi con il tuo numero di telefono e un codice OTP: nessuna email da confermare e nessuna password da ricordare." }
+      },
+      {
+        "@type": "Question",
+        "name": "I miei amici devono avere l'app per giocare?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sì, per entrare in partita serve l'app. Ti basta condividere il link o il codice d'invito: chi non ce l'ha viene portato allo store e il codice viene inserito in automatico all'apertura." }
+      },
+      {
+        "@type": "Question",
+        "name": "Come vengono formate le squadre?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Un algoritmo snake-draft distribuisce i giocatori tenendo conto dei ruoli e del rating maturato nelle partite precedenti, così le due formazioni restano equilibrate. Puoi sempre intervenire a mano prima del fischio d'inizio." }
+      },
+      {
+        "@type": "Question",
+        "name": "Funziona solo per il calcetto a 5?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Puoi gestire partite di calcio a 5, a 7, a 8 e a 11: scegli il formato quando crei il match e i posti, i ruoli e il modulo consigliato si adattano di conseguenza." }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso creare la mia squadra su EasyKick?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sì. Fondi la squadra con nome, stemma personalizzato e regione, poi inviti gli amici nella rosa: chi accetta entra e puoi impostare formazione e titolari." }
+      },
+      {
+        "@type": "Question",
+        "name": "Come trovo un'amichevole contro un'altra squadra?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dalla bacheca sfide: pubblichi la tua amichevole indicando formato, zona e data, oppure sfogli le sfide aperte delle squadre vicine e rispondi. Se hai ricevuto un codice sfida puoi anche sfidare direttamente una squadra specifica." }
+      },
+      {
+        "@type": "Question",
+        "name": "Su quali dispositivi funziona EasyKick?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Su iPhone e su Android. L'app è gratuita su App Store e su Google Play." }
+      },
+      {
+        "@type": "Question",
+        "name": "Come cancello il mio account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Direttamente dall'app, da Profilo → Elimina account. La cancellazione è immediata e non serve scrivere a nessuno." }
+      }
+    ]
   }
   </script>
 
@@ -45,12 +128,14 @@
       --surface:   #141F33;
       --surface-2: #1B2A42;
       --border:    #2A3B54;
+      --border-2:  #38506F;
       --text:      #F1F5F9;
       --muted:     #9FB0C4;
-      --muted-2:   #667892;
+      --muted-2:   #8296AE;   /* contrasto 6.2:1 su --bg (WCAG AA) */
       --green:     #34E27A;
       --green-2:   #22C55E;
       --green-3:   #16A34A;
+      --green-ink: #052e16;
       --green-soft: rgba(52,226,122,0.14);
 
       /* Fluid typography */
@@ -61,8 +146,10 @@
       /* Layout */
       --container: 1120px;
       --gutter:    clamp(1rem, 3vw, 2rem);
+      --section:   clamp(56px, 8vw, 104px);
       --radius:    16px;
       --radius-lg: 24px;
+      --header-h:  62px;
     }
 
     html { scroll-behavior: smooth; }
@@ -82,6 +169,17 @@
 
     a { color: inherit; text-decoration: none; }
     img, svg { display: block; max-width: 100%; height: auto; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+    /* Focus visibile per navigazione da tastiera */
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    /* Le ancore non finiscono sotto l'header sticky */
+    [id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 
     .container {
       width: 100%;
@@ -103,6 +201,35 @@
       mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 80%);
     }
 
+    /* ── BOTTONI ────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform .15s, box-shadow .15s, background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: var(--green-ink);
+      padding: 13px 26px;
+      font-size: 16px;
+      box-shadow: 0 10px 26px -10px rgba(52,226,122,0.85);
+    }
+    .btn-primary:hover { background: var(--green-2); transform: translateY(-2px); box-shadow: 0 16px 32px -12px rgba(52,226,122,0.9); }
+    .btn-ghost {
+      border: 1px solid var(--border-2);
+      color: var(--text);
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+    .btn-sm { padding: 9px 18px; font-size: 14px; box-shadow: 0 6px 18px -6px rgba(52,226,122,0.7); }
+
     /* ── HEADER ─────────────────────────────────── */
     .site-header {
       position: sticky;
@@ -117,26 +244,26 @@
     .site-header .container {
       display: flex;
       align-items: center;
+      gap: 16px;
       justify-content: space-between;
       padding-block: 14px;
     }
 
-    .site-header img { height: 32px; }
+    .site-header .brand img { height: 32px; }
 
-    .header-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--green);
-      color: #052e16;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform .15s, box-shadow .15s, background .15s;
-      box-shadow: 0 6px 18px -6px rgba(52,226,122,0.7);
+    .site-nav {
+      display: none;
+      gap: 26px;
+      margin-inline: auto;
+      font-size: 14.5px;
+      font-weight: 600;
     }
-    .header-cta:hover { background: var(--green-2); transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(52,226,122,0.8); }
+    .site-nav a { color: var(--muted); transition: color .15s; }
+    .site-nav a:hover { color: var(--text); }
+
+    @media (min-width: 860px) {
+      .site-nav { display: flex; }
+    }
 
     /* ── HERO ──────────────────────────────────── */
     .hero {
@@ -170,25 +297,41 @@
       .hero-content { text-align: left; }
       .hero-content .store-buttons { justify-content: flex-start; }
       .hero-content .lede { margin-inline: 0; }
+      .hero-trust { justify-content: flex-start; }
     }
 
     .hero-content { text-align: center; }
 
-    .hero-eyebrow {
+    /* Pill "Novità": annuncia l'ultima release e porta alla sezione squadre */
+    .hero-announce {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: var(--green-soft);
-      border: 1px solid rgba(52,226,122,0.32);
-      padding: 7px 15px;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-2);
+      padding: 6px 16px 6px 6px;
       border-radius: 999px;
       margin-bottom: 22px;
+      transition: border-color .15s, color .15s;
+      text-align: left;
     }
+    .hero-announce:hover { border-color: var(--green); color: var(--text); }
+    .hero-announce .tag {
+      flex: none;
+      background: var(--green);
+      color: var(--green-ink);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .hero-announce .arrow { transition: transform .15s; }
+    .hero-announce:hover .arrow { transform: translateX(3px); }
 
     .hero-content h1 {
       font-size: var(--fs-hero);
@@ -225,18 +368,25 @@
     .store-buttons a:hover { transform: translateY(-2px); }
     .store-buttons img { height: 56px; width: auto; }
 
-    .hero-meta {
-      font-size: 13px;
+    /* Su mobile mostriamo solo il badge dello store giusto (classi su <html>) */
+    html.is-ios .store-google,
+    html.is-android .store-apple { display: none; }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      justify-content: center;
+      font-size: 13.5px;
       color: var(--muted-2);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
     }
-    .hero-meta::before {
+    .hero-trust li { list-style: none; display: inline-flex; align-items: center; gap: 7px; }
+    .hero-trust li::before {
       content: "";
-      width: 8px; height: 8px; border-radius: 50%;
+      width: 7px; height: 7px; border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 10px 1px rgba(52,226,122,0.8);
+      box-shadow: 0 0 10px 1px rgba(52,226,122,0.7);
+      flex: none;
     }
 
     /* ── PLAYER-CARD FAN (ventaglio) ───────────── */
@@ -284,6 +434,26 @@
       z-index: 0;
     }
 
+    /* Chip che lega il visual al beneficio concreto */
+    .fan-chip {
+      position: absolute;
+      bottom: 4px;
+      z-index: 6;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(11,18,32,0.88);
+      border: 1px solid var(--border-2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 9px 16px;
+      border-radius: 999px;
+      box-shadow: 0 12px 28px -12px rgba(0,0,0,0.9);
+    }
+
     @keyframes floaty {
       0%, 100% { translate: 0 0; }
       50%      { translate: 0 -10px; }
@@ -292,11 +462,11 @@
       .fan-card.center { animation: floaty 5s ease-in-out infinite; }
     }
 
-    /* ── SOCIAL PROOF STRIP ─────────────────────── */
+    /* ── STAT STRIP ─────────────────────────────── */
     .marquee-strip {
       border-block: 1px solid var(--border);
       background: var(--bg-2);
-      padding-block: 18px;
+      padding-block: 20px;
     }
     .marquee-strip .container {
       display: flex;
@@ -311,70 +481,85 @@
       font-weight: 800;
       color: var(--green);
       line-height: 1;
+      letter-spacing: -0.01em;
     }
     .stat span {
+      display: block;
+      margin-top: 6px;
       font-size: 13px;
       color: var(--muted);
       letter-spacing: 0.02em;
     }
 
     /* ── SECTION HEADINGS ──────────────────────── */
-    section.features h2,
-    section.showcase h2,
-    section.howto h2,
-    section.cta-final h2 {
+    .section-eyebrow {
+      display: block;
+      text-align: center;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    section h2 {
       font-size: var(--fs-h2);
       font-weight: 800;
       letter-spacing: -0.01em;
       text-align: center;
       margin-bottom: 12px;
+      text-wrap: balance;
     }
 
     .section-lede {
       text-align: center;
       color: var(--muted);
       max-width: 560px;
-      margin: 0 auto 40px;
+      margin: 0 auto 44px;
       font-size: var(--fs-body);
+      text-wrap: pretty;
     }
 
     /* ── PROBLEM ────────────────────────────────── */
-    section.problem {
-      padding-block: clamp(48px, 8vw, 80px);
-      position: relative;
-    }
+    section.problem { padding-block: var(--section); position: relative; }
+
     .problem-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
-      margin-top: 36px;
     }
     .problem-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
     }
-    .problem-card .p-emoji { font-size: 26px; margin-bottom: 10px; }
-    .problem-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-    .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .problem-card:hover { border-color: var(--border-2); transform: translateY(-3px); }
+    .problem-card .p-emoji { font-size: 26px; margin-bottom: 12px; }
+    .problem-card h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 8px; }
+    .problem-card p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
 
     /* ── SHOWCASE (screenshot store) ────────────── */
     section.showcase {
-      padding-block: clamp(48px, 8vw, 80px);
+      padding-block: var(--section);
       position: relative;
       overflow: hidden;
       background: radial-gradient(70% 90% at 50% 0%, rgba(52,226,122,0.07), transparent 70%);
     }
 
+    .showcase-viewport { position: relative; }
+
     .showcase-track {
       display: flex;
       gap: clamp(14px, 2vw, 22px);
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
+      scroll-snap-type: x proximity;
+      scroll-behavior: smooth;
+      scroll-padding-inline: clamp(1rem, 3vw, 2rem);
       padding: 8px clamp(1rem, 3vw, 2rem) 24px;
-      margin-inline: calc(-1 * var(--gutter));
-      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
       scrollbar-width: none;
     }
     .showcase-track::-webkit-scrollbar { display: none; }
@@ -382,7 +567,7 @@
     .shot {
       flex: 0 0 auto;
       width: clamp(220px, 62vw, 264px);
-      scroll-snap-align: center;
+      scroll-snap-align: start;
       border-radius: 22px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -393,23 +578,84 @@
     .shot:hover { transform: translateY(-6px); border-color: rgba(52,226,122,0.4); }
     .shot img { width: 100%; height: auto; display: block; }
 
+    /* Frecce: solo dove c'è un mouse, altrimenti si scorre col dito */
+    .carousel-btn {
+      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(11,18,32,0.9);
+      border: 1px solid var(--border-2);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      transition: background .15s, border-color .15s, opacity .15s;
+      box-shadow: 0 10px 24px -10px rgba(0,0,0,0.9);
+    }
+    .carousel-btn:hover { background: var(--surface-2); border-color: var(--green); color: var(--green); }
+    .carousel-btn[disabled] { opacity: 0.35; pointer-events: none; }
+    .carousel-btn.prev { left: 6px; }
+    .carousel-btn.next { right: 6px; }
+
+    @media (hover: hover) and (min-width: 900px) {
+      .carousel-btn { display: flex; }
+      /* sfumature ai bordi per far capire che il nastro continua */
+      .showcase-viewport::before,
+      .showcase-viewport::after {
+        content: "";
+        position: absolute; top: 0; bottom: 0;
+        width: 90px;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .showcase-viewport::before { left: 0;  background: linear-gradient(90deg, var(--bg), transparent); }
+      .showcase-viewport::after  { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+    }
+
     .scroll-hint {
       text-align: center;
       font-size: 13px;
       color: var(--muted-2);
       margin-top: 4px;
     }
+    @media (hover: hover) and (min-width: 900px) { .scroll-hint { display: none; } }
 
-    /* ── FEATURES ──────────────────────────────── */
-    section.features {
-      padding-block: clamp(48px, 8vw, 80px);
+    /* ── CTA BAND (intermedia) ─────────────────── */
+    .cta-band { padding-block: clamp(8px, 3vw, 20px); }
+    .cta-band .inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: clamp(22px, 3.5vw, 34px);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(52,226,122,0.28);
+      background:
+        linear-gradient(135deg, rgba(52,226,122,0.12) 0%, rgba(52,226,122,0.02) 55%),
+        var(--surface);
     }
+    .cta-band h2 {
+      text-align: left;
+      font-size: clamp(1.25rem, 1.6vw + 0.8rem, 1.7rem);
+      margin-bottom: 6px;
+    }
+    .cta-band p { color: var(--muted); font-size: 15px; }
+    .cta-band .copy { min-width: 260px; flex: 1 1 320px; }
+
+    /* ── FEATURES (bento) ──────────────────────── */
+    section.features { padding-block: var(--section); }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: 1fr;
       gap: 16px;
     }
+    @media (min-width: 620px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 940px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .feature-card {
       background: linear-gradient(180deg, var(--surface) 0%, var(--bg-2) 100%);
@@ -424,6 +670,39 @@
       border-color: rgba(52,226,122,0.45);
     }
 
+    /* La card cardine occupa due colonne: è la feature che ci differenzia */
+    .feature-card.featured {
+      background:
+        radial-gradient(120% 100% at 0% 0%, rgba(52,226,122,0.16), transparent 60%),
+        linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+      border-color: rgba(52,226,122,0.35);
+    }
+    @media (min-width: 620px) { .feature-card.featured { grid-column: span 2; } }
+
+    .feature-card.featured .feature-body {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .feature-card.featured .feature-text { flex: 1 1 240px; }
+    .feature-card.featured .feature-shot {
+      flex: 0 0 auto;
+      width: clamp(112px, 20vw, 150px);
+      /* lo screenshot è molto verticale: lo tagliamo in basso per non far
+         crescere la card oltre il resto della griglia */
+      max-height: 240px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-2);
+      box-shadow: 0 18px 34px -18px rgba(0,0,0,0.9);
+    }
+    .feature-card.featured .feature-shot img {
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
     .feature-icon {
       width: 46px; height: 46px;
       border-radius: 12px;
@@ -434,23 +713,61 @@
       margin-bottom: 16px;
     }
 
-    .feature-card h3 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+
+    /* ── SQUADRE (novità) ──────────────────────── */
+    section.squads {
+      padding-block: var(--section);
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(75% 85% at 50% 0%, rgba(52,226,122,0.09), transparent 70%);
+      border-block: 1px solid var(--border);
     }
 
-    .feature-card p {
-      font-size: 14.5px;
-      color: var(--muted);
-      line-height: 1.6;
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
     }
+
+    .squad-card {
+      position: relative;
+      padding: 26px 24px;
+      background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: transform .2s, border-color .2s;
+    }
+    .squad-card:hover { transform: translateY(-4px); border-color: rgba(52,226,122,0.45); }
+
+    .squad-card .s-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: var(--green-soft);
+      border: 1px solid rgba(52,226,122,0.32);
+      display: grid; place-items: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    .squad-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .squad-card p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+
+    .squad-foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    .squad-foot .note { font-size: 13.5px; color: var(--muted-2); }
 
     /* ── HOW IT WORKS ──────────────────────────── */
     section.howto {
-      padding-block: clamp(48px, 8vw, 80px);
-      background:
-        linear-gradient(180deg, transparent 0%, rgba(52,226,122,0.05) 50%, transparent 100%);
+      padding-block: var(--section);
+      background: linear-gradient(180deg, transparent 0%, rgba(52,226,122,0.05) 50%, transparent 100%);
     }
 
     .howto-steps {
@@ -458,11 +775,12 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 24px;
       counter-reset: step;
+      position: relative;
     }
 
     .step {
       position: relative;
-      padding: 28px 20px 20px;
+      padding: 30px 22px 22px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -476,27 +794,104 @@
       width: 36px; height: 36px;
       border-radius: 10px;
       background: linear-gradient(135deg, var(--green) 0%, var(--green-2) 100%);
-      color: #052e16;
+      color: var(--green-ink);
       font-weight: 800;
       font-size: 16px;
       display: grid; place-items: center;
       box-shadow: 0 6px 14px -4px rgba(34,197,94,0.6);
     }
 
-    .step h3 {
-      font-size: 17px; font-weight: 700;
-      margin-bottom: 8px; margin-top: 8px;
-    }
+    .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; margin-top: 8px; }
+    .step p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
 
-    .step p {
-      font-size: 14.5px;
+    /* ── TRUST ─────────────────────────────────── */
+    section.trust { padding-block: var(--section); position: relative; overflow: hidden; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .trust-card {
+      display: flex;
+      gap: 14px;
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .trust-card .t-icon {
+      flex: none;
+      width: 40px; height: 40px;
+      border-radius: 11px;
+      background: var(--green-soft);
+      border: 1px solid rgba(52,226,122,0.32);
+      display: grid; place-items: center;
+      font-size: 19px;
+    }
+    .trust-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .trust-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .trust-note {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--muted-2);
+    }
+    .trust-note a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .trust-note a:hover { color: var(--green); }
+
+    /* ── FAQ ───────────────────────────────────── */
+    section.faq { padding-block: var(--section); }
+
+    .faq-list { max-width: 760px; margin-inline: auto; display: grid; gap: 10px; }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-item[open] { border-color: rgba(52,226,122,0.4); }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      font-size: 16px;
+      font-weight: 650;
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "";
+      flex: none;
+      width: 10px; height: 10px;
+      border-right: 2px solid var(--muted);
+      border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg) translate(-2px, -2px);
+      transition: transform .2s, border-color .2s;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(-135deg) translate(-3px, -3px);
+      border-color: var(--green);
+    }
+    .faq-item summary:hover { background: rgba(255,255,255,0.02); }
+
+    .faq-item .faq-answer {
+      padding: 0 20px 20px;
+      font-size: 15px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     /* ── FINAL CTA ─────────────────────────────── */
     section.cta-final {
-      padding-block: clamp(56px, 9vw, 96px);
+      padding-block: clamp(64px, 9vw, 104px);
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -508,49 +903,69 @@
       pointer-events: none;
     }
     section.cta-final .container { position: relative; z-index: 1; }
-
-    section.cta-final h2 { margin-bottom: 12px; }
-    section.cta-final p {
-      color: var(--muted);
-      font-size: var(--fs-body);
-      margin-bottom: 28px;
-    }
+    section.cta-final p { color: var(--muted); font-size: var(--fs-body); margin-bottom: 28px; }
 
     /* ── FOOTER ────────────────────────────────── */
     footer.site-footer {
       margin-top: auto;
       background: var(--bg-2);
       border-top: 1px solid var(--border);
-      padding-block: 32px 24px;
+      padding-block: 44px 28px;
     }
 
-    footer.site-footer .container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    @media (min-width: 720px) {
+      .footer-top { grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
     }
 
-    footer.site-footer img { height: 28px; opacity: 0.9; }
+    .footer-brand img { height: 28px; opacity: 0.9; margin-bottom: 12px; }
+    .footer-brand p { font-size: 14px; color: var(--muted-2); max-width: 300px; line-height: 1.6; }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: center;
-      font-size: 14px;
+    .footer-col h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 14px;
     }
-
-    .footer-links a {
-      color: var(--muted);
-      transition: color .15s;
-    }
-    .footer-links a:hover { color: var(--green); }
+    .footer-col ul { list-style: none; display: grid; gap: 10px; }
+    .footer-col a { font-size: 14.5px; color: var(--muted); transition: color .15s; }
+    .footer-col a:hover { color: var(--green); }
 
     .footer-copy {
+      padding-top: 22px;
       font-size: 12.5px;
       color: var(--muted-2);
       text-align: center;
+    }
+
+    /* ── STICKY CTA MOBILE ─────────────────────── */
+    .mobile-cta {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 60;
+      display: none;
+      padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+      background: rgba(7, 12, 22, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      transform: translateY(130%);
+      transition: transform .3s cubic-bezier(.22,.61,.36,1);
+    }
+    .mobile-cta.is-visible { transform: translateY(0); }
+    .mobile-cta .btn { width: 100%; padding-block: 15px; }
+
+    @media (max-width: 899px) {
+      .mobile-cta { display: block; }
+      footer.site-footer { padding-bottom: 96px; }
     }
 
     /* ── REVEAL ANIMATION ──────────────────────── */
@@ -559,10 +974,7 @@
       transform: translateY(16px);
       transition: opacity .6s ease-out, transform .6s ease-out;
     }
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -571,6 +983,8 @@
       }
       .reveal { opacity: 1; transform: none; }
       html { scroll-behavior: auto; }
+      .showcase-track { scroll-behavior: auto; }
+      .mobile-cta.is-visible { transform: translateY(0); }
     }
 
     /* ── Touch target safety on mobile ─────────── */
@@ -584,12 +998,21 @@
 
   <header class="site-header">
     <div class="container">
-      <a href="/" aria-label="EasyKick home">
-        <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
+      <a class="brand" href="/" aria-label="EasyKick home">
+        <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="140" height="32" />
       </a>
-      <a class="header-cta" href="https://apps.apple.com/app/easykick/id6768992875" target="_blank" rel="noopener noreferrer">
-        Scarica
-      </a>
+      <nav class="site-nav" aria-label="Navigazione principale">
+        <a href="#funzioni">Funzioni</a>
+        <a href="#squadre">Squadre</a>
+        <a href="#come-funziona">Come funziona</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <!--
+        Di default punta all'ancora dei badge: su desktop mandare tutti all'App Store
+        significherebbe spedire gli utenti Windows/Android sulla pagina sbagliata.
+        Su mobile lo script sostituisce l'href con lo store corretto.
+      -->
+      <a class="btn btn-primary btn-sm js-store-cta" href="#scarica">Scarica gratis</a>
     </div>
   </header>
 
@@ -598,21 +1021,29 @@
     <div class="pitch-lines" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-content reveal">
-        <span class="hero-eyebrow">⚽ Organizza · Gioca · Valuta</span>
+        <a class="hero-announce" href="#squadre">
+          <span class="tag">Novità</span>
+          <span>Crea la tua squadra e sfida le altre</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
         <h1>Organizzare le tue partite non è mai stato così <span class="accent">Easy!</span></h1>
         <p class="lede">
           Crea la partita, condividi il link e le squadre si formano da sole, bilanciate.
           Meno caos in chat, più partite giocate davvero.
         </p>
         <div class="store-buttons" id="scarica">
-          <a href="https://apps.apple.com/app/easykick/id6768992875" aria-label="Scarica EasyKick su App Store">
-            <img src="/assets/badge_app_store.svg" alt="Scarica su App Store" />
+          <a class="store-apple" href="https://apps.apple.com/app/easykick/id6768992875?ct=landing&amp;mt=8" aria-label="Scarica EasyKick su App Store">
+            <img src="/assets/badge_app_store.svg" alt="Scarica su App Store" width="168" height="56" />
           </a>
-          <a href="https://play.google.com/store/apps/details?id=it.easykick.app" aria-label="Disponibile su Google Play">
-            <img src="/assets/badge_google_play.svg" alt="Disponibile su Google Play" />
+          <a class="store-google" href="https://play.google.com/store/apps/details?id=it.easykick.app&amp;referrer=utm_source%3Dsito%26utm_medium%3Dlanding" aria-label="Disponibile su Google Play">
+            <img src="/assets/badge_google_play.svg" alt="Disponibile su Google Play" width="189" height="56" />
           </a>
         </div>
-        <p class="hero-meta">Gratis · Accedi in 10 secondi</p>
+        <ul class="hero-trust">
+          <li>Gratis</li>
+          <li>Nessuna password</li>
+          <li>iOS e Android</li>
+        </ul>
       </div>
 
       <!-- Player-card fan (ventaglio) -->
@@ -625,17 +1056,18 @@
             <img src="/assets/web/card2.jpg" alt="Player card EasyKick, edizione platino" width="480" height="694" loading="eager" />
           </div>
           <div class="fan-card center">
-            <img src="/assets/web/card1.jpg" alt="Player card EasyKick, edizione olografica" width="480" height="689" loading="eager" />
+            <img src="/assets/web/card1.jpg" alt="Player card EasyKick, edizione olografica" width="480" height="689" loading="eager" fetchpriority="high" />
           </div>
+          <p class="fan-chip"><span aria-hidden="true">⚖️</span> Ogni giocatore ha un rating: le squadre si bilanciano da sole</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOCIAL PROOF STRIP -->
+  <!-- STAT STRIP -->
   <div class="marquee-strip">
     <div class="container">
-      <div class="stat"><b>5 · 8 · 11</b><span>calcetto o calcio, ogni formato</span></div>
+      <div class="stat"><b>5 · 7 · 8 · 11</b><span>calcio a 5, 7, 8 e 11</span></div>
       <div class="stat"><b>0</b><span>squadre da comporre a mano</span></div>
       <div class="stat"><b>1 tap</b><span>per invitare e confermare</span></div>
     </div>
@@ -644,21 +1076,22 @@
   <!-- PROBLEM -->
   <section class="problem">
     <div class="container">
-      <h2 class="reveal" style="font-size:var(--fs-h2);font-weight:800;text-align:center;letter-spacing:-0.01em;margin-bottom:12px;">Ti suona familiare?</h2>
+      <span class="section-eyebrow reveal">Il problema</span>
+      <h2 class="reveal">Ti suona familiare?</h2>
       <p class="section-lede reveal">Organizzare una partita non dovrebbe essere un secondo lavoro.</p>
       <div class="problem-grid">
         <div class="problem-card reveal">
-          <div class="p-emoji">💬</div>
+          <div class="p-emoji" aria-hidden="true">💬</div>
           <h3>200 messaggi per una partita</h3>
           <p>Chi c'è? Chi manca? La chat esplode e ci si perde tra conferme e ripensamenti.</p>
         </div>
         <div class="problem-card reveal">
-          <div class="p-emoji">🤷</div>
+          <div class="p-emoji" aria-hidden="true">🤷</div>
           <h3>Gente che sparisce all'ultimo</h3>
           <p>Ritiri improvvisi e posti scoperti a un'ora dal fischio d'inizio.</p>
         </div>
         <div class="problem-card reveal">
-          <div class="p-emoji">⚖️</div>
+          <div class="p-emoji" aria-hidden="true">⚖️</div>
           <h3>Squadre sempre sbilanciate</h3>
           <p>"Facciamo le squadre" diventa una trattativa infinita. E il match ne risente.</p>
         </div>
@@ -670,59 +1103,94 @@
   <section class="showcase">
     <div class="pitch-lines" aria-hidden="true"></div>
     <div class="container">
+      <span class="section-eyebrow reveal">Dentro l'app</span>
       <h2 class="reveal">Dai un'occhiata all'app</h2>
       <p class="section-lede reveal">Dalla creazione della partita alle pagelle di fine gara: tutto in un flusso semplice.</p>
     </div>
-    <div class="showcase-track reveal" role="list" aria-label="Screenshot dell'app EasyKick">
-      <div class="shot" role="listitem"><img src="/assets/web/01-home.jpg" width="620" height="1344" alt="Home EasyKick: crea partita, unisciti con codice, candidature e alert" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/02-codice-invito.jpg" width="620" height="1344" alt="Invita gli amici con un codice invece della lista WhatsApp" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/03-alert-partite.jpg" width="620" height="1344" alt="Alert partite: ti avvisiamo noi quando si gioca" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/05-crea-squadre.jpg" width="620" height="1344" alt="Due squadre bilanciate create in automatico" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/06-bilancia-ruoli.jpg" width="620" height="1344" alt="Bilanciamento in base a ruoli e rating dei giocatori" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/07-formazione-v2.jpg" width="620" height="1344" alt="Formazioni pronte sul campo: modulo, ruoli e capitano" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/08-sostituzione-v2.jpg" width="620" height="1344" alt="Sostituisci un giocatore assente in due tap" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/09-voti.jpg" width="620" height="1344" alt="Vota i compagni a fine partita" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/10-pagelle.jpg" width="620" height="1344" alt="Le pagelle restano: confronta squadra A e B" loading="lazy" /></div>
-      <div class="shot" role="listitem"><img src="/assets/web/04-profilo.jpg" width="620" height="1344" alt="Il tuo profilo giocatore su EasyKick" loading="lazy" /></div>
+
+    <div class="showcase-viewport">
+      <button class="carousel-btn prev" type="button" aria-label="Schermate precedenti" aria-controls="showcase-track">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="showcase-track reveal" id="showcase-track" role="group" tabindex="0" aria-label="Screenshot dell'app EasyKick, scorri orizzontalmente">
+        <div class="shot"><img src="/assets/web/01-home.jpg" width="620" height="1344" alt="Home EasyKick: crea partita, unisciti con codice, candidature e alert" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/02-codice-invito.jpg" width="620" height="1344" alt="Invita gli amici con un codice invece della lista WhatsApp" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/03-alert-partite.jpg" width="620" height="1344" alt="Alert partite: ti avvisiamo noi quando si gioca" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/05-crea-squadre.jpg" width="620" height="1344" alt="Due squadre bilanciate create in automatico" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/06-bilancia-ruoli.jpg" width="620" height="1344" alt="Bilanciamento in base a ruoli e rating dei giocatori" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/07-formazione-v2.jpg" width="620" height="1344" alt="Formazioni pronte sul campo: modulo, ruoli e capitano" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/08-sostituzione-v2.jpg" width="620" height="1344" alt="Sostituisci un giocatore assente in due tap" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/09-voti.jpg" width="620" height="1344" alt="Vota i compagni a fine partita" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/10-pagelle.jpg" width="620" height="1344" alt="Le pagelle restano: confronta squadra A e B" loading="lazy" /></div>
+        <div class="shot"><img src="/assets/web/04-profilo.jpg" width="620" height="1344" alt="Il tuo profilo giocatore su EasyKick" loading="lazy" /></div>
+      </div>
+      <button class="carousel-btn next" type="button" aria-label="Schermate successive" aria-controls="showcase-track">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
-    <p class="scroll-hint">← scorri per vedere tutte le schermate →</p>
+    <p class="scroll-hint">Scorri per vedere tutte le schermate</p>
+  </section>
+
+  <!-- CTA INTERMEDIA -->
+  <section class="cta-band" aria-label="Scarica EasyKick">
+    <div class="container">
+      <div class="inner reveal">
+        <div class="copy">
+          <h2>Ti bastano 30 secondi per creare la prima partita.</h2>
+          <p>Gratis su App Store e Google Play. Accedi col numero di telefono.</p>
+        </div>
+        <a class="btn btn-primary js-store-cta" href="#scarica">Scarica EasyKick</a>
+      </div>
+    </div>
   </section>
 
   <!-- FEATURES -->
-  <section class="features">
+  <section class="features" id="funzioni">
     <div class="container">
+      <span class="section-eyebrow reveal">Funzioni</span>
       <h2 class="reveal">Tutto quello che ti serve</h2>
       <p class="section-lede reveal">
         Strumenti veri per chi gioca davvero. Niente fronzoli, solo le funzioni che contano.
       </p>
       <div class="features-grid">
+        <div class="feature-card featured reveal">
+          <div class="feature-body">
+            <div class="feature-text">
+              <div class="feature-icon" aria-hidden="true">⚖️</div>
+              <h3>Squadre bilanciate in automatico</h3>
+              <p>
+                Un algoritmo snake-draft distribuisce i giocatori in base a ruoli e rating.
+                Basta trattative: le due formazioni sono pronte prima che tu arrivi al campo,
+                e se serve puoi sempre aggiustarle a mano.
+              </p>
+            </div>
+            <div class="feature-shot">
+              <img src="/assets/web/05-crea-squadre.jpg" width="620" height="1344" alt="Le due squadre bilanciate generate da EasyKick" loading="lazy" />
+            </div>
+          </div>
+        </div>
         <div class="feature-card reveal">
-          <div class="feature-icon">📅</div>
+          <div class="feature-icon" aria-hidden="true">📅</div>
           <h3>Crea in 30 secondi</h3>
           <p>Data, luogo, numero giocatori. La partita è online e condivisibile.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon">🔗</div>
+          <div class="feature-icon" aria-hidden="true">🔗</div>
           <h3>Invita con un link</h3>
           <p>Un tap sul codice e i tuoi amici entrano nella partita — senza registrazioni complicate.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon">⚖️</div>
-          <h3>Squadre bilanciate</h3>
-          <p>Algoritmo snake-draft basato su ruoli e rating: niente più formazioni sbilanciate.</p>
-        </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon">📍</div>
+          <div class="feature-icon" aria-hidden="true">📍</div>
           <h3>Partite vicino a te</h3>
           <p>Scopri match aperti nella tua città e candidati con un tap.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon">⭐</div>
+          <div class="feature-icon" aria-hidden="true">⭐</div>
           <h3>Rating e pagelle</h3>
           <p>Dopo la partita i giocatori si valutano: emergono i veri talenti del quartiere.</p>
         </div>
         <div class="feature-card reveal">
-          <div class="feature-icon">🔔</div>
+          <div class="feature-icon" aria-hidden="true">🔔</div>
           <h3>Alert e promemoria</h3>
           <p>Notifiche per nuove partite adatte a te, formazioni pronte e match imminenti.</p>
         </div>
@@ -730,9 +1198,44 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="howto">
+  <!-- SQUADRE (novità dell'ultima versione) -->
+  <section class="squads" id="squadre">
+    <div class="pitch-lines" aria-hidden="true"></div>
     <div class="container">
+      <span class="section-eyebrow reveal">Novità</span>
+      <h2 class="reveal">La tua squadra, le tue amichevoli</h2>
+      <p class="section-lede reveal">
+        Non solo partite aperte: adesso puoi fondare la tua squadra, chiamare gli amici nella rosa
+        e cercare avversari per un'amichevole.
+      </p>
+      <div class="squad-grid">
+        <div class="squad-card reveal">
+          <div class="s-icon" aria-hidden="true">🛡️</div>
+          <h3>Fonda la squadra</h3>
+          <p>Nome, zona e stemma personalizzato — anche con una tua immagine. In due minuti la tua squadra esiste davvero.</p>
+        </div>
+        <div class="squad-card reveal">
+          <div class="s-icon" aria-hidden="true">👥</div>
+          <h3>Chiama gli amici nella rosa</h3>
+          <p>Inviti i giocatori, loro accettano dall'app. Poi decidi tu formazione, titolari e capitano.</p>
+        </div>
+        <div class="squad-card reveal">
+          <div class="s-icon" aria-hidden="true">⚔️</div>
+          <h3>Organizza o cerca amichevoli</h3>
+          <p>Pubblica la sfida sulla bacheca o rispondi a quelle delle squadre vicine. Hai un codice sfida? Vai dritto all'avversario che vuoi.</p>
+        </div>
+      </div>
+      <div class="squad-foot reveal">
+        <a class="btn btn-primary js-store-cta" href="#scarica">Crea la tua squadra</a>
+        <span class="note">Disponibile nell'ultima versione, per calcio a 5, 7, 8 e 11.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="howto" id="come-funziona">
+    <div class="container">
+      <span class="section-eyebrow reveal">In tre passi</span>
       <h2 class="reveal">Come funziona</h2>
       <p class="section-lede reveal">Tre passi e sei in campo.</p>
       <div class="howto-steps">
@@ -742,7 +1245,7 @@
         </div>
         <div class="step reveal">
           <h3>Crea o trova partita</h3>
-          <p>Organizza il tuo match o entra in una partita aperta vicino a te.</p>
+          <p>Organizza il tuo match, entra in una partita aperta vicino a te o sfida un'altra squadra in amichevole.</p>
         </div>
         <div class="step reveal">
           <h3>Gioca e valuta</h3>
@@ -752,17 +1255,108 @@
     </div>
   </section>
 
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="pitch-lines" aria-hidden="true"></div>
+    <div class="container">
+      <span class="section-eyebrow reveal">Fiducia</span>
+      <h2 class="reveal">Una community più affidabile</h2>
+      <p class="section-lede reveal">Trasparenza sui dati, responsabilità in campo. Nessun trucco.</p>
+      <div class="trust-grid">
+        <div class="trust-card reveal">
+          <div class="t-icon" aria-hidden="true">📱</div>
+          <div>
+            <h3>Accesso senza password</h3>
+            <p>Entri col numero di telefono e un codice OTP. Niente email da confermare, niente password da ricordare.</p>
+          </div>
+        </div>
+        <div class="trust-card reveal">
+          <div class="t-icon" aria-hidden="true">🔒</div>
+          <div>
+            <h3>Dati trattati secondo il GDPR</h3>
+            <p>Traffico cifrato in TLS e archiviazione su infrastruttura Google Cloud certificata ISO 27001. Titolare italiano, policy in chiaro.</p>
+          </div>
+        </div>
+        <div class="trust-card reveal">
+          <div class="t-icon" aria-hidden="true">🗑️</div>
+          <div>
+            <h3>Account cancellabile dall'app</h3>
+            <p>Profilo → Elimina account: la cancellazione è immediata, senza mail da scrivere e senza attese.</p>
+          </div>
+        </div>
+        <div class="trust-card reveal">
+          <div class="t-icon" aria-hidden="true">⭐</div>
+          <div>
+            <h3>Una community con memoria</h3>
+            <p>Voti e pagelle restano nel profilo: chi c'è sempre si riconosce, e le squadre restano equilibrate nel tempo.</p>
+          </div>
+        </div>
+      </div>
+      <p class="trust-note reveal">
+        EasyKick è gratuita ed è supportata da annunci mostrati solo previo consenso.
+        Tutti i dettagli nella <a href="/privacy.html">privacy policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <span class="section-eyebrow reveal">Domande frequenti</span>
+      <h2 class="reveal">Le domande che ci fanno tutti</h2>
+      <p class="section-lede reveal">Se non trovi la risposta, scrivici: rispondiamo davvero.</p>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>Quanto costa EasyKick?</summary>
+          <div class="faq-answer">È gratis: crei partite, ti candidi e voti senza pagare nulla. L'app è supportata da annunci pubblicitari, mostrati solo previo tuo consenso.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Devo registrarmi con email e password?</summary>
+          <div class="faq-answer">No. Accedi con il tuo numero di telefono e un codice OTP: nessuna email da confermare e nessuna password da ricordare.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>I miei amici devono avere l'app per giocare?</summary>
+          <div class="faq-answer">Sì, per entrare in partita serve l'app. Ti basta condividere il link o il codice d'invito: chi non ce l'ha viene portato allo store e il codice viene inserito in automatico all'apertura.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Come vengono formate le squadre?</summary>
+          <div class="faq-answer">Un algoritmo snake-draft distribuisce i giocatori tenendo conto dei ruoli e del rating maturato nelle partite precedenti, così le due formazioni restano equilibrate. Puoi sempre intervenire a mano prima del fischio d'inizio.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Funziona solo per il calcetto a 5?</summary>
+          <div class="faq-answer">No. Puoi gestire partite di calcio a 5, a 7, a 8 e a 11: scegli il formato quando crei il match e i posti, i ruoli e il modulo consigliato si adattano di conseguenza.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Posso creare la mia squadra su EasyKick?</summary>
+          <div class="faq-answer">Sì. Fondi la squadra con nome, stemma personalizzato e regione, poi inviti gli amici nella rosa: chi accetta entra e puoi impostare formazione e titolari.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Come trovo un'amichevole contro un'altra squadra?</summary>
+          <div class="faq-answer">Dalla bacheca sfide: pubblichi la tua amichevole indicando formato, zona e data, oppure sfogli le sfide aperte delle squadre vicine e rispondi. Se hai ricevuto un codice sfida puoi anche sfidare direttamente una squadra specifica.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Su quali dispositivi funziona?</summary>
+          <div class="faq-answer">Su iPhone e su Android. L'app è gratuita su App Store e su Google Play.</div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Come cancello il mio account?</summary>
+          <div class="faq-answer">Direttamente dall'app, da Profilo → Elimina account. La cancellazione è immediata e non serve scrivere a nessuno.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
-  <section class="cta-final">
+  <section class="cta-final" id="cta-finale">
     <div class="container">
       <h2 class="reveal">Pronto per la prossima partita?</h2>
       <p class="reveal">Scarica EasyKick e organizza il tuo match in pochi tap. Il campo ti aspetta.</p>
       <div class="store-buttons reveal" style="justify-content:center;">
-        <a href="https://apps.apple.com/app/easykick/id6768992875" aria-label="Scarica EasyKick su App Store">
-          <img src="/assets/badge_app_store.svg" alt="Scarica su App Store" />
+        <a class="store-apple" href="https://apps.apple.com/app/easykick/id6768992875?ct=landing_footer&amp;mt=8" aria-label="Scarica EasyKick su App Store">
+          <img src="/assets/badge_app_store.svg" alt="Scarica su App Store" width="168" height="56" />
         </a>
-        <a href="https://play.google.com/store/apps/details?id=it.easykick.app" aria-label="Disponibile su Google Play">
-          <img src="/assets/badge_google_play.svg" alt="Disponibile su Google Play" />
+        <a class="store-google" href="https://play.google.com/store/apps/details?id=it.easykick.app&amp;referrer=utm_source%3Dsito%26utm_medium%3Dlanding%26utm_content%3Dfooter" aria-label="Disponibile su Google Play">
+          <img src="/assets/badge_google_play.svg" alt="Disponibile su Google Play" width="189" height="56" />
         </a>
       </div>
     </div>
@@ -770,17 +1364,36 @@
 
   <footer class="site-footer">
     <div class="container">
-      <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
-      <nav class="footer-links" aria-label="Link utili">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="mailto:info@easykick.it">Contattaci</a>
-        <a href="/tester/">Diventa tester</a>
-        <a href="https://apps.apple.com/app/easykick/id6768992875">App Store</a>
-        <a href="https://play.google.com/store/apps/details?id=it.easykick.app">Google Play</a>
-      </nav>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="140" height="28" />
+          <p>L'app che semplifica il calcetto tra amici: crea, invita, bilancia le squadre e gioca.</p>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <ul>
+            <li><a href="https://apps.apple.com/app/easykick/id6768992875">App Store</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=it.easykick.app">Google Play</a></li>
+            <li><a href="/tester/">Diventa tester</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="#faq">Domande frequenti</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="mailto:info@easykick.it">Contattaci</a></li>
+          </ul>
+        </div>
+      </div>
       <p class="footer-copy">© 2026 EasyKick · Tutti i diritti riservati</p>
     </div>
   </footer>
+
+  <!-- CTA sticky mobile: compare dopo l'hero, sparisce sulla CTA finale -->
+  <div class="mobile-cta" id="mobile-cta">
+    <a class="btn btn-primary js-store-cta" href="#scarica">Scarica EasyKick — gratis</a>
+  </div>
 
   <script>
     // Reveal-on-scroll (no dipendenze)
@@ -803,37 +1416,79 @@
   </script>
 
   <script>
-    // Device detection: iOS vs Android
+    // Su mobile tutte le CTA generiche puntano direttamente allo store del dispositivo.
     (function () {
-      var ua = navigator.userAgent;
-      var isIOS     = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-      var isAndroid = /Android/.test(ua);
-      var isMobile  = isIOS || isAndroid;
+      var root = document.documentElement;
+      var isIOS = root.classList.contains('is-ios');
+      var isAndroid = root.classList.contains('is-android');
+      if (!isIOS && !isAndroid) return; // desktop: le CTA restano ancore ai badge
 
-      if (!isMobile) return; // Desktop: non fare nulla, mostra entrambi i bottoni
+      var target = isIOS
+        ? 'https://apps.apple.com/app/easykick/id6768992875?ct=landing&mt=8'
+        : 'https://play.google.com/store/apps/details?id=it.easykick.app&referrer=utm_source%3Dsito%26utm_medium%3Dlanding';
 
-      // Su mobile: nascondi il bottone "sbagliato" e reindirizza al giusto store
-      var appStoreLink = 'https://apps.apple.com/app/easykick/id6768992875';
-      var googlePlayLink = 'https://play.google.com/store/apps/details?id=it.easykick.app';
-      var targetLink = isIOS ? appStoreLink : googlePlayLink;
+      document.querySelectorAll('.js-store-cta').forEach(function (el) {
+        el.href = target;
+        el.rel = 'noopener';
+      });
+    })();
+  </script>
 
-      // 1. Header CTA
-      var headerCta = document.querySelector('.header-cta');
-      if (headerCta) {
-        headerCta.href = targetLink;
-        if (isAndroid) headerCta.target = '_blank';
+  <script>
+    // Carosello screenshot: frecce desktop + stato dei bottoni
+    (function () {
+      var track = document.getElementById('showcase-track');
+      if (!track) return;
+      var prev = document.querySelector('.carousel-btn.prev');
+      var next = document.querySelector('.carousel-btn.next');
+      if (!prev || !next) return;
+
+      function step() {
+        var card = track.querySelector('.shot');
+        var gap = parseFloat(getComputedStyle(track).columnGap) || 16;
+        return card ? card.getBoundingClientRect().width + gap : 280;
       }
 
-      // 2. Hide Apple Store button su Android, Google Play su iOS
-      document.querySelectorAll('.store-buttons a').forEach(function (link) {
-        var href = link.getAttribute('href');
-        var isAppStore = href && href.includes('apps.apple.com');
-        var isGooglePlay = href && href.includes('play.google.com');
+      function sync() {
+        var max = track.scrollWidth - track.clientWidth - 2;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max;
+      }
 
-        if ((isAppStore && isAndroid) || (isGooglePlay && isIOS)) {
-          link.style.display = 'none';
-        }
-      });
+      prev.addEventListener('click', function () { track.scrollBy({ left: -step() * 2, behavior: 'smooth' }); });
+      next.addEventListener('click', function () { track.scrollBy({ left:  step() * 2, behavior: 'smooth' }); });
+      track.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+    })();
+  </script>
+
+  <script>
+    // Barra CTA sticky su mobile: fuori dall'hero sì, sulla CTA finale no.
+    (function () {
+      var bar = document.getElementById('mobile-cta');
+      var hero = document.querySelector('.hero');
+      var finalCta = document.getElementById('cta-finale');
+      if (!bar || !hero || !('IntersectionObserver' in window)) return;
+
+      var pastHero = false;
+      var atFinal = false;
+
+      function render() {
+        bar.classList.toggle('is-visible', pastHero && !atFinal);
+      }
+
+      new IntersectionObserver(function (entries) {
+        pastHero = !entries[0].isIntersecting;
+        render();
+      }, { threshold: 0 }).observe(hero);
+
+      if (finalCta) {
+        new IntersectionObserver(function (entries) {
+          atFinal = entries[0].isIntersecting;
+          render();
+        }, { threshold: 0.2 }).observe(finalCta);
+      }
     })();
   </script>
 

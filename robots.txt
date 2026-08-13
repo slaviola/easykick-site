@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Pagine di servizio: utili agli utenti, non ai motori.
+# /scarica/ e /tester/ hanno gia meta robots noindex.
+Disallow: /join/
+
+Sitemap: https://www.easykick.it/sitemap.xml
