@@ -123,11 +123,13 @@
 </head>
 <body>
 
-  <!-- Sezione invito partita (visibile solo per /join/*) -->
+  <!-- Sezione deep link: invito partita (/join/*), invito squadra
+       (/join-squad/*) e convocazione (/convocation/*). Titolo e sottotitolo
+       vengono riscritti dallo script in base al tipo di link. -->
   <div id="join-section">
     <img class="site-logo" src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" />
-    <h1>Sei stato invitato a una partita!</h1>
-    <p class="subtitle">Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.</p>
+    <h1 id="deep-title">Sei stato invitato a una partita!</h1>
+    <p class="subtitle" id="deep-subtitle">Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.</p>
     <div id="code-badge" class="code-badge hidden"></div>
     <p id="redirect-msg" class="redirect-msg" style="display:none">Redirect allo store tra <strong id="countdown">3</strong>s&hellip; <a href="#" id="cancel-redirect" style="color:#94A3B8;font-size:13px;">annulla</a></p>
     <p class="download-label" id="download-label">Scegli la tua piattaforma</p>
@@ -150,36 +152,71 @@
 
   <script>
     (function () {
-      // Estrai il codice invito da:
-      //   1) pathname canonico: /join/{CODE}  (formato deep link ufficiale)
-      //   2) query string legacy: ?code={CODE}  (fallback temporaneo)
+      // Tre famiglie di deep link, tutte dichiarate nell'AASA iOS e nel
+      // manifest Android. Se l'app è installata, l'OS intercetta l'URL prima
+      // che questa pagina venga caricata: se siamo qui, l'app NON c'è.
+      //   1) /join/{CODE}                       → invito a una partita
+      //   2) /join-squad/{TOKEN}                → invito in una squadra
+      //   3) /convocation/{squadId}/{convId}    → convocazione della squadra
+      // Retro-compatibile con la query string legacy ?code={CODE}.
       var path = window.location.pathname;
       var search = window.location.search;
       var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
+      var squadMatch = path.match(/^\/join-squad\/([A-Za-z0-9_-]{16,64})\/?$/);
+      var convMatch = path.match(
+        /^\/convocation\/([A-Za-z0-9_-]{6,64})\/([A-Za-z0-9_-]{6,64})\/?$/);
       var queryMatch = search.match(/[?&]code=([A-Za-z0-9]{4,10})(?:&|$)/);
       var code = null;
+      var kind = null;
 
       if (joinMatch) {
         code = joinMatch[1].toUpperCase();
+        kind = 'match';
+      } else if (squadMatch) {
+        kind = 'squad';
+      } else if (convMatch) {
+        kind = 'convocation';
       } else if (queryMatch && path.indexOf('/join') === 0) {
         code = queryMatch[1].toUpperCase();
+        kind = 'match';
         // Normalizza l'URL al formato canonico /join/{CODE} senza reload
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, '', '/join/' + code);
         }
       }
 
-      if (!code) {
-        // Nessun codice valido: mostra il 404 generico
+      if (!kind) {
+        // Nessun deep link valido: mostra il 404 generico
         document.getElementById('join-section').style.display = 'none';
         document.getElementById('notfound-section').style.display = 'block';
         return;
       }
 
-      // Mostra il codice
+      // Copy per tipo di link. Token squadra e id convocazione NON vengono
+      // mostrati: il token è un segreto, gli id sono rumore.
+      var COPY = {
+        match: {
+          title: 'Sei stato invitato a una partita!',
+          subtitle: 'Scarica EasyKick per unirti. Il codice verrà inserito automaticamente.'
+        },
+        squad: {
+          title: 'Sei stato invitato in una squadra!',
+          subtitle: 'Scarica EasyKick e richiedi l’ingresso: capitano o Team Manager approveranno la richiesta.'
+        },
+        convocation: {
+          title: 'La tua squadra ti ha convocato!',
+          subtitle: 'Scarica EasyKick e rispondi con un tap: Ci sono, Non ci sono o Forse.'
+        }
+      };
+      document.getElementById('deep-title').textContent = COPY[kind].title;
+      document.getElementById('deep-subtitle').textContent = COPY[kind].subtitle;
+      document.title = 'EasyKick - ' + COPY[kind].title;
+
       var badge = document.getElementById('code-badge');
-      badge.textContent = code;
-      badge.classList.remove('hidden');
+      if (code) {
+        badge.textContent = code;
+        badge.classList.remove('hidden');
+      }
 
       var androidBtn = document.getElementById('btn-android');
       var iosBtn     = document.getElementById('btn-ios');
@@ -188,8 +225,10 @@
       var cancelBtn    = document.getElementById('cancel-redirect');
       var downloadLabel = document.getElementById('download-label');
 
-      // Appende referrer con il codice per Android
-      androidBtn.href += '&referrer=code%3D' + code;
+      // Appende referrer con il codice per Android (solo invito partita)
+      if (code) {
+        androidBtn.href += '&referrer=code%3D' + code;
+      }
 
       // Rileva OS
       var ua = navigator.userAgent;

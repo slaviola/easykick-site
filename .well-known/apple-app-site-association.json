@@ -6,7 +6,19 @@
         "components": [
           {
             "/": "/join/*",
-            "comment": "EasyKick invite links"
+            "comment": "EasyKick invite links (partita)"
+          },
+          {
+            "/": "/join-squad/*",
+            "comment": "EasyKick invite links (squadra)"
+          },
+          {
+            "/": "/convocation/*",
+            "comment": "EasyKick convocazioni squadra"
+          },
+          {
+            "/": "/convocation/*/*",
+            "comment": "EasyKick convocazioni squadra (squadId/convocationId)"
           }
         ]
       }
