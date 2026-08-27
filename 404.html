@@ -152,17 +152,19 @@
 
   <script>
     (function () {
-      // Tre famiglie di deep link, tutte dichiarate nell'AASA iOS e nel
+      // Quattro famiglie di deep link, tutte dichiarate nell'AASA iOS e nel
       // manifest Android. Se l'app è installata, l'OS intercetta l'URL prima
       // che questa pagina venga caricata: se siamo qui, l'app NON c'è.
       //   1) /join/{CODE}                       → invito a una partita
       //   2) /join-squad/{TOKEN}                → invito in una squadra
-      //   3) /convocation/{squadId}/{convId}    → convocazione della squadra
+      //   3) /join-event/{TOKEN}                → invito in una squadra EVENTO
+      //   4) /convocation/{squadId}/{convId}    → convocazione della squadra
       // Retro-compatibile con la query string legacy ?code={CODE}.
       var path = window.location.pathname;
       var search = window.location.search;
       var joinMatch = path.match(/^\/join\/([A-Za-z0-9]{4,10})\/?$/);
       var squadMatch = path.match(/^\/join-squad\/([A-Za-z0-9_-]{16,64})\/?$/);
+      var eventMatch = path.match(/^\/join-event\/([A-Za-z0-9_-]{16,64})\/?$/);
       var convMatch = path.match(
         /^\/convocation\/([A-Za-z0-9_-]{6,64})\/([A-Za-z0-9_-]{6,64})\/?$/);
       var queryMatch = search.match(/[?&]code=([A-Za-z0-9]{4,10})(?:&|$)/);
@@ -174,6 +176,8 @@
         kind = 'match';
       } else if (squadMatch) {
         kind = 'squad';
+      } else if (eventMatch) {
+        kind = 'event';
       } else if (convMatch) {
         kind = 'convocation';
       } else if (queryMatch && path.indexOf('/join') === 0) {
@@ -202,6 +206,10 @@
         squad: {
           title: 'Sei stato invitato in una squadra!',
           subtitle: 'Scarica EasyKick e richiedi l’ingresso: capitano o Team Manager approveranno la richiesta.'
+        },
+        event: {
+          title: 'Sei stato invitato in una squadra per un evento!',
+          subtitle: 'Scarica EasyKick e richiedi l’ingresso: il capitano approverà la richiesta.'
         },
         convocation: {
           title: 'La tua squadra ti ha convocato!',

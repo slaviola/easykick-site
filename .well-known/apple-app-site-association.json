@@ -13,6 +13,10 @@
             "comment": "EasyKick invite links (squadra)"
           },
           {
+            "/": "/join-event/*",
+            "comment": "EasyKick invite links (squadra evento)"
+          },
+          {
             "/": "/convocation/*",
             "comment": "EasyKick convocazioni squadra"
           },
