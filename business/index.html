@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EasyKick Business – per strutture e organizzatori</title>
   <meta name="description" content="Hai un centro sportivo o organizzi tornei e campionati di calcetto? Scegli il tuo percorso e prenota una demo gratuita, anche dal vivo." />
-  <!-- PROPOSTA B (bozza): se viene scelta, questa pagina diventa /business/
-       e si toglie il noindex. -->
-  <meta name="robots" content="noindex" />
   <link rel="canonical" href="https://www.easykick.it/business/" />
   <meta name="theme-color" content="#0B1220" />
   <link rel="icon" href="/assets/easykick_symbol.svg" type="image/svg+xml" />
@@ -15,20 +12,29 @@
   <meta property="og:description" content="Campi riservati dall'app per le strutture, tornei e campionati che girano da soli per gli organizzatori. Demo gratuita, anche dal vivo." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="EasyKick" />
   <meta property="og:url" content="https://www.easykick.it/business/" />
-  <meta property="og:image" content="https://www.easykick.it/assets/web/og-feature.jpg" />
+  <meta property="og:image" content="https://www.easykick.it/assets/business/og-business.jpg" />
   <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="586" />
-  <meta property="og:image:alt" content="EasyKick, l'app del calcetto" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="EasyKick Business: il calcetto organizzato, per chi ha i campi e per chi fa i tornei. Due schermate reali dell'app." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EasyKick Business – per strutture e organizzatori" />
+  <meta name="twitter:description" content="Campi riservati dall'app per le strutture, tornei e campionati che girano da soli per gli organizzatori. Demo gratuita, anche dal vivo." />
+  <meta name="twitter:image" content="https://www.easykick.it/assets/business/og-business.jpg" />
   <link rel="stylesheet" href="/assets/business/business.css" />
   <script>
-    /* Link di Instagram con ?per=strutture|organizzatori: si va dritti
-       al percorso giusto, portandosi dietro gli UTM. */
+    /* Link di Instagram con ?per=strutture|organizzatori (e i vecchi link
+       /business/#strutture, #organizzatori): si va dritti al percorso
+       giusto, portandosi dietro gli UTM. */
     (function () {
       try {
         var q = new URLSearchParams(location.search), per = (q.get('per') || '').toLowerCase();
-        var to = per.indexOf('strutt') === 0 ? 'strutture/' : (per.indexOf('organizz') === 0 ? 'organizzatori/' : null);
-        if (to) location.replace(to + location.search + location.hash);
+        var h = location.hash.toLowerCase();
+        if (!per && (h === '#strutture' || h === '#organizzatori')) per = h.slice(1);
+        var to = per.indexOf('strutt') === 0 ? '/business/strutture/' : (per.indexOf('organizz') === 0 ? '/business/organizzatori/' : null);
+        var hash = (h === '#strutture' || h === '#organizzatori') ? '' : location.hash;
+        if (to) location.replace(to + location.search + hash);
       } catch (e) { /* browser vecchio: resta sull'ingresso */ }
     })();
   </script>
@@ -38,13 +44,13 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="./" aria-label="EasyKick Business, ingresso">
+      <a class="brand" href="/business/" aria-label="EasyKick Business, ingresso">
         <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
         <span>Business</span>
       </a>
       <nav class="site-nav" aria-label="Percorsi">
-        <a href="strutture/" data-carry>Per le strutture</a>
-        <a href="organizzatori/" data-carry>Per gli organizzatori</a>
+        <a href="/business/strutture/" data-carry>Per le strutture</a>
+        <a href="/business/organizzatori/" data-carry>Per gli organizzatori</a>
         <a href="/">Per i giocatori</a>
       </nav>
       <a class="btn btn-primary btn-sm" href="#contatti" data-req="demo">Prenota una demo</a>
@@ -62,8 +68,8 @@
       </div>
 
       <div class="doors">
-        <a class="door" href="strutture/" data-carry>
-          <div class="door-img"><img src="/assets/business/oggi_390.png" alt="Schermata Oggi per una struttura: partite del giorno, in attesa e slot liberi" width="780" height="1640" /></div>
+        <a class="door" href="/business/strutture/" data-carry>
+          <div class="door-img"><img src="/assets/business/oggi_pulita.png" alt="Schermata Oggi per una struttura: partite del giorno, in attesa e slot liberi" width="780" height="1640" /></div>
           <span class="eyebrow">Ho un centro sportivo</span>
           <h2>Più campi pieni, meno telefono.</h2>
           <ul class="ticks">
@@ -73,7 +79,7 @@
           </ul>
           <span class="go">Scopri EasyKick per le strutture &rarr;</span>
         </a>
-        <a class="door" href="organizzatori/" data-carry>
+        <a class="door" href="/business/organizzatori/" data-carry>
           <div class="door-img"><img src="/assets/business/evento_gestione_390.png" alt="Gestione di un torneo: giornate in calendario e azioni su ogni partita" width="780" height="1640" /></div>
           <span class="eyebrow">Organizzo tornei e campionati</span>
           <h2>Il torneo lo prepari una volta. Poi gira da solo.</h2>
@@ -206,8 +212,8 @@
         <div class="footer-col">
           <h2>Business</h2>
           <ul>
-            <li><a href="/business/proposta-b/strutture/" data-carry>Per le strutture</a></li>
-            <li><a href="/business/proposta-b/organizzatori/" data-carry>Per gli organizzatori</a></li>
+            <li><a href="/business/strutture/" data-carry>Per le strutture</a></li>
+            <li><a href="/business/organizzatori/" data-carry>Per gli organizzatori</a></li>
             <li><a href="#contatti" data-req="demo">Prenota una demo</a></li>
           </ul>
         </div>
@@ -232,6 +238,6 @@
 </div>
 
 <script src="/assets/business/business.js"></script>
-<script>EKBusiness.init({ page: 'proposta-b-ingresso' });</script>
+<script>EKBusiness.init({page: 'ingresso'});</script>
 </body>
 </html>

@@ -2,7 +2,6 @@
    - legge UTM e ?per=strutture|organizzatori (link di Instagram) e li
      conserva per la sessione, così arrivano nel modulo anche se il
      visitatore cambia pagina;
-   - interruttore strutture/organizzatori (proposta A);
    - elenco funzioni con la schermata accanto;
    - modulo demo: invio a Web3Forms via fetch, con stati chiari e
      alternativa email se qualcosa va storto. */
@@ -77,13 +76,6 @@
       });
     });
   }
-  function syncShot(list) {
-    if (!list) return;
-    var img = document.getElementById(list.getAttribute('data-shots'));
-    var sel = list.querySelector('button[aria-pressed="true"]');
-    if (img && sel) { img.src = sel.getAttribute('data-shot'); img.alt = sel.getAttribute('data-alt') || ''; }
-  }
-
   /* ── Modulo demo ───────────────────────────────────────────── */
   var WHAT_LABEL = {
     s: 'Nome della struttura',
@@ -241,6 +233,9 @@
       if (f && params[k]) f.value = params[k];
     });
     if (form.elements.pagina && opts.page) form.elements.pagina.value = opts.page;
+    /* Sulle pagine percorso il pubblico è quello della pagina, anche se
+       in sessione è rimasto un ?per= diverso. */
+    if (form.elements.per && opts.per) form.elements.per.value = opts.per;
 
     form.querySelectorAll('input[name="ruolo"]').forEach(function (r) { r.addEventListener('change', onRoleChange); });
     form.querySelectorAll('input[name="richiesta"]').forEach(function (r) { r.addEventListener('change', onRequestChange); });
@@ -263,37 +258,6 @@
     onRequestChange();
   }
 
-  /* ── Interruttore di pubblico (proposta A) ─────────────────── */
-  function initSwitch() {
-    var page = document.getElementById('page');
-    if (!page || !page.querySelector('.switch')) return null;
-    function setAud(a, keepUrl) {
-      page.setAttribute('data-aud', a);
-      page.querySelectorAll('.switch button').forEach(function (b) {
-        b.setAttribute('aria-pressed', String(b.getAttribute('data-aud') === a));
-      });
-      syncShot(page.querySelector('.only-' + a + '[data-shots]'));
-      setFormAud(a);
-      if (!keepUrl && window.history && history.replaceState) {
-        history.replaceState(null, '', window.location.pathname + window.location.search + '#' + (a === 's' ? 'strutture' : 'organizzatori'));
-      }
-    }
-    page.querySelectorAll('.switch button').forEach(function (b) {
-      b.addEventListener('click', function () { setAud(b.getAttribute('data-aud')); });
-    });
-    function fromHash() {
-      if (window.location.hash === '#organizzatori') { setAud('o', true); window.scrollTo(0, 0); return true; }
-      if (window.location.hash === '#strutture') { setAud('s', true); window.scrollTo(0, 0); return true; }
-      return false;
-    }
-    window.addEventListener('hashchange', fromHash);
-    if (!fromHash()) {
-      var a = audFromPer(params.per);
-      if (a) setAud(a, true);
-    }
-    return setAud;
-  }
-
   window.EKBusiness = {
     params: params,
     audFromPer: audFromPer,
@@ -301,7 +265,6 @@
       carryParams();
       initShots();
       initForm(opts);
-      initSwitch();
     }
   };
 })();

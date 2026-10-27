@@ -61,8 +61,6 @@ p { margin: 0; }
 .btn-sm { min-height: 40px; padding: 8px 16px; font-size: .92rem; }
 .btn[disabled] { opacity: .65; cursor: progress; transform: none; }
 
-/* Interruttore di pubblico (proposta A) */
-.page[data-aud="s"] .only-o, .page[data-aud="o"] .only-s { display: none !important; }
 
 /* Header */
 .site-header {
@@ -88,16 +86,6 @@ p { margin: 0; }
   padding: clamp(28px, 6vw, 72px) 0 clamp(44px, 6vw, 80px);
   background: radial-gradient(1100px 520px at 85% -10%, rgba(52,226,122,.15), transparent 60%), var(--bg);
 }
-.switch {
-  display: inline-flex; padding: 4px; gap: 4px; background: var(--surface);
-  border: 1px solid var(--border); border-radius: 999px; margin-bottom: 24px; max-width: 100%;
-}
-.switch button {
-  font: inherit; font-weight: 800; font-size: .88rem; color: var(--muted); background: transparent;
-  border: 0; border-radius: 999px; padding: 10px 12px; cursor: pointer; min-height: 44px;
-}
-@media (min-width: 440px) { .switch button { padding: 10px 18px; font-size: .95rem; } }
-.switch button[aria-pressed="true"] { background: var(--green); color: var(--green-ink); }
 .hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: center; }
 @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.15fr .85fr; gap: 48px; } }
 .hero-copy { display: grid; gap: 18px; min-width: 0; }
