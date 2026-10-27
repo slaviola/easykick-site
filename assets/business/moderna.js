@@ -78,8 +78,12 @@
     var card = $('.sim-card', root), title = $('[data-sim-title]', root), badge = $('[data-sim-badge]', root);
     var players = $('[data-sim-players]', root), bar = $('[data-sim-bar]', root), count = $('[data-sim-count]', root);
     var msg = $('[data-sim-msg]', root), btn = $('[data-sim-btn]', root);
-    var NEED = 10, NAMES = ['LV', 'SC', 'MR', 'AB', 'DG', 'FP', 'GT', 'NL', 'RC', 'EM'];
-    var slot = null, state = 'idle', timer = 0;
+    /* Illustrazione: 10 giocatori, soglia di quote garantite = metà (il
+       valore di base; il gestore la sceglie campo per campo). Chi paga al
+       campo non conta per la soglia. */
+    var NEED = 10, SOGLIA = 5, NAMES = ['LV', 'SC', 'MR', 'AB', 'DG', 'FP', 'GT', 'NL', 'RC', 'EM'];
+    var CASH = { 3: 1, 7: 1 };
+    var slot = null, state = 'idle', timer = 0, garantite = 0;
 
     function setState(st) {
       state = st;
@@ -90,9 +94,10 @@
         slot.querySelector('small').textContent = badge.textContent;
       }
     }
-    function quote(paid) {
-      bar.style.setProperty('--q', (paid / NEED * 100) + '%');
-      count.textContent = paid + ' su ' + NEED;
+    function quote(g) {
+      garantite = g;
+      bar.style.setProperty('--q', (g / NEED * 100) + '%');
+      count.textContent = g + ' garantite · soglia ' + SOGLIA;
     }
     function reset() {
       clearInterval(timer);
@@ -108,8 +113,9 @@
     }
     function addPlayer(i) {
       var p = document.createElement('span');
-      p.className = 'player paid'; p.textContent = NAMES[i]; p.setAttribute('aria-hidden', 'true');
-      players.appendChild(p); quote(i + 1);
+      var cash = !!CASH[i];
+      p.className = cash ? 'player' : 'player paid'; p.textContent = NAMES[i]; p.setAttribute('aria-hidden', 'true');
+      players.appendChild(p); quote(garantite + (cash ? 0 : 1));
     }
     btn.addEventListener('click', function () {
       if (!slot) return;
@@ -120,19 +126,23 @@
         btn.textContent = 'Arriva il gruppo';
       } else if (state === 'riservato') {
         btn.disabled = true;
-        msg.textContent = 'I giocatori entrano e pagano la loro quota dall’app…';
+        msg.textContent = 'I giocatori entrano: chi paga in app garantisce la sua quota (carta o carnet), chi paga al campo no…';
         var i = players.children.length;
         var step = function () {
           if (i >= NEED) {
             clearInterval(timer);
-            setState('confermato'); card.classList.add('done');
-            msg.textContent = 'Gruppo completo e quote pagate: la partita è confermata. Senza una telefonata.';
-            btn.textContent = 'Prova un altro slot'; btn.disabled = false;
+            state = 'pronta';
+            msg.textContent = 'Gruppo completo e soglia di quote garantite superata: ora l’organizzatore del gruppo può confermare.';
+            btn.textContent = 'Conferma la partita'; btn.disabled = false;
             return;
           }
           addPlayer(i++);
         };
         if (reduce) { while (i < NEED) addPlayer(i++); step(); } else { timer = setInterval(step, 260); }
+      } else if (state === 'pronta') {
+        setState('confermato'); card.classList.add('done');
+        msg.textContent = 'Partita confermata: agli altri gruppi che avevano riservato lo slot si annulla tutto e arriva l’avviso. Senza una telefonata.';
+        btn.textContent = 'Prova un altro slot';
       } else {
         var next = $$('.slot', root).filter(function (x) { return x.getAttribute('data-st') === 'libero' && x !== slot; })[0];
         if (next) { choose(next); next.focus(); } else { $$('.slot[data-free]', root).forEach(function (x) { x.setAttribute('data-st', 'libero'); x.querySelector('small').textContent = 'Libero'; }); choose($('.slot[data-free]', root)); }
@@ -144,7 +154,7 @@
           $$('.slot', root).forEach(function (x) { x.setAttribute('aria-pressed', String(x === s)); });
           slot = null; reset(); title.textContent = s.getAttribute('data-label');
           badge.setAttribute('data-st', 'confermato'); badge.textContent = 'Confermato';
-          msg.textContent = 'Questo slot è già confermato: un altro gruppo ha completato prima. Scegline uno libero.';
+          msg.textContent = 'Questo slot è già confermato: un altro gruppo ha confermato prima. Scegline uno libero.';
           btn.disabled = true; return;
         }
         if (s === slot) return;
@@ -190,7 +200,7 @@
         flipMove(match, target);
         tag.className = 'tag rec'; tag.textContent = 'Recupero';
         target.parentNode.classList.add('flash');
-        msg.textContent = 'Il recupero trova posto in una settimana successiva e il calendario si sistema da solo: niente Excel da rifare.';
+        msg.textContent = 'L’app ti suggerisce i giorni liberi e ti ripropone il calendario già sistemato: tu controlli e confermi. Niente Excel da rifare.';
         btn.textContent = 'Rivedi da capo'; step = 2;
       } else {
         target.parentNode.classList.remove('flash');

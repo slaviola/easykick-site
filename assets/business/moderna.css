@@ -275,3 +275,6 @@ a.live:hover { transform: translateY(-4px); }
 @media (min-width: 760px) { .rdays { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .rday h3 { flex-wrap: wrap; }
 .sim > * { min-width: 0; }
+/* soglia di quote garantite sulla barra del simulatore (di base metà) */
+.qbar { position: relative; }
+.qbar::after { content: ""; position: absolute; top: -3px; bottom: -3px; left: var(--soglia, 50%); width: 2px; background: var(--text); opacity: .7; border-radius: 2px; }
