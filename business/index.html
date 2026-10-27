@@ -4,296 +4,48 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EasyKick Business – per centri sportivi e organizzatori di tornei</title>
-  <meta name="description" content="Il gestionale per campi da calcetto che arriva con i giocatori dentro. Per gli organizzatori, tornei e campionati con iscrizioni pagate in app. 14 giorni di prova, primo torneo gratis, demo in 20 minuti." />
+  <meta name="description" content="Per i centri sportivi: i giocatori della zona riservano i tuoi campi dall'app e la partita si conferma quando il gruppo c'è. Per gli organizzatori: calendario, distinte, comunicati e locandine che si fanno da soli. Prenota una demo gratuita." />
   <link rel="canonical" href="https://www.easykick.it/business/" />
   <meta name="theme-color" content="#0B1220" />
   <link rel="icon" href="/assets/easykick_symbol.svg" type="image/svg+xml" />
   <meta property="og:title" content="EasyKick Business – per strutture e organizzatori" />
-  <meta property="og:description" content="Campi, prenotazioni e incassi per la struttura. Tornei e campionati per l'organizzatore. Con i giocatori già nell'app." />
+  <meta property="og:description" content="Campi riservati dall'app per le strutture, tornei e campionati che girano da soli per gli organizzatori. Demo gratuita, anche dal vivo." />
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
   <meta property="og:url" content="https://www.easykick.it/business/" />
-  <meta property="og:image" content="https://easykick.it/assets/web/og-feature.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    /* Stessi token della home (index.html): questa pagina deve sembrare
-       la stessa casa, con un'altra stanza. Quando le pagine saranno tre,
-       gli stili comuni vanno estratti in /assets/site.css. */
-    :root {
-      --bg: #0B1220; --bg-2: #070C16; --surface: #141F33; --surface-2: #1B2A42;
-      --border: #2A3B54; --border-2: #38506F; --text: #F1F5F9; --muted: #9FB0C4;
-      --muted-2: #8296AE; --green: #34E27A; --green-2: #22C55E;
-      --green-ink: #052e16; --green-soft: rgba(52,226,122,0.14);
-      --amber: #FBBF24; --amber-soft: rgba(251,191,36,0.12); --red: #F87171;
-      --fs-hero: clamp(2.1rem, 4.4vw + 0.6rem, 3.5rem);
-      --fs-h2: clamp(1.5rem, 2.2vw + 0.6rem, 2.2rem);
-      --fs-body: clamp(1rem, 0.35vw + 0.92rem, 1.1rem);
-      --container: 1140px; --radius: 18px;
-      color-scheme: dark;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font-family: Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
-      font-size: var(--fs-body); line-height: 1.55; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    img { max-width: 100%; display: block; }
-    :focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
-    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
-    .muted { color: var(--muted); }
-    .eyebrow { font-size: .78rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; color: var(--green); }
-    h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance; }
-    h1 { font-size: var(--fs-hero); font-weight: 800; }
-    h2 { font-size: var(--fs-h2); font-weight: 800; }
-    h3 { font-size: 1.12rem; font-weight: 800; }
-    p { margin: 0; }
-    .lede { color: var(--muted); max-width: 40em; }
-    .sec { padding: clamp(56px, 7vw, 96px) 0; }
-    .sec.alt { background: var(--bg-2); }
-    .sec-head { display: grid; gap: 12px; margin-bottom: 32px; max-width: 46em; }
-    .num { font-variant-numeric: tabular-nums; }
-
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      min-height: 48px; padding: 12px 22px; border-radius: 999px; font: inherit; font-weight: 800;
-      text-decoration: none; border: 1px solid transparent; cursor: pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--green); color: var(--green-ink); }
-    .btn-primary:hover { background: var(--green-2); }
-    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-2); }
-    .btn-ghost:hover { background: var(--surface); }
-    .btn-sm { min-height: 40px; padding: 8px 16px; font-size: .92rem; }
-
-    /* Interruttore di pubblico: ogni blocco .only-s / .only-o compare
-       solo per le strutture o solo per gli organizzatori. */
-    .page[data-aud="s"] .only-o, .page[data-aud="o"] .only-s { display: none !important; }
-
-    /* Header come la home, con la CTA business */
-    .site-header {
-      position: sticky; top: 0; z-index: 30; background: rgba(11,18,32,.9);
-      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
-    }
-    .site-header .container { display: flex; align-items: center; gap: 20px; height: 64px; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .brand img { height: 28px; width: auto; }
-    .brand span {
-      font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--green); border: 1px solid var(--green); border-radius: 6px; padding: 2px 6px;
-    }
-    .site-nav { display: flex; gap: 22px; margin-left: auto; font-weight: 700; font-size: .93rem; }
-    .site-nav a { text-decoration: none; color: var(--muted); }
-    .site-nav a:hover { color: var(--text); }
-    @media (max-width: 900px) { .site-nav { display: none; } .site-header .btn { margin-left: auto; } }
-
-    /* Hero */
-    .hero {
-      padding: clamp(36px, 6vw, 72px) 0 clamp(48px, 6vw, 80px);
-      background: radial-gradient(1100px 520px at 85% -10%, rgba(52,226,122,.15), transparent 60%), var(--bg);
-    }
-    .switch {
-      display: inline-flex; padding: 4px; gap: 4px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 999px; margin-bottom: 28px; max-width: 100%;
-    }
-    .switch button {
-      font: inherit; font-weight: 800; font-size: .95rem; color: var(--muted); background: transparent;
-      border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; min-height: 44px;
-    }
-    .switch button[aria-pressed="true"] { background: var(--green); color: var(--green-ink); }
-    @media (max-width: 420px) { .switch button { padding: 10px 12px; font-size: .88rem; } }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
-    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
-    .hero-copy { display: grid; gap: 20px; min-width: 0; }
-    .hero-copy h1 em { font-style: normal; color: var(--green); }
-    .hero-copy .lede { font-size: 1.12em; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .reassure { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--muted-2); list-style: none; padding: 0; margin: 0; }
-    .reassure li { display: inline-flex; align-items: center; gap: 6px; }
-    .reassure li::before { content: ""; width: 7px; height: 7px; border-radius: 99px; background: var(--green); }
-
-    .hero-visual { position: relative; justify-self: center; width: min(330px, 100%); }
-    .phone {
-      border-radius: 32px; overflow: hidden; border: 1px solid var(--border-2); background: var(--bg-2);
-      box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 8px var(--bg-2); aspect-ratio: 390 / 720; max-width: 100%;
-    }
-    .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    /* Notifiche che galleggiano accanto al telefono: dicono cosa succede
-       senza bisogno di leggere lo screenshot. */
-    .chip {
-      position: absolute; display: flex; align-items: center; gap: 10px; background: var(--surface-2);
-      border: 1px solid var(--border-2); border-radius: 14px; padding: 10px 14px; font-size: .85rem;
-      font-weight: 700; box-shadow: 0 16px 40px rgba(0,0,0,.45); max-width: 250px;
-    }
-    .chip small { display: block; color: var(--muted); font-weight: 600; }
-    .chip .dot { flex: none; width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--green-soft); color: var(--green); }
-    .chip .dot.amber { background: var(--amber-soft); color: var(--amber); }
-    .chip.c1 { left: -56px; top: 18%; }
-    .chip.c2 { right: -44px; bottom: 14%; }
-    @media (max-width: 560px) { .chip.c1 { left: -8px; } .chip.c2 { right: -8px; } }
-
-    /* Prima / dopo */
-    .ba { display: grid; gap: 10px; }
-    .ba-head { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-weight: 800; font-size: .9rem; color: var(--muted-2); padding: 0 4px; }
-    .ba-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ba-row > div { padding: 16px 18px; border-radius: 14px; min-width: 0; }
-    .ba-row .before { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
-    .ba-row .after { background: var(--green-soft); border: 1px solid rgba(52,226,122,.35); }
-    .ba-row b { display: none; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
-    .ba-row .before b { color: var(--red); }
-    .ba-row .after b { color: var(--green); }
-    @media (max-width: 640px) { .ba-row { grid-template-columns: 1fr; } .ba-head { display: none; } .ba-row b { display: block; } }
-
-    /* Come funziona: tre passi in sequenza, con chi li fa */
-    .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
-    @media (max-width: 820px) { .flow { grid-template-columns: 1fr; } }
-    .flow li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; display: grid; gap: 8px; align-content: start; }
-    .flow li::before {
-      counter-increment: s; content: counter(s); width: 34px; height: 34px; border-radius: 99px;
-      display: grid; place-items: center; background: var(--green); color: var(--green-ink); font-weight: 800;
-    }
-    .flow li p { color: var(--muted); font-size: .97rem; }
-    .flow .who { font-size: .76rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); }
-
-    /* Funzioni: si sceglie a sinistra, il telefono mostra la schermata */
-    .feat { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
-    @media (max-width: 900px) { .feat { grid-template-columns: 1fr; } }
-    .feat-tabs { display: grid; gap: 8px; }
-    .feat-tabs button {
-      text-align: left; font: inherit; color: var(--text); background: transparent; border: 1px solid var(--border);
-      border-radius: 14px; padding: 16px 18px; cursor: pointer; display: grid; gap: 4px;
-    }
-    .feat-tabs button span { color: var(--muted); font-size: .94rem; }
-    .feat-tabs button[aria-selected="true"] { background: var(--surface); border-color: var(--green); }
-    .feat-shot { justify-self: center; width: min(320px, 100%); position: sticky; top: 90px; }
-    @media (max-width: 900px) { .feat-shot { position: static; order: -1; } }
-
-    /* Soldi */
-    .money { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media (max-width: 820px) { .money { grid-template-columns: 1fr; } }
-    .money > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; display: grid; gap: 8px; align-content: start; }
-    .money p { color: var(--muted); font-size: .97rem; }
-    .money .big { font-size: 1.5rem; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
-
-    /* Prezzi */
-    .plans { display: grid; gap: 16px; }
-    .plans.three { grid-template-columns: repeat(3, 1fr); }
-    .plans.four { grid-template-columns: repeat(4, 1fr); }
-    @media (max-width: 1000px) { .plans.four { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 820px) { .plans.three { grid-template-columns: 1fr; } }
-    @media (max-width: 560px) { .plans.four { grid-template-columns: 1fr; } }
-    .plan { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; position: relative; min-width: 0; }
-    .plan.hl { border-color: var(--green); box-shadow: 0 0 0 1px var(--green) inset; }
-    .plan .badge {
-      position: absolute; top: -12px; left: 22px; background: var(--green); color: var(--green-ink);
-      font-size: .74rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 3px 10px;
-    }
-    .plan .price { font-size: 2rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
-    .plan .price small { font-size: .88rem; font-weight: 600; color: var(--muted); }
-    .plan ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; color: var(--muted); font-size: .95rem; }
-    .plan li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
-    .plan li::before { content: "✓"; color: var(--green); font-weight: 800; }
-    .plan li.plus { color: var(--text); }
-    .plan .btn { margin-top: auto; }
-    .fine { color: var(--muted-2); font-size: .88rem; margin-top: 16px; }
-
-    /* Invito alla demo al posto del listino dettagliato */
-    .demo-cta {
-      margin-top: 36px; background: linear-gradient(140deg, var(--surface-2), var(--surface));
-      border: 1px solid var(--border-2); border-radius: 22px; padding: clamp(20px, 3vw, 32px);
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;
-    }
-    .demo-cta > div { display: grid; gap: 6px; max-width: 40em; min-width: 0; }
-    .demo-cta h3 { font-size: 1.3rem; }
-    .more { margin-top: 28px; color: var(--muted); }
-    .more a { color: var(--green); font-weight: 800; }
-
-    /* Come si parte */
-    .start { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; padding: 0; margin: 0; }
-    @media (max-width: 820px) { .start { grid-template-columns: 1fr; } }
-    .start li { border-top: 3px solid var(--green); padding-top: 16px; display: grid; gap: 6px; align-content: start; }
-    .start .when { font-size: .82rem; font-weight: 800; color: var(--green); }
-    .start p { color: var(--muted); font-size: .97rem; }
-    .promise { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .promise span { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px; font-weight: 700; font-size: .9rem; }
-
-    /* FAQ */
-    .faq { display: grid; gap: 10px; max-width: 820px; }
-    .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 4px 18px; }
-    .faq summary { cursor: pointer; font-weight: 800; padding: 14px 0; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-    .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: "+"; color: var(--green); font-size: 1.3rem; line-height: 1; }
-    .faq details[open] summary::after { content: "−"; }
-    .faq details p { color: var(--muted); padding-bottom: 16px; }
-
-    /* Contatto */
-    .contact { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
-    @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
-    .contact-side { display: grid; gap: 16px; }
-    .alt-way { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
-    .alt-way b { font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-2); }
-    form.lead { background: var(--surface); border: 1px solid var(--border-2); border-radius: 22px; padding: clamp(20px, 3vw, 30px); display: grid; gap: 14px; }
-    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
-    form.lead label { display: grid; gap: 6px; font-weight: 700; font-size: .92rem; min-width: 0; }
-    form.lead input, form.lead select, form.lead textarea {
-      font: inherit; font-weight: 500; color: var(--text); background: var(--bg-2);
-      border: 1px solid var(--border-2); border-radius: 10px; padding: 11px 12px; width: 100%; min-height: 46px;
-    }
-    form.lead textarea { min-height: 84px; resize: vertical; }
-    form.lead .small { color: var(--muted-2); font-size: .84rem; }
-    .sent { background: var(--green-soft); border: 1px solid var(--green); border-radius: 12px; padding: 14px; font-weight: 700; }
-
-    /* Footer come la home + barra CTA su mobile */
-    .site-footer { border-top: 1px solid var(--border); padding: 48px 0 28px; color: var(--muted); font-size: .95rem; }
-    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 28px; }
-    @media (max-width: 760px) { .footer-top { grid-template-columns: 1fr; } }
-    .footer-brand img { height: 28px; width: auto; margin-bottom: 12px; }
-    .footer-col h4 { margin: 0 0 10px; color: var(--text); }
-    .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .footer-col a { text-decoration: none; }
-    .footer-col a:hover { color: var(--text); }
-    .footer-copy { margin: 28px 0 0; font-size: .85rem; color: var(--muted-2); }
-    .mobile-cta { display: none; }
-    @media (max-width: 760px) {
-      .mobile-cta {
-        display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35;
-        background: rgba(7,12,22,.95); backdrop-filter: blur(8px); border-top: 1px solid var(--border);
-        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-      }
-      .mobile-cta .btn { flex: 1; }
-      body { padding-bottom: 76px; }
-    }
-  </style>
+  <meta property="og:image" content="https://www.easykick.it/assets/web/og-feature.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="586" />
+  <meta property="og:image:alt" content="EasyKick, l'app del calcetto" />
+  <link rel="stylesheet" href="/assets/business/business.css" />
 </head>
-<body>
+<body class="has-mobile-cta">
+<!-- PROPOSTA A: una pagina sola con l'interruttore «Ho un centro sportivo /
+     Organizzo tornei». ?per=strutture|organizzatori e #strutture /
+     #organizzatori scelgono il pubblico all'apertura. -->
 <div class="page" id="page" data-aud="s">
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="/business/" aria-label="EasyKick Business">
+      <a class="brand" href="/business/" aria-label="EasyKick Business, inizio pagina">
         <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
         <span>Business</span>
       </a>
-      <nav class="site-nav" aria-label="Navigazione principale">
+      <nav class="site-nav" aria-label="Sezioni della pagina">
         <a href="#come-funziona">Come funziona</a>
         <a href="#funzioni">Funzioni</a>
-        <a href="#prezzi">Prezzi</a>
+        <a href="#come-si-parte">Come si parte</a>
         <a href="#domande">Domande</a>
         <a href="/">Per i giocatori</a>
       </nav>
-      <a class="btn btn-primary btn-sm" href="#contatti"><span class="only-s">Prova 14 giorni</span><span class="only-o">Primo torneo gratis</span></a>
+      <a class="btn btn-primary btn-sm" href="#contatti" data-req="demo">Prenota una demo</a>
     </div>
   </header>
 
   <main>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" aria-labelledby="titolo">
     <div class="container">
       <div class="switch" role="group" aria-label="Scegli chi sei">
         <button type="button" data-aud="s" aria-pressed="true">Ho un centro sportivo</button>
@@ -303,289 +55,284 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <span class="eyebrow"><span class="only-s">EasyKick per le strutture</span><span class="only-o">EasyKick per gli organizzatori</span></span>
-          <h1>
-            <span class="only-s">Il gestionale che arriva con i <em>giocatori</em> dentro.</span>
+          <h1 id="titolo">
+            <span class="only-s">I giocatori della zona <em>ti prenotano dall&rsquo;app.</em></span>
             <span class="only-o">Il torneo lo prepari una volta. <em>Poi gira da solo.</em></span>
           </h1>
-          <p class="lede only-s">Pubblichi campi e listino. I giocatori della zona li trovano nell'app EasyKick, riservano e si dividono la quota. La partita si conferma quando il gruppo c'è: tu apri la giornata e sai già chi gioca e chi ha pagato.</p>
-          <p class="lede only-o">Iscrizioni, calendario, classifiche, distinte e comunicati in un posto solo. I capitani iscrivono e pagano dall'app, i giocatori seguono risultati e classifica dal telefono. Niente più Excel e gruppi WhatsApp.</p>
+          <p class="lede only-s">Pubblichi campi, orari e listino. I giocatori EasyKick li trovano nell&rsquo;app, riservano lo slot e si dividono la quota. La partita si conferma solo quando il gruppo c&rsquo;è e ha pagato: tu apri la giornata e sai già chi gioca.</p>
+          <p class="lede only-o">Calendario, risultati, classifiche, distinte, comunicati e locandine in un posto solo. I capitani gestiscono la squadra dall&rsquo;app e ogni giocatore segue il tuo evento dal telefono. Niente più Excel e gruppi WhatsApp.</p>
+          <span class="tag-avail only-s">Disponibile su richiesta &middot; attivazione insieme al nostro team</span>
           <div class="hero-actions">
-            <a class="btn btn-primary only-s" href="#contatti">Prova 14 giorni gratis</a>
-            <a class="btn btn-primary only-o" href="#contatti">Crea il primo torneo gratis</a>
-            <a class="btn btn-ghost" href="#contatti">Prenota una demo di 20 minuti</a>
+            <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo gratuita</a>
+            <a class="btn btn-ghost" href="#contatti" data-req="info">Chiedi informazioni</a>
           </div>
           <ul class="reassure only-s">
-            <li>Canone mensile, disdici quando vuoi</li>
+            <li>Gli incassi vanno sul tuo conto</li>
             <li>Il contante resta benvenuto</li>
-            <li>Configuriamo i campi con te</li>
+            <li>Demo online o dal vivo</li>
           </ul>
           <ul class="reassure only-o">
-            <li>Fino a 12 squadre, senza carta</li>
-            <li>Iscrizioni pagate in app</li>
-            <li>Web, iOS e Android</li>
+            <li>Dal PC, dal tablet a bordo campo, dal telefono</li>
+            <li>Spazio per i tuoi sponsor</li>
+            <li>Demo online o dal vivo</li>
           </ul>
         </div>
 
         <div class="hero-visual">
-          <div class="phone only-s"><img src="/assets/business/oggi_390.png" alt="La schermata Oggi dell'app business: partite del giorno, in attesa di quorum, da chiudere, slot liberi" width="390" height="820" /></div>
-          <div class="phone only-o"><img src="/assets/business/organizzatore_oggi_390.png" alt="La home dell'organizzatore: partite di oggi in campo e cose da fare su tutti gli eventi" width="390" height="820" /></div>
-          <div class="chip c1 only-s" aria-hidden="true"><span class="dot">✓</span><span>Campo 2 · 21:00 confermato<small>10 quote su 10, 4 pagate in app</small></span></div>
-          <div class="chip c2 only-s" aria-hidden="true"><span class="dot amber">⌛</span><span>Campo 3 · 23:00<small>mancano 4 giocatori</small></span></div>
-          <div class="chip c1 only-o" aria-hidden="true"><span class="dot">✓</span><span>12 squadre iscritte<small>11 hanno già pagato la quota</small></span></div>
-          <div class="chip c2 only-o" aria-hidden="true"><span class="dot amber">⇄</span><span>Rinvio Giornata 4<small>calendario ricalcolato, nessun doppione</small></span></div>
+          <div class="phone only-s"><img src="/assets/business/oggi_390.png" alt="Schermata Oggi dell'app EasyKick Business per una struttura: partite del giorno, partite in attesa che il gruppo si completi, partite da chiudere e slot ancora liberi" width="780" height="1640" /></div>
+          <div class="phone only-o"><img src="/assets/business/organizzatore_oggi_390.png" alt="Home dell'organizzatore: distinte da fare, risultati da inserire, richieste di iscrizione e prossime partite del torneo" width="780" height="1640" /></div>
+          <div class="chip c1 only-s" aria-hidden="true"><span class="dot">✓</span><span>Campo 2 &middot; 21:00 confermato<small>il gruppo è al completo</small></span></div>
+          <div class="chip c2 only-s" aria-hidden="true"><span class="dot amber">⌛</span><span>Campo 3 &middot; 23:00<small>mancano 4 giocatori</small></span></div>
+          <div class="chip c1 only-o" aria-hidden="true"><span class="dot">⇄</span><span>Rinvio Giornata 4<small>calendario ricalcolato</small></span></div>
+          <div class="chip c2 only-o" aria-hidden="true"><span class="dot">✓</span><span>Comunicato pronto<small>PDF della giornata</small></span></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- I QUATTRO MOTIVI: quello che si deve capire in 10 secondi -->
+  <section class="sec alt" aria-labelledby="perche">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Perché EasyKick</span>
+        <h2 id="perche"><span class="only-s">Più campi pieni, meno telefono.</span><span class="only-o">Un evento che sembra professionale, senza lavorarci di notte.</span></h2>
+      </div>
+      <ul class="why only-s">
+        <li><span class="k">Potenziale</span><h3>I giocatori sono già nell&rsquo;app</h3><p>Chi cerca un campo nella tua zona trova i tuoi slot liberi e li riserva da solo.</p></li>
+        <li><span class="k">Comodità</span><h3>Tutto dal telefono o dal PC</h3><p>Calendario, prenotazioni e incassi in poche schermate. Niente più catene di chiamate e WhatsApp.</p></li>
+        <li><span class="k">Tempo</span><h3>Le cose ripetitive vanno da sole</h3><p>Conferme, quote, disdette e promemoria ai giocatori: li gestisce l&rsquo;app con le regole che imposti tu.</p></li>
+        <li><span class="k">Guadagno</span><h3>Slot riempiti, incassi sicuri</h3><p>Più ore vendute anche nelle fasce morte, e le quote pagate in app arrivano sul tuo conto.</p></li>
+      </ul>
+      <ul class="why only-o">
+        <li><span class="k">Facile</span><h3>Crei l&rsquo;evento in modo guidato</h3><p>Campionato, gironi con fase finale, eliminazione diretta o giornate-torneo: scegli e segui i passi.</p></li>
+        <li><span class="k">Calendario</span><h3>Si fa e si rifà da solo</h3><p>Disponibilità delle squadre, chi gioca in casa, rinvii e recuperi: le giornate si ricalcolano senza Excel.</p></li>
+        <li><span class="k">Carte pronte</span><h3>Distinte, comunicati, locandine</h3><p>PDF da stampare e grafiche da condividere, già impaginati con i tuoi loghi.</p></li>
+        <li><span class="k">Vetrina</span><h3>Sul telefono di ogni giocatore</h3><p>Risultati, classifica e comunicati nell&rsquo;app EasyKick, con i loghi dei tuoi sponsor in bella vista.</p></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- PRIMA / DOPO -->
-  <section class="sec alt">
+  <section class="sec" aria-labelledby="cambia">
     <div class="container">
       <div class="sec-head">
         <span class="eyebrow">Cosa cambia</span>
-        <h2 class="only-s">La sera la passi al campo, non al telefono.</h2>
-        <h2 class="only-o">Ogni giornata finisce quando finiscono le partite.</h2>
+        <h2 id="cambia"><span class="only-s">La sera la passi al campo, non al telefono.</span><span class="only-o">Ogni giornata finisce quando finiscono le partite.</span></h2>
       </div>
       <div class="ba">
-        <div class="ba-head"><span>Oggi</span><span>Con EasyKick</span></div>
-        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Chiamate e messaggi per prenotare, spostare, disdire.</div><div class="after"><b>Con EasyKick</b>I giocatori riservano dall'app negli slot che hai aperto tu.</div></div>
-        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Campo prenotato da chi poi non si presenta.</div><div class="after"><b>Con EasyKick</b>La partita si conferma solo quando il gruppo c'è. Le regole di disdetta le decidi tu.</div></div>
-        <div class="ba-row only-s"><div class="before"><b>Oggi</b>A fine serata conti i contanti e ricostruisci chi ha pagato.</div><div class="after"><b>Con EasyKick</b>Pagamenti in app e contanti nello stesso conto, partita per partita.</div></div>
-        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Gli slot tardi restano vuoti e nessuno lo sa.</div><div class="after"><b>Con EasyKick</b>Gli slot liberi compaiono ai giocatori della zona che cercano partita.</div></div>
-        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Iscrizioni su WhatsApp, quote rincorse una a una.</div><div class="after"><b>Con EasyKick</b>Il capitano crea la squadra, invita i compagni e paga l'iscrizione in app. Tu ammetti.</div></div>
-        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Un rinvio e il calendario Excel va rifatto.</div><div class="after"><b>Con EasyKick</b>Rinvii, scambi e ritiri: le giornate successive si ricalcolano da sole.</div></div>
-        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Distinte su carta, risultati in chat, classifica a mano.</div><div class="after"><b>Con EasyKick</b>Appello a bordo campo, distinta PDF per l'arbitro, classifica aggiornata a ogni risultato.</div></div>
-        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Il comunicato della giornata ti prende la serata.</div><div class="after"><b>Con EasyKick</b>Comunicato ufficiale e grafiche pronte da condividere. MVP e pronostici per tenere vivo il torneo.</div></div>
+        <div class="ba-head" aria-hidden="true"><span>Oggi</span><span>Con EasyKick</span></div>
+        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Chiamate e messaggi per prenotare, spostare, disdire.</div><div class="after"><b>Con EasyKick</b>I giocatori riservano dall&rsquo;app negli slot che hai aperto tu.</div></div>
+        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Campo bloccato da un gruppo che poi non si presenta.</div><div class="after"><b>Con EasyKick</b>La partita si conferma solo quando il gruppo c&rsquo;è e ha pagato. Fino a quando si può disdire senza pagare lo decidi tu.</div></div>
+        <div class="ba-row only-s"><div class="before"><b>Oggi</b>A fine serata conti i contanti e ricostruisci chi ha pagato.</div><div class="after"><b>Con EasyKick</b>Quote in app e contanti nello stesso posto, partita per partita.</div></div>
+        <div class="ba-row only-s"><div class="before"><b>Oggi</b>Gli slot tardi restano vuoti e nessuno lo sa.</div><div class="after"><b>Con EasyKick</b>Gli slot liberi si vedono nell&rsquo;app, dove i giocatori cercano dove giocare.</div></div>
+        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Iscrizioni e rose su WhatsApp, nomi da ricopiare a mano.</div><div class="after"><b>Con EasyKick</b>Il capitano iscrive la squadra e gestisce la rosa dall&rsquo;app. Se serve, le squadre le inserisci anche tu.</div></div>
+        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Un rinvio e il calendario Excel va rifatto.</div><div class="after"><b>Con EasyKick</b>Rinvii, scambi e recuperi: le giornate successive si ricalcolano da sole.</div></div>
+        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Distinte su carta, risultati in chat, classifica a mano.</div><div class="after"><b>Con EasyKick</b>Appello a bordo campo, distinta PDF per l&rsquo;arbitro, classifica e marcatori aggiornati a ogni risultato.</div></div>
+        <div class="ba-row only-o"><div class="before"><b>Oggi</b>Il comunicato della giornata ti prende la serata.</div><div class="after"><b>Con EasyKick</b>Comunicato ufficiale in PDF e locandine pronte da condividere, con la fascia sponsor.</div></div>
       </div>
     </div>
   </section>
 
   <!-- COME FUNZIONA -->
-  <section class="sec" id="come-funziona">
+  <section class="sec alt" id="come-funziona" aria-labelledby="come">
     <div class="container">
       <div class="sec-head">
         <span class="eyebrow">Come funziona</span>
-        <h2 class="only-s">Tu apri gli slot. I giocatori li riempiono.</h2>
-        <h2 class="only-o">Tu disegni l'evento. Le squadre fanno il resto.</h2>
+        <h2 id="come"><span class="only-s">Tu apri gli slot. I giocatori li riempiono.</span><span class="only-o">Tu disegni l&rsquo;evento. L&rsquo;app lo fa girare.</span></h2>
       </div>
       <ol class="flow only-s">
-        <li><span class="who">Tu, una volta</span><h3>Pubblichi i tuoi campi</h3><p>Orari, prezzi e regole della tua struttura. Ti aiutiamo noi a impostarli.</p></li>
-        <li><span class="who">I giocatori</span><h3>Prenotano dall'app</h3><p>Trovano i tuoi slot liberi nell'app EasyKick, chiamano il gruppo e si dividono il campo.</p></li>
-        <li><span class="who">L'app</span><h3>Ti dice chi gioca</h3><p>Le partite confermate, gli incassi e cosa c'è da fare, in una schermata.</p></li>
+        <li><span class="who">Tu, una volta</span><h3>Imposti la struttura</h3><p>Campi, orari, listino, fasce e prezzi speciali per periodo. Lo facciamo insieme.</p></li>
+        <li><span class="who">I giocatori</span><h3>Riservano dall&rsquo;app</h3><p>Trovano i tuoi slot liberi, chiamano il gruppo e si dividono la quota. La partita si conferma quando il gruppo è completo e ha pagato.</p></li>
+        <li><span class="who">L&rsquo;app</span><h3>Ti dice chi gioca</h3><p>Partite del giorno, in attesa, da chiudere e slot liberi, con gli incassi, in una schermata.</p></li>
       </ol>
       <ol class="flow only-o">
-        <li><span class="who">Tu, una volta</span><h3>Disegni l'evento</h3><p>Torneo o campionato, con una procedura guidata. Da solo o insieme a noi.</p></li>
-        <li><span class="who">I capitani</span><h3>Iscrivono e pagano</h3><p>Creano la squadra nell'app, chiamano i compagni e pagano l'iscrizione.</p></li>
-        <li><span class="who">L'app</span><h3>Fa girare il torneo</h3><p>Calendario, risultati, classifiche e comunicati, aggiornati a ogni partita.</p></li>
+        <li><span class="who">Tu, una volta</span><h3>Crei l&rsquo;evento</h3><p>Formato, squadre, regolamento: una procedura guidata. Da solo o insieme a noi.</p></li>
+        <li><span class="who">I capitani</span><h3>Iscrivono la squadra</h3><p>Dall&rsquo;app EasyKick invitano i compagni e tengono la rosa in ordine.</p></li>
+        <li><span class="who">L&rsquo;app</span><h3>Fa girare il torneo</h3><p>Calendario, risultati, classifiche, disciplina e comunicati, aggiornati a ogni partita.</p></li>
       </ol>
     </div>
   </section>
 
   <!-- FUNZIONI -->
-  <section class="sec alt" id="funzioni">
+  <section class="sec" id="funzioni" aria-labelledby="dentro">
     <div class="container">
       <div class="sec-head">
-        <span class="eyebrow">Dentro l'app business</span>
-        <h2 class="only-s">Tutta la struttura in poche schermate.</h2>
-        <h2 class="only-o">Tutto l'evento, dal telefono a bordo campo.</h2>
+        <span class="eyebrow">Dentro EasyKick Business</span>
+        <h2 id="dentro"><span class="only-s">Tutta la struttura in poche schermate.</span><span class="only-o">Tutto l&rsquo;evento, anche dal telefono a bordo campo.</span></h2>
       </div>
       <div class="feat">
-        <div class="feat-tabs only-s" role="tablist" aria-label="Funzioni per le strutture">
-          <button type="button" role="tab" aria-selected="true" data-shot="/assets/business/oggi_390.png" data-alt="La schermata Oggi dell'app business"><strong>La giornata in una schermata</strong><span>Chi gioca, cosa c'è da chiudere, quali campi sono ancora liberi.</span></button>
-          <button type="button" role="tab" aria-selected="false" data-shot="/assets/business/calendario_390.png" data-alt="Il calendario dei campi"><strong>Calendario dei campi</strong><span>App e telefono nello stesso calendario: niente doppie prenotazioni.</span></button>
-          <button type="button" role="tab" aria-selected="false" data-shot="/assets/business/incassi_390.png" data-alt="Gli incassi della struttura"><strong>Incassi chiari</strong><span>Quanto è entrato e da chi, senza conti da ricostruire.</span></button>
+        <div class="feat-tabs only-s" data-shots="shot-img">
+          <button type="button" aria-pressed="true" data-shot="/assets/business/oggi_390.png" data-alt="Schermata Oggi: partite del giorno, in attesa, da chiudere e slot liberi"><strong>La giornata in una schermata</strong><span>Chi gioca, cosa c&rsquo;è da chiudere, quali campi sono ancora liberi.</span></button>
+          <button type="button" aria-pressed="false" data-shot="/assets/business/calendario_390.png" data-alt="Calendario dei campi con gli slot del giorno e il loro stato: libero, riservato, confermato"><strong>Calendario dei campi</strong><span>App e prenotazioni al telefono nello stesso calendario: niente doppioni.</span></button>
+          <button type="button" aria-pressed="false" data-shot="/assets/business/incassi_390.png" data-alt="Schermata Incassi: incasso atteso del giorno, quote già garantite in app e andamento della settimana"><strong>Incassi chiari</strong><span>Quanto è entrato, quanto è garantito in app, quanto aspetti al campo.</span></button>
         </div>
-        <div class="feat-tabs only-o" role="tablist" aria-label="Funzioni per gli organizzatori">
-          <button type="button" role="tab" aria-selected="true" data-shot="/assets/business/evento_gestione_390.png" data-alt="La gestione di un evento"><strong>Tutto l'evento in una pagina</strong><span>Iscrizioni, squadre e cose da fare, sempre sotto controllo.</span></button>
-          <button type="button" role="tab" aria-selected="false" data-shot="/assets/business/evento_classifica_390.png" data-alt="La classifica di un torneo"><strong>Classifiche che si aggiornano</strong><span>Gironi e fasi finali, senza fogli di calcolo.</span></button>
-          <button type="button" role="tab" aria-selected="false" data-shot="/assets/business/evento_appello_390.png" data-alt="L'appello a bordo campo"><strong>Bordo campo dal telefono</strong><span>Presenze e distinte pronte per l'arbitro.</span></button>
+        <div class="feat-tabs only-o" data-shots="shot-img">
+          <button type="button" aria-pressed="true" data-shot="/assets/business/evento_gestione_390.png" data-alt="Gestione di un torneo: giornate in calendario, risultati e azioni su ogni partita come distinta e rinvio"><strong>Tutto l&rsquo;evento in una pagina</strong><span>Giornate, risultati, distinte e rinvii, partita per partita.</span></button>
+          <button type="button" aria-pressed="false" data-shot="/assets/business/evento_classifica_390.png" data-alt="Classifica di un torneo con punti, partite giocate e differenza reti"><strong>Classifiche che si aggiornano</strong><span>Gironi e fasi finali, senza fogli di calcolo.</span></button>
+          <button type="button" aria-pressed="false" data-shot="/assets/business/evento_appello_390.png" data-alt="Distinta e appello a bordo campo: si spuntano i presenti con il numero di maglia"><strong>Bordo campo dal telefono</strong><span>Appello con i numeri di maglia e distinta pronta da stampare.</span></button>
         </div>
         <div class="feat-shot">
-          <div class="phone"><img id="feat-img" src="/assets/business/oggi_390.png" alt="La schermata Oggi dell'app business" width="390" height="820" loading="lazy" /></div>
+          <div class="phone"><img id="shot-img" src="/assets/business/oggi_390.png" alt="Schermata Oggi: partite del giorno, in attesa, da chiudere e slot liberi" width="780" height="1640" loading="lazy" /></div>
+          <p class="shot-note">Schermate reali dell&rsquo;app, con dati di esempio.</p>
         </div>
-      </div>
-      <p class="more">Questo è solo un assaggio. <a href="#contatti">In demo ti mostriamo tutto, sul tuo caso.</a></p>
-    </div>
-  </section>
-
-  <!-- SOLDI -->
-  <section class="sec">
-    <div class="container">
-      <div class="sec-head">
-        <span class="eyebrow">I soldi</span>
-        <h2>Gli incassi vanno sul tuo conto, non sul nostro.</h2>
-      </div>
-      <div class="money only-s">
-        <div><span class="big">In app</span><h3>Pagamenti sul tuo conto</h3><p>Le quote pagate dai giocatori nell'app arrivano direttamente a te.</p></div>
-        <div><span class="big">Al campo</span><h3>Il contante va bene</h3><p>Chi preferisce paga al campo, come sempre. Lo segni e la partita si chiude in pari.</p></div>
-        <div><span class="big">Punti</span><h3>Fedeltà inclusa</h3><p>I tuoi clienti accumulano punti da spendere da te. Un motivo in più per tornare, senza costi per te.</p></div>
-      </div>
-      <div class="money only-o">
-        <div><span class="big">In app</span><h3>Iscrizioni pagate prima</h3><p>Le squadre pagano l'iscrizione nell'app, direttamente sul tuo conto. Niente quote da rincorrere.</p></div>
-        <div><span class="big">A colpo d'occhio</span><h3>Chi ha pagato, chi manca</h3><p>Sai sempre chi è in regola prima di fare il calendario.</p></div>
-        <div><span class="big">Premi</span><h3>Un premio in più</h3><p>A fine evento i premiati ricevono punti da spendere nelle strutture EasyKick, senza costi per te.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- PREZZI -->
-  <section class="sec alt" id="prezzi">
+  <!-- SOLDI (strutture) / VETRINA E SPONSOR (organizzatori) -->
+  <section class="sec alt" aria-labelledby="valore">
     <div class="container">
       <div class="sec-head">
-        <span class="eyebrow">Prezzi</span>
-        <h2 class="only-s">Un canone mensile. Nessun vincolo.</h2>
-        <h2 class="only-o">Il primo torneo è gratis. Poi paghi gli eventi, non il mese.</h2>
-        <p class="lede">Prezzi IVA inclusa.</p>
+        <span class="eyebrow"><span class="only-s">Gli incassi</span><span class="only-o">Vetrina e sponsor</span></span>
+        <h2 id="valore"><span class="only-s">Gli incassi vanno sul tuo conto, non sul nostro.</span><span class="only-o">Il tuo evento, sul telefono di ogni giocatore.</span></h2>
       </div>
-
-      <div class="plans three only-s">
-        <div class="plan">
-          <h3>Essential</h3>
-          <div class="price">59 € <small>/ mese</small></div>
-          <p class="muted">Per partire: la struttura nell'app dei giocatori.</p>
-          <ul><li>Prenotazioni dall'app</li><li>Calendario e incassi</li><li>Accesso per il tuo staff</li></ul>
-          <a class="btn btn-ghost" href="#contatti">Prova 14 giorni</a>
-        </div>
-        <div class="plan hl">
-          <span class="badge">Consigliato</span>
-          <h3>Plus</h3>
-          <div class="price">79 € <small>/ mese</small></div>
-          <p class="muted">Per fidelizzare i clienti che hai già.</p>
-          <ul><li>Tutto Essential</li><li class="plus">Carnet prepagati</li><li class="plus">Punti fedeltà per i tuoi clienti</li></ul>
-          <a class="btn btn-primary" href="#contatti">Prova 14 giorni</a>
-        </div>
-        <div class="plan">
-          <h3>Premium</h3>
-          <div class="price">119 € <small>/ mese</small></div>
-          <p class="muted">Per chi organizza anche tornei e campionati.</p>
-          <ul><li>Tutto Plus</li><li class="plus">Tornei e campionati inclusi</li><li class="plus">Promozioni e statistiche</li></ul>
-          <a class="btn btn-ghost" href="#contatti">Prova 14 giorni</a>
-        </div>
+      <div class="cards three only-s">
+        <div><span class="lbl">In app</span><h3>Quote sul conto della struttura</h3><p>I giocatori pagano la loro parte con la carta e i soldi arrivano direttamente a te.</p></div>
+        <div><span class="lbl">Al campo</span><h3>Il contante va bene</h3><p>Chi preferisce paga al campo, come sempre. A fine partita la chiudi segnando quello che hai incassato.</p></div>
+        <div><span class="lbl">Fedeltà</span><h3>Clienti che tornano</h3><p>Carnet della struttura e punti fedeltà per chi gioca da te. Come funzionano te lo mostriamo in demo.</p></div>
       </div>
-      <p class="fine only-s">Sui pagamenti online si applica una piccola commissione: in demo la calcoliamo sui numeri della tua struttura. Più sedi? Abbiamo condizioni dedicate, <a href="#contatti">parliamone</a>.</p>
-
-      <div class="plans four only-o">
-        <div class="plan hl">
-          <span class="badge">Per iniziare</span>
-          <h3>Primo torneo</h3>
-          <div class="price">0 €</div>
-          <p class="muted">Per provare tutto su un evento vero.</p>
-          <ul><li>Fino a 12 squadre</li><li>Nessuna carta richiesta</li></ul>
-          <a class="btn btn-primary" href="#contatti">Inizia gratis</a>
-        </div>
-        <div class="plan">
-          <h3>Duo Pack</h3>
-          <div class="price">179 € <small>/ anno</small></div>
-          <p class="muted">Per due tornei o un campionato.</p>
-          <a class="btn btn-ghost" href="#contatti">Chiedi info</a>
-        </div>
-        <div class="plan">
-          <h3>Season Pack</h3>
-          <div class="price">729 € <small>/ anno</small></div>
-          <p class="muted">Per chi organizza tutta la stagione.</p>
-          <a class="btn btn-ghost" href="#contatti">Chiedi info</a>
-        </div>
-        <div class="plan">
-          <h3>Su misura</h3>
-          <div class="price">da 1.199 € <small>/ anno</small></div>
-          <p class="muted">Leghe, circuiti, eventi con sponsor.</p>
-          <a class="btn btn-ghost" href="#contatti">Parliamone</a>
-        </div>
+      <div class="cards three only-o">
+        <div><span class="lbl">Nell&rsquo;app</span><h3>Una vetrina vera</h3><p>Calendario, risultati, classifica, formazioni, comunicati, MVP, pagelle e pronostici: ogni iscritto li segue dall&rsquo;app EasyKick.</p></div>
+        <div><span class="lbl">Sponsor</span><h3>Loghi che si vedono davvero</h3><p>Logo e sito degli sponsor nella scheda dell&rsquo;evento e una fascia sponsor su tutte le locandine.</p></div>
+        <div><span class="lbl">Social</span><h3>Locandine pronte da pubblicare</h3><p>Giornata, risultati, classifica e vincitori, in formato post e storia, con un editor per ritoccarle.</p></div>
       </div>
-      <p class="fine only-o">Sulle iscrizioni pagate in app si applica una piccola commissione: te la mostriamo in demo. Hai una struttura? Con Premium tornei e campionati sono inclusi.</p>
-      <div class="demo-cta">
-        <div>
-          <h3 class="only-s">Quanto ti costa davvero?</h3>
-          <h3 class="only-o">Quale formula fa per te?</h3>
-          <p class="muted only-s">Lo calcoliamo insieme in 20 minuti, sui numeri della tua struttura: campi, orari, prezzi.</p>
-          <p class="muted only-o">Ce lo dici in 20 minuti: quante squadre, quanti eventi all'anno, che formato. Ti facciamo vedere l'app sul tuo torneo.</p>
-        </div>
-        <a class="btn btn-primary" href="#contatti">Prenota la demo</a>
-      </div>
-
     </div>
   </section>
 
   <!-- COME SI PARTE -->
-  <section class="sec">
+  <section class="sec" id="come-si-parte" aria-labelledby="parte">
     <div class="container">
       <div class="sec-head">
         <span class="eyebrow">Come si parte</span>
-        <h2 class="only-s">Operativo in un pomeriggio, seguito per tutta la prova.</h2>
-        <h2 class="only-o">Dal primo messaggio al primo fischio.</h2>
+        <h2 id="parte"><span class="only-s">Partiamo dalla demo, poi ti accompagniamo noi.</span><span class="only-o">Dal primo messaggio al primo fischio.</span></h2>
       </div>
       <ol class="start only-s">
-        <li><span class="when">Giorno 1 · 20 minuti</span><h3>Ci sentiamo</h3><p>Ci racconti campi, orari e abitudini. Ti mostriamo l'app sul tuo caso, non su una slide.</p></li>
-        <li><span class="when">Giorno 1-2 · un pomeriggio</span><h3>Configuriamo insieme</h3><p>Campi, prezzi, orari, staff e conto per gli incassi. Da quel momento i giocatori ti trovano nell'app.</p></li>
-        <li><span class="when">Giorni 3-14 · in prova</span><h3>Giochi, noi ci siamo</h3><p>Ti seguiamo nelle prime serate. Se qualcosa manca o non torna, diventa lavoro nostro.</p></li>
+        <li><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti come lavori</h3><p>Online o dal vivo. Ti mostriamo l&rsquo;app sul tuo caso: i tuoi campi, i tuoi orari, le tue abitudini.</p></li>
+        <li><span class="when">2 &middot; Attivazione</span><h3>Configuriamo insieme</h3><p>Campi, listino, regole di disdetta, staff e conto per gli incassi. Da lì i giocatori ti trovano nell&rsquo;app.</p></li>
+        <li><span class="when">3 &middot; Prime serate</span><h3>Giochi, noi ci siamo</h3><p>Ti seguiamo all&rsquo;inizio. Se qualcosa non torna, diventa lavoro nostro.</p></li>
       </ol>
       <ol class="start only-o">
-        <li><span class="when">10 minuti</span><h3>Crei l'evento</h3><p>Una procedura guidata, da solo o insieme a noi.</p></li>
-        <li><span class="when">Durante le iscrizioni</span><h3>Raccogli le squadre</h3><p>Condividi il link: i capitani iscrivono la squadra e pagano. Tu vedi chi manca.</p></li>
-        <li><span class="when">Ogni giornata</span><h3>Giochi</h3><p>Appello, risultati, classifica e comunicato. Il resto lo fa l'app.</p></li>
+        <li><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti il tuo evento</h3><p>Online o dal vivo: formato, squadre, campi, regolamento. Ti mostriamo l&rsquo;app sul tuo caso.</p></li>
+        <li><span class="when">2 &middot; Prima delle iscrizioni</span><h3>Crei l&rsquo;evento</h3><p>Con la procedura guidata, da solo o insieme a noi. Poi condividi il link con i capitani.</p></li>
+        <li><span class="when">3 &middot; Ogni giornata</span><h3>Si gioca</h3><p>Appello, risultati, classifica, comunicato e locandine. Il resto lo fa l&rsquo;app.</p></li>
       </ol>
-      <div class="promise only-s"><span>14 giorni di prova</span><span>Canone mensile</span><span>Disdici quando vuoi</span></div>
-      <div class="promise only-o"><span>Primo torneo gratis</span><span>Nessuna carta per iniziare</span><span>Pack validi 12 mesi</span></div>
+      <div class="demo-cta">
+        <div>
+          <h3>Vuoi capire se fa per te?</h3>
+          <p class="muted">In demo lo vediamo sul tuo caso, poi ti prepariamo una proposta su misura.</p>
+        </div>
+        <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo gratuita</a>
+      </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section class="sec alt" id="domande">
+  <section class="sec alt" id="domande" aria-labelledby="faq">
     <div class="container">
-      <div class="sec-head"><span class="eyebrow">Domande</span><h2>Quello che ci chiedono prima di partire.</h2></div>
+      <div class="sec-head"><span class="eyebrow">Domande</span><h2 id="faq">Quello che ci chiedono prima di partire.</h2></div>
       <div class="faq only-s">
-        <details open><summary>I miei clienti devono scaricare l'app?</summary><p>Chi prenota sì: è gratuita e si entra col numero di telefono. Il resto del gruppo può pagare al campo come sempre. Più giocatori usano l'app, meno telefonate ricevi.</p></details>
-        <details><summary>E chi vuole pagare in contanti?</summary><p>Paga al campo, come sempre. Lo segni nell'app e la partita si chiude in pari.</p></details>
-        <details><summary>Posso tenere anche le prenotazioni per telefono?</summary><p>Sì: finiscono nello stesso calendario, così nessuno prenota dall'app un campo già preso.</p></details>
-        <details><summary>C'è un vincolo di durata?</summary><p>No. Il canone è mensile e lo disdici quando vuoi.</p></details>
-        <details><summary>Posso vedere l'app prima di decidere?</summary><p>Certo. In 20 minuti di demo te la mostriamo sul tuo caso, poi hai 14 giorni per provarla.</p></details>
+        <details open><summary>I miei clienti devono scaricare l&rsquo;app?</summary><p>Chi vuole riservare e pagare dall&rsquo;app sì: EasyKick è gratuita su iOS e Android. Le prenotazioni che prendi al telefono o al banco le segni nello stesso calendario, così nessuno riserva un campo già occupato.</p></details>
+        <details><summary>E chi vuole pagare in contanti?</summary><p>Paga al campo, come sempre. A fine partita la chiudi segnando i contanti incassati.</p></details>
+        <details><summary>Cosa succede se qualcuno disdice all&rsquo;ultimo?</summary><p>Fino al termine che imposti tu (di base 24 ore prima) la disdetta è gratuita; dopo, la quota resta alla struttura. Chi esce può cercare un sostituto dall&rsquo;app.</p></details>
+        <details><summary>Quanto costa?</summary><p>Dipende da come lavori: dopo la demo ti prepariamo una proposta su misura per la tua struttura.</p></details>
+        <details><summary>Devo cambiare il mio modo di lavorare?</summary><p>No. Partiamo da come lavori oggi e configuriamo l&rsquo;app insieme a te.</p></details>
       </div>
       <div class="faq only-o">
-        <details open><summary>Le squadre devono pagare in app?</summary><p>L'iscrizione sì: così sai chi ha pagato prima di fare il calendario e non rincorri nessuno.</p></details>
-        <details><summary>Cosa succede se una squadra si ritira a metà?</summary><p>La togli dall'evento e il calendario si sistema da solo.</p></details>
-        <details><summary>Cosa vedono i giocatori?</summary><p>Calendario, risultati e classifica nell'app, sempre aggiornati. E a fine evento i premiati ricevono un premio in punti.</p></details>
-        <details><summary>Posso vedere l'app prima di decidere?</summary><p>Certo. In 20 minuti di demo te la mostriamo sul tuo torneo, e il primo torneo lo organizzi gratis.</p></details>
+        <details open><summary>Le squadre devono usare l&rsquo;app?</summary><p>Conviene: i capitani iscrivono la squadra e gestiscono la rosa dall&rsquo;app, e i giocatori seguono tutto dal telefono. Se una squadra non la usa, la inserisci tu a mano.</p></details>
+        <details><summary>Che formati posso organizzare?</summary><p>Campionato, girone all&rsquo;italiana, gironi con fase finale, eliminazione diretta e giornate-torneo. Supplementari e rigori compresi.</p></details>
+        <details><summary>E se una partita salta o una squadra si ritira?</summary><p>Rinvii, scambi e recuperi si fanno in pochi passi e le giornate successive si ricalcolano da sole. Anche ritiri e sostituzioni di squadra hanno un percorso guidato.</p></details>
+        <details><summary>Posso dare visibilità agli sponsor?</summary><p>Sì: logo e sito nella scheda dell&rsquo;evento che vedono i giocatori e una fascia sponsor sulle locandine da condividere.</p></details>
+        <details><summary>Quanto costa?</summary><p>Dipende dal tuo evento: dopo la demo ti prepariamo una proposta su misura.</p></details>
       </div>
     </div>
   </section>
 
   <!-- CONTATTI -->
-  <section class="sec" id="contatti">
+  <section class="sec" id="contatti" aria-labelledby="parliamone">
     <div class="container">
       <div class="contact">
         <div class="contact-side">
-          <span class="eyebrow">Parliamone</span>
-          <h2>Ti rispondiamo noi che l'app la facciamo.</h2>
-          <p class="muted">Lasciaci due righe su come lavori oggi e quando preferisci essere richiamato. Fissiamo 20 minuti quando ti è comodo.</p>
-          <div class="alt-way"><b>Oppure scrivi a</b><a href="mailto:info@easykick.it">info@easykick.it</a></div>
+          <span class="eyebrow">Demo gratuita</span>
+          <h2 id="parliamone">Ti rispondiamo noi che l&rsquo;app la costruiamo.</h2>
+          <p class="muted">Lasciaci due righe: ti ricontattiamo per fissare la demo, online o dal vivo, o per rispondere alle tue domande.</p>
+          <div class="alt-way"><b>Oppure scrivi a</b><a href="mailto:admin@easykick.it">admin@easykick.it</a></div>
         </div>
-        <!-- Il sito è statico: il modulo compone una mail già compilata.
-             Quando avremo un endpoint (CRM o servizio form) basta cambiare il submit. -->
-        <form class="lead" id="lead">
-          <div class="row2">
-            <label for="f-nome">Nome e cognome<input id="f-nome" name="nome" autocomplete="name" required /></label>
-            <label for="f-ruolo">Chi sei
-              <select id="f-ruolo" name="ruolo">
-                <option value="s">Gestisco una struttura</option>
-                <option value="o">Organizzo tornei</option>
-                <option value="so">Entrambe le cose</option>
-              </select>
-            </label>
+        <!-- Modulo demo → Web3Forms → admin@easykick.it.
+             Senza JavaScript il modulo invia lo stesso (POST classico);
+             con JavaScript business.js invia via fetch e mostra gli stati. -->
+        <form class="lead" id="lead" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="[EasyKick Business] Richiesta dal sito" />
+          <input type="hidden" name="from_name" value="Sito EasyKick Business" />
+          <input type="hidden" name="pagina" value="" />
+          <input type="hidden" name="utm_source" value="" />
+          <input type="hidden" name="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" value="" />
+          <input type="hidden" name="utm_content" value="" />
+          <input type="hidden" name="utm_term" value="" />
+          <input type="hidden" name="per" value="" />
+          <div class="hp" aria-hidden="true"><label>Non compilare<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" /></label></div>
+
+          <div data-fields>
+            <fieldset>
+              <legend>Cosa ti serve</legend>
+              <div class="seg">
+                <label><input type="radio" name="richiesta" value="Demo gratuita" data-req="demo" checked required /><span>Una demo gratuita</span></label>
+                <label><input type="radio" name="richiesta" value="Informazioni" data-req="info" /><span>Solo informazioni</span></label>
+              </div>
+            </fieldset>
           </div>
-          <div class="row2">
-            <label for="f-citta">Città<input id="f-citta" name="citta" autocomplete="address-level2" required /></label>
-            <label for="f-num"><span id="f-num-l">Quanti campi hai</span><input id="f-num" name="numero" inputmode="numeric" /></label>
+
+          <div data-fields>
+            <fieldset>
+              <legend>Chi sei</legend>
+              <div class="seg">
+                <label><input type="radio" name="ruolo" value="Gestisco una struttura" data-aud="s" required /><span>Ho una struttura</span></label>
+                <label><input type="radio" name="ruolo" value="Organizzo tornei o campionati" data-aud="o" /><span>Organizzo tornei</span></label>
+                <label><input type="radio" name="ruolo" value="Entrambe le cose" data-aud="so" /><span>Entrambe</span></label>
+              </div>
+            </fieldset>
           </div>
-          <div class="row2">
-            <label for="f-tel">Telefono<input id="f-tel" name="telefono" type="tel" autocomplete="tel" required /></label>
-            <label for="f-quando">Quando ti chiamiamo
-              <select id="f-quando" name="quando"><option>Mattina</option><option>Pomeriggio</option><option>Sera</option></select>
-            </label>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-nome">Nome e cognome<input id="f-nome" type="text" name="nome" autocomplete="name" maxlength="80" required /></label>
+            <label class="f" for="f-cosa"><span data-what-label>Nome della struttura o dell&rsquo;evento</span><input id="f-cosa" type="text" name="struttura_o_evento" autocomplete="organization" maxlength="120" required /></label>
           </div>
-          <label for="f-msg">Cosa ti fa perdere più tempo oggi? <span class="muted" style="font-weight:500">(facoltativo)</span><textarea id="f-msg" name="messaggio"></textarea></label>
-          <button class="btn btn-primary" type="submit">Richiamatemi</button>
-          <p class="small">Inviando accetti la nostra <a href="/privacy.html">Privacy Policy</a>. Usiamo i tuoi dati solo per ricontattarti.</p>
-          <p class="sent" id="sent" hidden>Si è aperta la tua app di posta con il messaggio già pronto: premi Invia. Se non si è aperta, scrivici a info@easykick.it.</p>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-email">Email<input id="f-email" type="email" name="email" autocomplete="email" maxlength="120" aria-describedby="f-contact-hint" /></label>
+            <label class="f" for="f-tel">Telefono<input id="f-tel" type="tel" name="telefono" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="f-contact-hint" /></label>
+          </div>
+          <p class="hint" id="f-contact-hint" data-fields>Basta uno dei due: ti ricontattiamo dove preferisci.</p>
+          <p class="err" data-contact-err hidden>Inserisci un&rsquo;email o un numero di telefono.</p>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-citta">Città<input id="f-citta" type="text" name="citta" autocomplete="address-level2" maxlength="60" required /></label>
+            <fieldset data-demo-pref>
+              <legend>La demo la preferisci</legend>
+              <div class="seg">
+                <label><input type="radio" name="demo" value="Online" checked /><span>Online</span></label>
+                <label><input type="radio" name="demo" value="Dal vivo" /><span>Dal vivo</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <label class="f" for="f-msg" data-fields>Vuoi dirci qualcosa? <span class="opt">(facoltativo)</span>
+            <textarea id="f-msg" name="messaggio" maxlength="1500" placeholder="Es. quanti campi o squadre, quando ti è comodo essere ricontattato"></textarea>
+          </label>
+
+          <div class="privacy-note" data-fields>
+            <strong>Informativa breve.</strong> Usiamo questi dati solo per risponderti e organizzare la demo: niente newsletter, niente cessione ad altri.
+            Il modulo viene recapitato tramite <strong>Web3Forms</strong>, un fornitore esterno che tratta i dati per nostro conto su server fuori dall&rsquo;Unione Europea.
+            Titolare, tempi di conservazione e diritti: <a href="/privacy.html#richieste-business">Privacy Policy</a>.
+          </div>
+          <label class="consent" for="f-ok" data-fields>
+            <input id="f-ok" type="checkbox" name="presa_visione_privacy" value="Sì, informativa letta (versione 2026-10)" required />
+            <span>Ho letto l&rsquo;<a href="/privacy.html#richieste-business">informativa privacy</a> e chiedo di essere ricontattato per questa richiesta.</span>
+          </label>
+
+          <button class="btn btn-primary" type="submit" data-fields>Invia la richiesta</button>
+          <div class="status" data-status role="status" aria-live="polite" hidden></div>
         </form>
       </div>
     </div>
@@ -597,103 +344,39 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="140" height="28" />
-          <p>L'app che semplifica il calcetto: per chi gioca, per chi ha i campi, per chi organizza.</p>
+          <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="140" height="32" />
+          <p>L&rsquo;app che semplifica il calcetto: per chi gioca, per chi ha i campi, per chi organizza.</p>
         </div>
         <div class="footer-col">
-          <h4>Business</h4>
+          <h2>Business</h2>
           <ul>
             <li><a href="#strutture">Per le strutture</a></li>
             <li><a href="#organizzatori">Per gli organizzatori</a></li>
-            <li><a href="#prezzi">Prezzi</a></li>
             <li><a href="#domande">Domande frequenti</a></li>
+            <li><a href="#contatti" data-req="demo">Prenota una demo</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Info</h4>
+          <h2>Info</h2>
           <ul>
             <li><a href="/">App per i giocatori</a></li>
             <li><a href="/privacy.html">Privacy Policy</a></li>
-            <li><a href="mailto:info@easykick.it">Contattaci</a></li>
+            <li><a href="mailto:admin@easykick.it">Contattaci</a></li>
           </ul>
         </div>
       </div>
-      <p class="footer-copy">© 2026 EasyKick · Tutti i diritti riservati</p>
+      <p class="footer-copy">© 2026 EasyKick &middot; Tutti i diritti riservati</p>
     </div>
   </footer>
 
   <div class="mobile-cta">
-    <a class="btn btn-primary" href="#contatti"><span class="only-s">Prova 14 giorni</span><span class="only-o">Primo torneo gratis</span></a>
-    <a class="btn btn-ghost" href="#prezzi">Prezzi</a>
+    <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo</a>
+    <a class="btn btn-ghost" href="#contatti" data-req="info">Chiedi info</a>
   </div>
 
 </div>
 
-<script>
-(function () {
-  var page = document.getElementById('page');
-  var featImg = document.getElementById('feat-img');
-  var eur = function (v, d) {
-    d = d == null ? 0 : d;
-    return v.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d }) + ' €';
-  };
-
-  /* Interruttore di pubblico. #strutture e #organizzatori sono link
-     condivisibili (campagne, footer, home). */
-  function showShot(b) { featImg.src = b.dataset.shot; featImg.alt = b.dataset.alt; }
-  function numLabel(v) { return v === 's' ? 'Quanti campi hai' : (v === 'o' ? 'Quante squadre di solito' : 'Campi o squadre'); }
-  function setAud(a, keepHash) {
-    page.dataset.aud = a;
-    document.querySelectorAll('.switch button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.aud === a)); });
-    var sel = document.querySelector('.feat-tabs.only-' + a + ' [aria-selected="true"]');
-    if (sel) showShot(sel);
-    document.getElementById('f-ruolo').value = a;
-    document.getElementById('f-num-l').textContent = numLabel(a);
-    if (!keepHash && history.replaceState) history.replaceState(null, '', '#' + (a === 's' ? 'strutture' : 'organizzatori'));
-  }
-  function fromHash() {
-    if (location.hash === '#organizzatori') { setAud('o', true); window.scrollTo(0, 0); }
-    else if (location.hash === '#strutture') { setAud('s', true); window.scrollTo(0, 0); }
-  }
-  document.querySelectorAll('.switch button').forEach(function (b) {
-    b.addEventListener('click', function () { setAud(b.dataset.aud); });
-  });
-  window.addEventListener('hashchange', fromHash);
-  fromHash();
-  document.getElementById('f-ruolo').addEventListener('change', function (e) {
-    document.getElementById('f-num-l').textContent = numLabel(e.target.value);
-  });
-
-  /* Tab delle funzioni */
-  document.querySelectorAll('.feat-tabs').forEach(function (list) {
-    list.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      list.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); });
-      showShot(b);
-    });
-  });
-
-  /* Modulo contatti: sito statico, quindi componiamo la mail già pronta */
-  document.getElementById('lead').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var f = e.target;
-    if (!f.reportValidity()) return;
-    var ruolo = f.ruolo.options[f.ruolo.selectedIndex].text;
-    var subject = 'EasyKick Business – ' + ruolo + ' – ' + f.citta.value;
-    var body = [
-      'Nome: ' + f.nome.value,
-      'Chi sono: ' + ruolo,
-      'Città: ' + f.citta.value,
-      document.getElementById('f-num-l').textContent + ': ' + f.numero.value,
-      'Telefono: ' + f.telefono.value,
-      'Quando chiamarmi: ' + f.quando.value,
-      '',
-      f.messaggio.value
-    ].join('\n');
-    location.href = 'mailto:info@easykick.it?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    document.getElementById('sent').hidden = false;
-  });
-})();
-</script>
+<script src="/assets/business/business.js"></script>
+<script>EKBusiness.init({ page: 'proposta-a', aud: 's' });</script>
 </body>
 </html>

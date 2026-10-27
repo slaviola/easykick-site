@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EasyKick Business – per strutture e organizzatori</title>
+  <meta name="description" content="Hai un centro sportivo o organizzi tornei e campionati di calcetto? Scegli il tuo percorso e prenota una demo gratuita, anche dal vivo." />
+  <!-- PROPOSTA B (bozza): se viene scelta, questa pagina diventa /business/
+       e si toglie il noindex. -->
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://www.easykick.it/business/" />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="icon" href="/assets/easykick_symbol.svg" type="image/svg+xml" />
+  <meta property="og:title" content="EasyKick Business – per strutture e organizzatori" />
+  <meta property="og:description" content="Campi riservati dall'app per le strutture, tornei e campionati che girano da soli per gli organizzatori. Demo gratuita, anche dal vivo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:url" content="https://www.easykick.it/business/" />
+  <meta property="og:image" content="https://www.easykick.it/assets/web/og-feature.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="586" />
+  <meta property="og:image:alt" content="EasyKick, l'app del calcetto" />
+  <link rel="stylesheet" href="/assets/business/business.css" />
+  <script>
+    /* Link di Instagram con ?per=strutture|organizzatori: si va dritti
+       al percorso giusto, portandosi dietro gli UTM. */
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search), per = (q.get('per') || '').toLowerCase();
+        var to = per.indexOf('strutt') === 0 ? 'strutture/' : (per.indexOf('organizz') === 0 ? 'organizzatori/' : null);
+        if (to) location.replace(to + location.search + location.hash);
+      } catch (e) { /* browser vecchio: resta sull'ingresso */ }
+    })();
+  </script>
+</head>
+<body class="has-mobile-cta">
+<div class="page" id="page">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="./" aria-label="EasyKick Business, ingresso">
+        <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
+        <span>Business</span>
+      </a>
+      <nav class="site-nav" aria-label="Percorsi">
+        <a href="strutture/" data-carry>Per le strutture</a>
+        <a href="organizzatori/" data-carry>Per gli organizzatori</a>
+        <a href="/">Per i giocatori</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#contatti" data-req="demo">Prenota una demo</a>
+    </div>
+  </header>
+
+  <main>
+
+  <section class="hero" aria-labelledby="titolo">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">EasyKick Business</span>
+        <h1 id="titolo">Il calcetto organizzato, <em>per chi ha i campi e per chi fa i tornei.</em></h1>
+        <p class="lede">I giocatori sono già nell&rsquo;app EasyKick. Con EasyKick Business li porti sui tuoi campi o dentro il tuo evento. Da dove partiamo?</p>
+      </div>
+
+      <div class="doors">
+        <a class="door" href="strutture/" data-carry>
+          <div class="door-img"><img src="/assets/business/oggi_390.png" alt="Schermata Oggi per una struttura: partite del giorno, in attesa e slot liberi" width="780" height="1640" /></div>
+          <span class="eyebrow">Ho un centro sportivo</span>
+          <h2>Più campi pieni, meno telefono.</h2>
+          <ul class="ticks">
+            <li>I giocatori della zona riservano dall&rsquo;app</li>
+            <li>La partita si conferma quando il gruppo c&rsquo;è e ha pagato</li>
+            <li>Gli incassi vanno sul tuo conto, il contante resta benvenuto</li>
+          </ul>
+          <span class="go">Scopri EasyKick per le strutture &rarr;</span>
+        </a>
+        <a class="door" href="organizzatori/" data-carry>
+          <div class="door-img"><img src="/assets/business/evento_gestione_390.png" alt="Gestione di un torneo: giornate in calendario e azioni su ogni partita" width="780" height="1640" /></div>
+          <span class="eyebrow">Organizzo tornei e campionati</span>
+          <h2>Il torneo lo prepari una volta. Poi gira da solo.</h2>
+          <ul class="ticks">
+            <li>Calendario che si fa e si ricalcola da solo</li>
+            <li>Distinte, comunicati e locandine automatici</li>
+            <li>Il tuo evento sul telefono di ogni giocatore, con i tuoi sponsor</li>
+          </ul>
+          <span class="go">Scopri EasyKick per gli organizzatori &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" aria-labelledby="tutti">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Per tutti</span>
+        <h2 id="tutti">Demo gratuita, anche dal vivo, con chi l&rsquo;app la costruisce.</h2>
+        <p class="lede">Ci racconti come lavori oggi, ti mostriamo l&rsquo;app sul tuo caso e ti prepariamo una proposta su misura. L&rsquo;attivazione la facciamo insieme.</p>
+      </div>
+      <ul class="pills">
+        <li>Online o dal vivo</li>
+        <li>Sul tuo caso, non su una slide</li>
+        <li>Attivazione accompagnata</li>
+        <li>Dal PC, dal tablet e dal telefono</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="contatti" aria-labelledby="parliamone">
+    <div class="container">
+      <div class="contact">
+        <div class="contact-side">
+          <span class="eyebrow">Demo gratuita</span>
+          <h2 id="parliamone">Fai entrambe le cose? Scrivici da qui.</h2>
+          <p class="muted">Lasciaci due righe: ti ricontattiamo per fissare la demo, online o dal vivo, o per rispondere alle tue domande.</p>
+          <div class="alt-way"><b>Oppure scrivi a</b><a href="mailto:admin@easykick.it">admin@easykick.it</a></div>
+        </div>
+        <!-- Modulo demo → Web3Forms → admin@easykick.it.
+             Senza JavaScript il modulo invia lo stesso (POST classico);
+             con JavaScript business.js invia via fetch e mostra gli stati. -->
+        <form class="lead" id="lead" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY" />
+          <input type="hidden" name="subject" value="[EasyKick Business] Richiesta dal sito" />
+          <input type="hidden" name="from_name" value="Sito EasyKick Business" />
+          <input type="hidden" name="pagina" value="" />
+          <input type="hidden" name="utm_source" value="" />
+          <input type="hidden" name="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" value="" />
+          <input type="hidden" name="utm_content" value="" />
+          <input type="hidden" name="utm_term" value="" />
+          <input type="hidden" name="per" value="" />
+          <div class="hp" aria-hidden="true"><label>Non compilare<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" /></label></div>
+
+          <div data-fields>
+            <fieldset>
+              <legend>Cosa ti serve</legend>
+              <div class="seg">
+                <label><input type="radio" name="richiesta" value="Demo gratuita" data-req="demo" checked required /><span>Una demo gratuita</span></label>
+                <label><input type="radio" name="richiesta" value="Informazioni" data-req="info" /><span>Solo informazioni</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div data-fields>
+            <fieldset>
+              <legend>Chi sei</legend>
+              <div class="seg">
+                <label><input type="radio" name="ruolo" value="Gestisco una struttura" data-aud="s" required /><span>Ho una struttura</span></label>
+                <label><input type="radio" name="ruolo" value="Organizzo tornei o campionati" data-aud="o" /><span>Organizzo tornei</span></label>
+                <label><input type="radio" name="ruolo" value="Entrambe le cose" data-aud="so" /><span>Entrambe</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-nome">Nome e cognome<input id="f-nome" type="text" name="nome" autocomplete="name" maxlength="80" required /></label>
+            <label class="f" for="f-cosa"><span data-what-label>Nome della struttura o dell&rsquo;evento</span><input id="f-cosa" type="text" name="struttura_o_evento" autocomplete="organization" maxlength="120" required /></label>
+          </div>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-email">Email<input id="f-email" type="email" name="email" autocomplete="email" maxlength="120" aria-describedby="f-contact-hint" /></label>
+            <label class="f" for="f-tel">Telefono<input id="f-tel" type="tel" name="telefono" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="f-contact-hint" /></label>
+          </div>
+          <p class="hint" id="f-contact-hint" data-fields>Basta uno dei due: ti ricontattiamo dove preferisci.</p>
+          <p class="err" data-contact-err hidden>Inserisci un&rsquo;email o un numero di telefono.</p>
+
+          <div class="row2" data-fields>
+            <label class="f" for="f-citta">Città<input id="f-citta" type="text" name="citta" autocomplete="address-level2" maxlength="60" required /></label>
+            <fieldset data-demo-pref>
+              <legend>La demo la preferisci</legend>
+              <div class="seg">
+                <label><input type="radio" name="demo" value="Online" checked /><span>Online</span></label>
+                <label><input type="radio" name="demo" value="Dal vivo" /><span>Dal vivo</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <label class="f" for="f-msg" data-fields>Vuoi dirci qualcosa? <span class="opt">(facoltativo)</span>
+            <textarea id="f-msg" name="messaggio" maxlength="1500" placeholder="Es. quanti campi o squadre, quando ti è comodo essere ricontattato"></textarea>
+          </label>
+
+          <div class="privacy-note" data-fields>
+            <strong>Informativa breve.</strong> Usiamo questi dati solo per risponderti e organizzare la demo: niente newsletter, niente cessione ad altri.
+            Il modulo viene recapitato tramite <strong>Web3Forms</strong>, un fornitore esterno che tratta i dati per nostro conto su server fuori dall&rsquo;Unione Europea.
+            Titolare, tempi di conservazione e diritti: <a href="/privacy.html#richieste-business">Privacy Policy</a>.
+          </div>
+          <label class="consent" for="f-ok" data-fields>
+            <input id="f-ok" type="checkbox" name="presa_visione_privacy" value="Sì, informativa letta (versione 2026-10)" required />
+            <span>Ho letto l&rsquo;<a href="/privacy.html#richieste-business">informativa privacy</a> e chiedo di essere ricontattato per questa richiesta.</span>
+          </label>
+
+          <button class="btn btn-primary" type="submit" data-fields>Invia la richiesta</button>
+          <div class="status" data-status role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="140" height="32" />
+          <p>L&rsquo;app che semplifica il calcetto: per chi gioca, per chi ha i campi, per chi organizza.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Business</h2>
+          <ul>
+            <li><a href="/business/proposta-b/strutture/" data-carry>Per le strutture</a></li>
+            <li><a href="/business/proposta-b/organizzatori/" data-carry>Per gli organizzatori</a></li>
+            <li><a href="#contatti" data-req="demo">Prenota una demo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Info</h2>
+          <ul>
+            <li><a href="/">App per i giocatori</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="mailto:admin@easykick.it">Contattaci</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 EasyKick &middot; Tutti i diritti riservati</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo</a>
+    <a class="btn btn-ghost" href="#contatti" data-req="info">Chiedi info</a>
+  </div>
+
+</div>
+
+<script src="/assets/business/business.js"></script>
+<script>EKBusiness.init({ page: 'proposta-b-ingresso' });</script>
+</body>
+</html>
