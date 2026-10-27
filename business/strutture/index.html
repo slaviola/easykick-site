@@ -22,20 +22,24 @@
   <meta name="twitter:title" content="EasyKick per le strutture" />
   <meta name="twitter:description" content="Meno telefono, più campi pieni. I giocatori riservano dall'app, gli incassi vanno sul tuo conto. Demo gratuita, anche dal vivo." />
   <meta name="twitter:image" content="https://www.easykick.it/assets/business/og-business.jpg" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-strutture-1920.webp" media="(min-width: 700px)" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-strutture-960.webp" media="(max-width: 699px)" />
   <link rel="stylesheet" href="/assets/business/business.css" />
+  <link rel="stylesheet" href="/assets/business/moderna.css" />
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="has-mobile-cta">
 <div class="page" id="page">
 
-  <header class="site-header">
+  <header class="site-header over">
     <div class="container">
       <a class="brand" href="/business/" data-carry aria-label="EasyKick Business, ingresso">
         <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
         <span>Business</span>
       </a>
       <nav class="site-nav" aria-label="Sezioni della pagina">
+        <a href="#simulatore">Prova la serata</a>
         <a href="#una-serata">Una serata</a>
-        <a href="#funzioni">Funzioni</a>
         <a href="#come-si-parte">Come si parte</a>
         <a href="#domande">Domande</a>
         <a href="/business/organizzatori/" data-carry>Organizzi tornei?</a>
@@ -46,17 +50,23 @@
 
   <main>
 
-  <section class="hero" aria-labelledby="titolo">
+  <section class="xhero" aria-labelledby="titolo" style="--focus: 60% 60%; --focus-m: 62% 60%">
+    <div class="xhero-bg">
+      <picture>
+        <source media="(max-width: 699px)" srcset="/assets/business/img/hero-strutture-960.webp" width="960" height="540" />
+        <img src="/assets/business/img/hero-strutture-1920.webp" srcset="/assets/business/img/hero-strutture-960.webp 960w, /assets/business/img/hero-strutture-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
+      </picture>
+    </div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">EasyKick per le strutture</span>
+          <span class="kicker">EasyKick per le strutture</span>
           <h1 id="titolo">I giocatori arrivano <em>già dentro l&rsquo;app.</em></h1>
           <p class="lede">Chi cerca un campo nella tua zona trova i tuoi slot liberi nell&rsquo;app EasyKick, li riserva e chiama il gruppo. La partita si conferma solo quando il gruppo c&rsquo;è e ha pagato. Tu apri la giornata e sai già chi gioca.</p>
           <span class="tag-avail">Disponibile su richiesta &middot; attivazione insieme al nostro team</span>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo gratuita</a>
-            <a class="btn btn-ghost" href="#contatti" data-req="info">Chiedi informazioni</a>
+            <a class="btn btn-ghost" href="#simulatore">Prova come funziona</a>
           </div>
           <ul class="reassure">
             <li>Gli incassi vanno sul tuo conto</li>
@@ -64,107 +74,124 @@
             <li>Demo online o dal vivo</li>
           </ul>
         </div>
-        <div class="hero-visual">
-          <div class="phone"><img src="/assets/business/oggi_pulita.png" alt="Schermata Oggi dell'app EasyKick Business: partite del giorno, partite in attesa che il gruppo si completi, partite da chiudere e slot ancora liberi" width="780" height="1640" /></div>
-          <div class="chip c1" aria-hidden="true"><span class="dot">✓</span><span>Campo 2 &middot; 21:00 confermato<small>il gruppo è al completo</small></span></div>
-          <div class="chip c2" aria-hidden="true"><span class="dot amber">⌛</span><span>Campo 3 &middot; 23:00<small>mancano 4 giocatori</small></span></div>
+        <div class="stage">
+          <div class="tilt">
+            <div class="phone"><img src="/assets/business/oggi_pulita.png" alt="Schermata Oggi dell'app EasyKick Business: partite del giorno, partite in attesa che il gruppo si completi, partite da chiudere e slot ancora liberi" width="780" height="1640" /></div>
+            <span class="shine" aria-hidden="true"></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" aria-labelledby="perche">
+  <section class="sec" aria-labelledby="perche">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Perché EasyKick</span>
         <h2 id="perche">Meno telefono, <em>più campi pieni.</em></h2>
       </div>
       <ul class="why">
-        <li><span class="k">Potenziale</span><h3>I giocatori sono già lì</h3><p>Usano EasyKick per organizzare le partite: con te nell&rsquo;app, trovano anche i tuoi campi.</p></li>
-        <li><span class="k">Comodità</span><h3>Dal telefono o dal PC</h3><p>Calendario, prenotazioni e incassi in poche schermate. Niente più catene di chiamate e WhatsApp.</p></li>
-        <li><span class="k">Tempo</span><h3>Le cose ripetitive vanno da sole</h3><p>Conferme, quote, disdette, avvisi e promemoria ai giocatori: con le regole che imposti tu.</p></li>
-        <li><span class="k">Guadagno</span><h3>Slot riempiti, soldi sicuri</h3><p>Più ore vendute anche nelle fasce morte, e le quote pagate in app arrivano sul tuo conto.</p></li>
+        <li class="live reveal"><span class="k">Potenziale</span><h3>I giocatori sono già lì</h3><p>Usano EasyKick per organizzare le partite: con te nell&rsquo;app, trovano anche i tuoi campi.</p></li>
+        <li class="live reveal" data-d="1"><span class="k">Comodità</span><h3>Dal telefono o dal PC</h3><p>Calendario, prenotazioni e incassi in poche schermate. Niente più catene di chiamate e WhatsApp.</p></li>
+        <li class="live reveal" data-d="2"><span class="k">Tempo</span><h3>Le cose ripetitive vanno da sole</h3><p>Conferme, quote, disdette, avvisi e promemoria ai giocatori: con le regole che imposti tu.</p></li>
+        <li class="live reveal" data-d="3"><span class="k">Guadagno</span><h3>Slot riempiti, soldi sicuri</h3><p>Più ore vendute anche nelle fasce morte, e le quote pagate in app arrivano sul tuo conto.</p></li>
       </ul>
+    </div>
+  </section>
+
+  <section class="sec alt tech tex" id="simulatore" aria-labelledby="sim-t">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Prova la serata</span>
+        <h2 id="sim-t">Riservato, gruppo completo, <em>confermato.</em></h2>
+        <p class="lede">Scegli uno slot libero e guarda cosa succede quando un gruppo lo riserva dall&rsquo;app.</p>
+        <span class="illu-note">Illustrazione semplificata, non è una schermata dell&rsquo;app.</span>
+      </div>
+      <div class="sim live reveal" id="sim">
+        <div>
+          <p class="hint" id="sim-legend">Campo 1 e Campo 2, stasera. Tocca uno slot.</p>
+          <div class="slots" role="group" aria-labelledby="sim-legend">
+            <button type="button" class="slot" data-st="confermato" data-label="Campo 1 · 19:00" aria-pressed="false"><b>19:00</b><small>Confermato</small><small>Campo 1</small></button>
+            <button type="button" class="slot" data-st="libero" data-free data-label="Campo 1 · 21:00" aria-pressed="false"><b>21:00</b><small>Libero</small><small>Campo 1</small></button>
+            <button type="button" class="slot" data-st="libero" data-free data-label="Campo 1 · 22:00" aria-pressed="false"><b>22:00</b><small>Libero</small><small>Campo 1</small></button>
+            <button type="button" class="slot" data-st="confermato" data-label="Campo 2 · 20:00" aria-pressed="false"><b>20:00</b><small>Confermato</small><small>Campo 2</small></button>
+            <button type="button" class="slot" data-st="libero" data-free data-label="Campo 2 · 21:00" aria-pressed="false"><b>21:00</b><small>Libero</small><small>Campo 2</small></button>
+            <button type="button" class="slot" data-st="libero" data-free data-label="Campo 2 · 23:00" aria-pressed="false"><b>23:00</b><small>Libero</small><small>Campo 2</small></button>
+          </div>
+        </div>
+        <div class="sim-card" aria-live="polite">
+          <div class="sim-head"><h3 data-sim-title>Scegli uno slot</h3><span class="badge-st" data-sim-badge data-st="libero">Libero</span></div>
+          <div class="players" data-sim-players></div>
+          <div>
+            <div class="sim-head hint"><span>Quote pagate in app</span><span data-sim-count>0 su 10</span></div>
+            <div class="qbar"><i data-sim-bar></i></div>
+          </div>
+          <p class="sim-msg" data-sim-msg>Tocca uno slot libero per iniziare.</p>
+          <div class="sim-actions"><button type="button" class="btn btn-primary" data-sim-btn>Riserva lo slot</button></div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="sec" id="una-serata" aria-labelledby="serata">
     <div class="container">
-      <div class="split">
-        <div>
-          <div class="sec-head">
-            <span class="eyebrow">Una serata con EasyKick</span>
-            <h2 id="serata">La sera la passi al campo, non al telefono.</h2>
+      <div class="sec-head reveal">
+        <span class="eyebrow">Una serata con EasyKick</span>
+        <h2 id="serata">La sera la passi al campo, <em>non al telefono.</em></h2>
+      </div>
+      <div class="story">
+        <ol class="story-steps">
+          <li class="story-step" data-img="oggi"><span class="t">Al mattino</span><h3>Apri «Oggi»</h3><p>Partite confermate, in attesa, da chiudere e slot ancora liberi: tutto in una schermata.</p><img class="mini phone" src="/assets/business/oggi_pulita.png" alt="Schermata Oggi con le partite del giorno e gli slot liberi" width="780" height="1640" loading="lazy" /></li>
+          <li class="story-step" data-img="cal"><span class="t">Nel pomeriggio</span><h3>Un gruppo riserva il campo</h3><p>Dall&rsquo;app, nello slot che hai aperto tu. I giocatori si dividono la quota. Le prenotazioni prese al telefono le segni nello stesso calendario.</p><img class="mini phone" src="/assets/business/calendario_pulita.png" alt="Calendario dei campi con gli slot del giorno" width="780" height="1640" loading="lazy" /></li>
+          <li class="story-step" data-img="cal"><span class="t">Prima della partita</span><h3>Ci pensa l&rsquo;app</h3><p>Avvisi e promemoria ai giocatori. Se qualcuno esce, il gruppo cerca un sostituto dall&rsquo;app.</p></li>
+          <li class="story-step" data-img="oggi"><span class="t">Quando il gruppo è completo</span><h3>Partita confermata</h3><p>Il gruppo c&rsquo;è e ha pagato: la partita è confermata, senza una telefonata.</p></li>
+          <li class="story-step" data-img="oggi"><span class="t">A fine partita</span><h3>La chiudi in un tocco</h3><p>Segni gli eventuali contanti incassati e la serata torna in pari.</p></li>
+        </ol>
+        <div class="story-phone" aria-hidden="true">
+          <div class="phone">
+            <img data-img="oggi" class="on" src="/assets/business/oggi_pulita.png" alt="" width="780" height="1640" loading="lazy" />
+            <img data-img="cal" src="/assets/business/calendario_pulita.png" alt="" width="780" height="1640" loading="lazy" />
           </div>
-          <ol class="timeline">
-            <li><span class="t">Al mattino</span><h3>Apri «Oggi»</h3><p>Partite confermate, in attesa, da chiudere e slot ancora liberi: tutto in una schermata.</p></li>
-            <li><span class="t">Nel pomeriggio</span><h3>Un gruppo riserva il campo</h3><p>Dall&rsquo;app, nello slot che hai aperto tu. I giocatori si dividono la quota.</p></li>
-            <li><span class="t">Prima della partita</span><h3>Ci pensa l&rsquo;app</h3><p>Avvisi e promemoria ai giocatori. Se qualcuno esce, il gruppo cerca un sostituto dall&rsquo;app.</p></li>
-            <li><span class="t">Quando il gruppo è completo</span><h3>Partita confermata</h3><p>Il gruppo c&rsquo;è e ha pagato: la partita è confermata, senza una telefonata.</p></li>
-            <li><span class="t">A fine partita</span><h3>La chiudi in un tocco</h3><p>Segni gli eventuali contanti incassati e la serata torna in pari.</p></li>
-          </ol>
-        </div>
-        <div class="phone-wrap">
-          <div class="phone"><img src="/assets/business/calendario_pulita.png" alt="Calendario dei campi: gli slot del giorno con lo stato libero, riservato, confermato, in corso o completato" width="780" height="1640" loading="lazy" /></div>
           <p class="shot-note">Schermate reali dell&rsquo;app, con dati di esempio.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="funzioni" aria-labelledby="dentro">
+  <section class="sec alt" aria-labelledby="soldi">
     <div class="container">
-      <div class="sec-head">
-        <span class="eyebrow">Dentro EasyKick Business</span>
-        <h2 id="dentro">Tutta la struttura in poche schermate.</h2>
+      <div class="sec-head reveal">
+        <span class="eyebrow">Gli incassi</span>
+        <h2 id="soldi">Gli incassi vanno sul tuo conto, <em>non sul nostro.</em></h2>
       </div>
-      <div class="feat">
-        <div class="feat-tabs" data-shots="shot-img">
-          <button type="button" aria-pressed="true" data-shot="/assets/business/oggi_pulita.png" data-alt="Schermata Oggi: partite del giorno, in attesa, da chiudere e slot liberi"><strong>La giornata in una schermata</strong><span>Chi gioca, cosa c&rsquo;è da chiudere, quali campi sono ancora liberi.</span></button>
-          <button type="button" aria-pressed="false" data-shot="/assets/business/calendario_pulita.png" data-alt="Calendario dei campi con gli slot del giorno e il loro stato"><strong>Calendario dei campi</strong><span>Le prenotazioni dall&rsquo;app e quelle che prendi al telefono nello stesso calendario: niente doppioni.</span></button>
-          <button type="button" aria-pressed="false" data-shot="/assets/business/evento_gestione_390.png" data-alt="Gestione di un torneo: giornate in calendario, risultati e azioni su ogni partita come distinta e rinvio"><strong>Anche i tuoi tornei</strong><span>Campionati e tornei nella stessa app: calendario, risultati e distinte.</span></button>
-        </div>
-        <div class="feat-shot">
-          <div class="phone"><img id="shot-img" src="/assets/business/oggi_pulita.png" alt="Schermata Oggi: partite del giorno, in attesa, da chiudere e slot liberi" width="780" height="1640" loading="lazy" /></div>
-          <p class="shot-note">Schermate reali dell&rsquo;app, con dati di esempio.</p>
-        </div>
+      <div class="cards three">
+        <div class="live reveal"><span class="lbl">In app</span><h3>Quote sul conto della struttura</h3><p>I giocatori pagano la loro parte con la carta e i soldi arrivano direttamente a te.</p></div>
+        <div class="live reveal" data-d="1"><span class="lbl">Al campo</span><h3>Il contante va bene</h3><p>Chi preferisce paga al campo, come sempre. A fine partita la chiudi segnando quello che hai incassato.</p></div>
+        <div class="live reveal" data-d="2"><span class="lbl">Disdette</span><h3>Regole chiare per tutti</h3><p>Fino al termine che imposti tu la disdetta è gratuita; dopo, la quota resta alla struttura.</p></div>
       </div>
-      <ul class="pills mt" aria-label="Altre funzioni">
+      <ul class="pills mt reveal" aria-label="Altre funzioni">
         <li>Listino, fasce e prezzi speciali per periodo</li>
         <li>Regole di disdetta decise da te</li>
         <li>Accesso per il tuo staff</li>
         <li>Carnet della struttura</li>
         <li>Punti fedeltà</li>
+        <li>Anche tornei e campionati</li>
       </ul>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="soldi">
+  <section class="sec tech" id="come-si-parte" aria-labelledby="parte">
     <div class="container">
-      <div class="sec-head">
-        <span class="eyebrow">Gli incassi</span>
-        <h2 id="soldi">Gli incassi vanno sul tuo conto, <em>non sul nostro.</em></h2>
-      </div>
-      <div class="cards three">
-        <div><span class="lbl">In app</span><h3>Quote sul conto della struttura</h3><p>I giocatori pagano la loro parte con la carta e i soldi arrivano direttamente a te.</p></div>
-        <div><span class="lbl">Al campo</span><h3>Il contante va bene</h3><p>Chi preferisce paga al campo, come sempre. A fine partita la chiudi segnando quello che hai incassato.</p></div>
-        <div><span class="lbl">Disdette</span><h3>Regole chiare per tutti</h3><p>Fino al termine che imposti tu la disdetta è gratuita; dopo, la quota resta alla struttura.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec alt" id="come-si-parte" aria-labelledby="parte">
-    <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Come si parte</span>
-        <h2 id="parte">Partiamo dalla demo, poi ti accompagniamo noi.</h2>
+        <h2 id="parte">Partiamo dalla demo, <em>poi ti accompagniamo noi.</em></h2>
       </div>
       <ol class="start">
-        <li><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti come lavori</h3><p>Online o dal vivo. Ti mostriamo l&rsquo;app sul tuo caso: i tuoi campi, i tuoi orari, le tue abitudini.</p></li>
-        <li><span class="when">2 &middot; Attivazione</span><h3>Configuriamo insieme</h3><p>Campi, listino, regole di disdetta, staff e conto per gli incassi. Da lì i giocatori ti trovano nell&rsquo;app.</p></li>
-        <li><span class="when">3 &middot; Prime serate</span><h3>Giochi, noi ci siamo</h3><p>Ti seguiamo all&rsquo;inizio. Se qualcosa non torna, diventa lavoro nostro.</p></li>
+        <li class="reveal"><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti come lavori</h3><p>Online o dal vivo. Ti mostriamo l&rsquo;app sul tuo caso: i tuoi campi, i tuoi orari, le tue abitudini.</p></li>
+        <li class="reveal" data-d="1"><span class="when">2 &middot; Attivazione</span><h3>Configuriamo insieme</h3><p>Campi, listino, regole di disdetta, staff e conto per gli incassi. Da lì i giocatori ti trovano nell&rsquo;app.</p></li>
+        <li class="reveal" data-d="2"><span class="when">3 &middot; Prime serate</span><h3>Giochi, noi ci siamo</h3><p>Ti seguiamo all&rsquo;inizio. Se qualcosa non torna, diventa lavoro nostro.</p></li>
       </ol>
-      <div class="demo-cta">
+      <div class="demo-cta live reveal">
         <div>
           <h3>Vuoi capire se fa per la tua struttura?</h3>
           <p class="muted">In demo lo vediamo sui tuoi numeri, poi ti prepariamo una proposta su misura.</p>
@@ -174,9 +201,9 @@
     </div>
   </section>
 
-  <section class="sec" id="domande" aria-labelledby="faq">
+  <section class="sec alt" id="domande" aria-labelledby="faq">
     <div class="container">
-      <div class="sec-head"><span class="eyebrow">Domande</span><h2 id="faq">Quello che ci chiedono i gestori.</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow">Domande</span><h2 id="faq">Quello che ci chiedono i gestori.</h2></div>
       <div class="faq">
         <details open><summary>I miei clienti devono scaricare l&rsquo;app?</summary><p>Chi vuole riservare e pagare dall&rsquo;app sì: EasyKick è gratuita su iOS e Android. Le prenotazioni che prendi al telefono o al banco le segni nello stesso calendario, così nessuno riserva un campo già occupato.</p></details>
         <details><summary>E chi vuole pagare in contanti?</summary><p>Paga al campo, come sempre. A fine partita la chiudi segnando i contanti incassati.</p></details>
@@ -188,10 +215,10 @@
     </div>
   </section>
 
-  <section class="sec alt" id="contatti" aria-labelledby="parliamone">
+  <section class="sec" id="contatti" aria-labelledby="parliamone">
     <div class="container">
       <div class="contact">
-        <div class="contact-side">
+        <div class="contact-side reveal">
           <span class="eyebrow">Demo gratuita</span>
           <h2 id="parliamone">Ti rispondiamo noi che l&rsquo;app la costruiamo.</h2>
           <p class="muted">Lasciaci due righe: ti ricontattiamo per fissare la demo, online o dal vivo, o per rispondere alle tue domande.</p>
@@ -317,5 +344,6 @@
 
 <script src="/assets/business/business.js"></script>
 <script>EKBusiness.init({page: 'strutture', aud: 's', per: 'strutture'});</script>
+<script src="/assets/business/moderna.js" defer></script>
 </body>
 </html>

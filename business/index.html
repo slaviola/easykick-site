@@ -22,8 +22,12 @@
   <meta name="twitter:title" content="EasyKick Business – per strutture e organizzatori" />
   <meta name="twitter:description" content="Campi riservati dall'app per le strutture, tornei e campionati che girano da soli per gli organizzatori. Demo gratuita, anche dal vivo." />
   <meta name="twitter:image" content="https://www.easykick.it/assets/business/og-business.jpg" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-ingresso-1920.webp" media="(min-width: 700px)" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-ingresso-960.webp" media="(max-width: 699px)" />
   <link rel="stylesheet" href="/assets/business/business.css" />
+  <link rel="stylesheet" href="/assets/business/moderna.css" />
   <script>
+    document.documentElement.classList.add('js');
     /* Link di Instagram con ?per=strutture|organizzatori (e i vecchi link
        /business/#strutture, #organizzatori): si va dritti al percorso
        giusto, portandosi dietro gli UTM. */
@@ -42,7 +46,7 @@
 <body class="has-mobile-cta">
 <div class="page" id="page">
 
-  <header class="site-header">
+  <header class="site-header over">
     <div class="container">
       <a class="brand" href="/business/" aria-label="EasyKick Business, ingresso">
         <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
@@ -59,49 +63,89 @@
 
   <main>
 
-  <section class="hero" aria-labelledby="titolo">
+  <section class="xhero" aria-labelledby="titolo" style="--focus: 70% 60%; --focus-m: 72% 50%">
+    <div class="xhero-bg">
+      <picture>
+        <source media="(max-width: 699px)" srcset="/assets/business/img/hero-ingresso-960.webp" width="960" height="402" />
+        <img src="/assets/business/img/hero-ingresso-1920.webp" srcset="/assets/business/img/hero-ingresso-960.webp 960w, /assets/business/img/hero-ingresso-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="804" fetchpriority="high" />
+      </picture>
+    </div>
     <div class="container">
-      <div class="sec-head">
-        <span class="eyebrow">EasyKick Business</span>
-        <h1 id="titolo">Il calcetto organizzato, <em>per chi ha i campi e per chi fa i tornei.</em></h1>
-        <p class="lede">I giocatori sono già nell&rsquo;app EasyKick. Con EasyKick Business li porti sui tuoi campi o dentro il tuo evento. Da dove partiamo?</p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="kicker">EasyKick Business</span>
+          <h1 id="titolo">Il calcetto organizzato, <em>per chi ha i campi e per chi fa i tornei.</em></h1>
+          <p class="lede">I giocatori sono già nell&rsquo;app EasyKick. Con EasyKick Business li porti sui tuoi campi o dentro il tuo evento.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo gratuita</a>
+            <a class="btn btn-ghost" href="#percorsi">Scegli il tuo percorso</a>
+          </div>
+        </div>
+        <div class="stage" aria-hidden="true">
+          <div class="tilt">
+            <div class="phone"><img src="/assets/business/oggi_pulita.png" alt="" width="780" height="1640" /></div>
+            <div class="phone back"><img src="/assets/business/evento_gestione_390.png" alt="" width="780" height="1640" loading="lazy" /></div>
+            <span class="shine"></span>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="doors">
-        <a class="door" href="/business/strutture/" data-carry>
-          <div class="door-img"><img src="/assets/business/oggi_pulita.png" alt="Schermata Oggi per una struttura: partite del giorno, in attesa e slot liberi" width="780" height="1640" /></div>
-          <span class="eyebrow">Ho un centro sportivo</span>
-          <h2>Più campi pieni, meno telefono.</h2>
-          <ul class="ticks">
-            <li>I giocatori della zona riservano dall&rsquo;app</li>
-            <li>La partita si conferma quando il gruppo c&rsquo;è e ha pagato</li>
-            <li>Gli incassi vanno sul tuo conto, il contante resta benvenuto</li>
-          </ul>
-          <span class="go">Scopri EasyKick per le strutture &rarr;</span>
+  <section id="percorsi" aria-label="Scegli il tuo percorso">
+    <div class="container">
+      <div class="xdoors">
+        <a class="xdoor live reveal" href="/business/strutture/" data-carry>
+          <div class="pic" style="--focus: 50% 45%"><img src="/assets/business/img/arrivo-gruppo-960.webp" srcset="/assets/business/img/arrivo-gruppo-960.webp 960w, /assets/business/img/arrivo-gruppo-1080.webp 1080w" sizes="(min-width: 860px) 560px, 100vw" alt="Un gruppo di amici con le borse in spalla arriva di sera al cancello di un campo illuminato" width="960" height="1200" loading="lazy" /></div>
+          <div class="body">
+            <span class="eyebrow">Ho un centro sportivo</span>
+            <h2>Più campi pieni, meno telefono.</h2>
+            <ul class="ticks">
+              <li>I giocatori della zona riservano dall&rsquo;app</li>
+              <li>La partita si conferma quando il gruppo c&rsquo;è e ha pagato</li>
+              <li>Gli incassi vanno sul tuo conto, il contante resta benvenuto</li>
+            </ul>
+            <span class="go">Scopri EasyKick per le strutture</span>
+          </div>
         </a>
-        <a class="door" href="/business/organizzatori/" data-carry>
-          <div class="door-img"><img src="/assets/business/evento_gestione_390.png" alt="Gestione di un torneo: giornate in calendario e azioni su ogni partita" width="780" height="1640" /></div>
-          <span class="eyebrow">Organizzo tornei e campionati</span>
-          <h2>Il torneo lo prepari una volta. Poi gira da solo.</h2>
-          <ul class="ticks">
-            <li>Calendario che si fa e si ricalcola da solo</li>
-            <li>Distinte, comunicati e locandine automatici</li>
-            <li>Il tuo evento sul telefono di ogni giocatore, con i tuoi sponsor</li>
-          </ul>
-          <span class="go">Scopri EasyKick per gli organizzatori &rarr;</span>
+        <a class="xdoor live reveal" data-d="1" href="/business/organizzatori/" data-carry>
+          <div class="pic" style="--focus: 50% 40%"><img src="/assets/business/img/organizzatore-640.jpg" srcset="/assets/business/img/organizzatore-640.jpg 640w, /assets/business/img/organizzatore-896.jpg 896w" sizes="(min-width: 860px) 560px, 100vw" alt="Un organizzatore a bordo campo con il tablet in mano, mentre le squadre giocano sotto i riflettori" width="640" height="800" loading="lazy" /></div>
+          <div class="body">
+            <span class="eyebrow">Organizzo tornei e campionati</span>
+            <h2>Il torneo lo prepari una volta. Poi gira da solo.</h2>
+            <ul class="ticks">
+              <li>Calendario che si fa e si ricalcola da solo</li>
+              <li>Distinte, comunicati e locandine automatici</li>
+              <li>Il tuo evento sul telefono di ogni giocatore, con i tuoi sponsor</li>
+            </ul>
+            <span class="go">Scopri EasyKick per gli organizzatori</span>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" aria-labelledby="tutti">
+  <div class="marquee mt" aria-hidden="true">
+    <ul>
+      <li>Riserva dall&rsquo;app</li><li>Partita confermata quando il gruppo c&rsquo;è</li><li>Incassi sul tuo conto</li><li>Calendario automatico</li><li>Rinvii e recuperi</li><li>Distinte in PDF</li><li>Comunicato ufficiale</li><li>Locandine con gli sponsor</li><li>MVP e pagelle</li><li>Demo anche dal vivo</li>
+      <li>Riserva dall&rsquo;app</li><li>Partita confermata quando il gruppo c&rsquo;è</li><li>Incassi sul tuo conto</li><li>Calendario automatico</li><li>Rinvii e recuperi</li><li>Distinte in PDF</li><li>Comunicato ufficiale</li><li>Locandine con gli sponsor</li><li>MVP e pagelle</li><li>Demo anche dal vivo</li>
+    </ul>
+  </div>
+
+  <section class="sec tech" aria-labelledby="tutti">
+    <svg class="pitch-svg" viewBox="0 0 1200 300" preserveAspectRatio="xMaxYMid meet" aria-hidden="true" focusable="false">
+      <rect x="40" y="20" width="1120" height="270" rx="6" pathLength="1" />
+      <path d="M600 20 V290" pathLength="1" />
+      <path d="M600 105 a85 85 0 1 1 0 170 a85 85 0 1 1 0 -170" pathLength="1" />
+      <path d="M40 95 H170 V215 H40 M1160 95 H1030 V215 H1160" pathLength="1" />
+    </svg>
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Per tutti</span>
-        <h2 id="tutti">Demo gratuita, anche dal vivo, con chi l&rsquo;app la costruisce.</h2>
+        <h2 id="tutti">Demo gratuita, anche dal vivo, <em>con chi l&rsquo;app la costruisce.</em></h2>
         <p class="lede">Ci racconti come lavori oggi, ti mostriamo l&rsquo;app sul tuo caso e ti prepariamo una proposta su misura. L&rsquo;attivazione la facciamo insieme.</p>
       </div>
-      <ul class="pills">
+      <ul class="pills reveal" data-d="1">
         <li>Online o dal vivo</li>
         <li>Sul tuo caso, non su una slide</li>
         <li>Attivazione accompagnata</li>
@@ -110,10 +154,10 @@
     </div>
   </section>
 
-  <section class="sec" id="contatti" aria-labelledby="parliamone">
+  <section class="sec alt" id="contatti" aria-labelledby="parliamone">
     <div class="container">
       <div class="contact">
-        <div class="contact-side">
+        <div class="contact-side reveal">
           <span class="eyebrow">Demo gratuita</span>
           <h2 id="parliamone">Fai entrambe le cose? Scrivici da qui.</h2>
           <p class="muted">Lasciaci due righe: ti ricontattiamo per fissare la demo, online o dal vivo, o per rispondere alle tue domande.</p>
@@ -239,5 +283,6 @@
 
 <script src="/assets/business/business.js"></script>
 <script>EKBusiness.init({page: 'ingresso'});</script>
+<script src="/assets/business/moderna.js" defer></script>
 </body>
 </html>

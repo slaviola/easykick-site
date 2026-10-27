@@ -22,21 +22,25 @@
   <meta name="twitter:title" content="EasyKick per gli organizzatori di tornei e campionati" />
   <meta name="twitter:description" content="Il torneo lo prepari una volta, poi gira da solo. Calendario, distinte, comunicati e locandine automatici. Demo gratuita, anche dal vivo." />
   <meta name="twitter:image" content="https://www.easykick.it/assets/business/og-business.jpg" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-organizzatori-1920.webp" media="(min-width: 700px)" />
+  <link rel="preload" as="image" href="/assets/business/img/hero-organizzatori-960.webp" media="(max-width: 699px)" />
   <link rel="stylesheet" href="/assets/business/business.css" />
+  <link rel="stylesheet" href="/assets/business/moderna.css" />
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body class="has-mobile-cta">
 <div class="page" id="page">
 
-  <header class="site-header">
+  <header class="site-header over">
     <div class="container">
       <a class="brand" href="/business/" data-carry aria-label="EasyKick Business, ingresso">
         <img src="/assets/easykick_logo_horizontal.svg" alt="EasyKick" width="122" height="28" />
         <span>Business</span>
       </a>
       <nav class="site-nav" aria-label="Sezioni della pagina">
-        <a href="#formati">Formati</a>
+        <a href="#formati">Calendario</a>
         <a href="#carte">Carte pronte</a>
-        <a href="#vetrina">Vetrina e sponsor</a>
+        <a href="#vetrina">Sponsor</a>
         <a href="#domande">Domande</a>
         <a href="/business/strutture/" data-carry>Hai i campi?</a>
       </nav>
@@ -46,16 +50,22 @@
 
   <main>
 
-  <section class="hero" aria-labelledby="titolo">
+  <section class="xhero" aria-labelledby="titolo" style="--focus: 50% 55%; --focus-m: 50% 60%">
+    <div class="xhero-bg">
+      <picture>
+        <source media="(max-width: 699px)" srcset="/assets/business/img/hero-organizzatori-960.webp" width="960" height="540" />
+        <img src="/assets/business/img/hero-organizzatori-1920.webp" srcset="/assets/business/img/hero-organizzatori-960.webp 960w, /assets/business/img/hero-organizzatori-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high" />
+      </picture>
+    </div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">EasyKick per gli organizzatori</span>
+          <span class="kicker">EasyKick per gli organizzatori</span>
           <h1 id="titolo">Il torneo lo prepari una volta. <em>Poi gira da solo.</em></h1>
           <p class="lede">Calendario, risultati, classifiche, distinte, comunicati e locandine in un posto solo. I capitani gestiscono la squadra dall&rsquo;app e ogni giocatore segue il tuo evento dal telefono. Niente più Excel e gruppi WhatsApp.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contatti" data-req="demo">Prenota una demo gratuita</a>
-            <a class="btn btn-ghost" href="#contatti" data-req="info">Chiedi informazioni</a>
+            <a class="btn btn-ghost" href="#vetrina">Prova con il tuo sponsor</a>
           </div>
           <ul class="reassure">
             <li>Dal PC, dal tablet a bordo campo, dal telefono</li>
@@ -63,57 +73,74 @@
             <li>Demo online o dal vivo</li>
           </ul>
         </div>
-        <div class="hero-visual">
-          <div class="phone"><img src="/assets/business/organizzatore_oggi_390.png" alt="Home dell'organizzatore: distinte da fare, risultati da inserire, richieste di iscrizione e prossime partite del torneo" width="780" height="1640" /></div>
-          <div class="chip c1" aria-hidden="true"><span class="dot">⇄</span><span>Rinvio Giornata 4<small>calendario ricalcolato</small></span></div>
-          <div class="chip c2" aria-hidden="true"><span class="dot">✓</span><span>Comunicato pronto<small>PDF della giornata</small></span></div>
+        <div class="stage">
+          <div class="tilt">
+            <div class="phone"><img src="/assets/business/organizzatore_oggi_390.png" alt="Home dell'organizzatore: distinte da fare, risultati da inserire, richieste di iscrizione e prossime partite del torneo" width="780" height="1640" /></div>
+            <div class="phone back" aria-hidden="true"><img src="/assets/business/evento_classifica_390.png" alt="" width="780" height="1640" loading="lazy" /></div>
+            <span class="shine" aria-hidden="true"></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" aria-labelledby="perche">
+  <section class="sec" aria-labelledby="perche">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Perché EasyKick</span>
         <h2 id="perche">Un evento che sembra professionale, <em>senza lavorarci di notte.</em></h2>
       </div>
       <ul class="why">
-        <li><span class="k">Facile</span><h3>Crei l&rsquo;evento in modo guidato</h3><p>Scegli il formato, inserisci squadre e regolamento, segui i passi. Da solo o insieme a noi.</p></li>
-        <li><span class="k">Calendario</span><h3>Si fa e si rifà da solo</h3><p>Disponibilità delle squadre, chi gioca in casa, rinvii e recuperi: le giornate si ricalcolano senza Excel.</p></li>
-        <li><span class="k">Carte pronte</span><h3>Distinte, comunicati, locandine</h3><p>PDF da stampare e grafiche da condividere, già impaginati con i tuoi loghi.</p></li>
-        <li><span class="k">Vetrina</span><h3>Sul telefono di ogni giocatore</h3><p>Risultati, classifica e comunicati nell&rsquo;app EasyKick, con gli sponsor in bella vista.</p></li>
+        <li class="live reveal"><span class="k">Facile</span><h3>Crei l&rsquo;evento in modo guidato</h3><p>Scegli il formato, inserisci squadre e regolamento, segui i passi. Da solo o insieme a noi.</p></li>
+        <li class="live reveal" data-d="1"><span class="k">Calendario</span><h3>Si fa e si rifà da solo</h3><p>Disponibilità delle squadre, chi gioca in casa, rinvii e recuperi: le giornate si ricalcolano senza Excel.</p></li>
+        <li class="live reveal" data-d="2"><span class="k">Carte pronte</span><h3>Distinte, comunicati, locandine</h3><p>PDF da stampare e grafiche da condividere, già impaginati con i tuoi loghi.</p></li>
+        <li class="live reveal" data-d="3"><span class="k">Vetrina</span><h3>Sul telefono di ogni giocatore</h3><p>Risultati, classifica e comunicati nell&rsquo;app EasyKick, con gli sponsor in bella vista.</p></li>
       </ul>
     </div>
   </section>
 
-  <section class="sec" id="formati" aria-labelledby="formati-t">
+  <section class="sec alt tech tex" id="formati" aria-labelledby="formati-t">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Formati e calendario</span>
-        <h2 id="formati-t">Il formato lo scegli tu. Il calendario lo fa l&rsquo;app.</h2>
-        <p class="lede">Una giornata a settimana, nei giorni e nelle fasce in cui le squadre possono giocare, alternando casa e trasferta. E quando qualcosa salta, le giornate successive si sistemano da sole.</p>
+        <h2 id="formati-t">Il formato lo scegli tu. <em>Il calendario lo fa l&rsquo;app.</em></h2>
+        <p class="lede">Una giornata a settimana, nei giorni e nelle fasce in cui le squadre possono giocare, alternando casa e trasferta. E quando una partita salta, prova tu:</p>
       </div>
-      <ul class="pills" aria-label="Formati disponibili">
-        <li>Campionato</li>
-        <li>Girone all&rsquo;italiana</li>
-        <li>Gironi + fase finale</li>
-        <li>Eliminazione diretta</li>
-        <li>Giornate-torneo</li>
+      <ul class="pills reveal" aria-label="Formati disponibili">
+        <li>Campionato</li><li>Girone all&rsquo;italiana</li><li>Gironi + fase finale</li><li>Eliminazione diretta</li><li>Giornate-torneo</li>
       </ul>
+      <div class="rdemo live reveal mt" id="rdemo">
+        <div class="rdays">
+          <div class="rday"><h3>Giornata 4 <small>questa settimana</small></h3>
+            <div class="match" data-r-match><span>Atletico Bar Sport &ndash; FC Panchina</span><span class="tag"></span></div>
+            <div class="match"><span>Old Boys &ndash; Juve Cabina</span></div>
+          </div>
+          <div class="rday"><h3>Giornata 5 <small>settimana prossima</small></h3>
+            <div class="match"><span>Dinamo Kebab &ndash; Old Boys</span></div>
+            <div class="match"><span>Juve Cabina &ndash; Real Sporting Bellavista</span></div>
+            <div data-r-target></div>
+          </div>
+          <div class="rday"><h3>Giornata 6 <small>tra due settimane</small></h3>
+            <div class="match"><span>FC Panchina &ndash; Dinamo Kebab</span></div>
+            <div class="match"><span>Real Sporting Bellavista &ndash; Atletico Bar Sport</span></div>
+          </div>
+        </div>
+        <div class="rlane" data-r-lane><h3>Da recuperare</h3></div>
+        <p class="sim-msg" data-r-msg aria-live="polite">Tocca «Rinvia» per vedere cosa succede quando una partita salta.</p>
+        <div class="sim-actions"><button type="button" class="btn btn-primary" data-r-btn>Rinvia la partita</button><span class="illu-note">Illustrazione semplificata, non è una schermata dell&rsquo;app.</span></div>
+      </div>
       <div class="ba mt">
         <div class="ba-head" aria-hidden="true"><span>Oggi</span><span>Con EasyKick</span></div>
-        <div class="ba-row"><div class="before"><b>Oggi</b>Un rinvio e il calendario Excel va rifatto.</div><div class="after"><b>Con EasyKick</b>Rinvii, scambi e recuperi in pochi passi: le giornate successive si ricalcolano.</div></div>
-        <div class="ba-row"><div class="before"><b>Oggi</b>Una squadra si ritira e i conti non tornano più.</div><div class="after"><b>Con EasyKick</b>Ritiri e sostituzioni di squadra hanno un percorso guidato.</div></div>
-        <div class="ba-row"><div class="before"><b>Oggi</b>Iscrizioni e rose su WhatsApp, nomi da ricopiare a mano.</div><div class="after"><b>Con EasyKick</b>Il capitano iscrive la squadra e gestisce la rosa dall&rsquo;app. Se serve, le squadre le inserisci anche tu.</div></div>
+        <div class="ba-row reveal"><div class="before"><b>Oggi</b>Una squadra si ritira e i conti non tornano più.</div><div class="after"><b>Con EasyKick</b>Ritiri e sostituzioni di squadra hanno un percorso guidato.</div></div>
+        <div class="ba-row reveal"><div class="before"><b>Oggi</b>Iscrizioni e rose su WhatsApp, nomi da ricopiare a mano.</div><div class="after"><b>Con EasyKick</b>Il capitano iscrive la squadra e gestisce la rosa dall&rsquo;app. Se serve, le squadre le inserisci anche tu.</div></div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="carte" aria-labelledby="carte-t">
+  <section class="sec" id="carte" aria-labelledby="carte-t">
     <div class="container">
       <div class="split">
-        <div>
+        <div class="reveal">
           <div class="sec-head">
             <span class="eyebrow">Carte pronte</span>
             <h2 id="carte-t">Comunicati, distinte e locandine <em>si fanno da soli.</em></h2>
@@ -127,34 +154,57 @@
             <li><span><strong>Anagrafica giocatori</strong> con certificati e coperture a scadenza.</span></li>
           </ul>
         </div>
-        <div class="phone-wrap">
-          <div class="phone"><img src="/assets/business/evento_appello_390.png" alt="Distinta e appello a bordo campo: si spuntano i presenti, ognuno con il suo numero di maglia" width="780" height="1640" loading="lazy" /></div>
-          <p class="shot-note">Schermate reali dell&rsquo;app, con dati di esempio.</p>
+        <div class="stage reveal" data-d="1">
+          <div class="tilt">
+            <div class="phone"><img src="/assets/business/evento_appello_390.png" alt="Distinta e appello a bordo campo: si spuntano i presenti, ognuno con il suo numero di maglia" width="780" height="1640" loading="lazy" /></div>
+          </div>
+          <p class="shot-note">Schermata reale dell&rsquo;app, con dati di esempio.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="vetrina" aria-labelledby="vetrina-t">
+  <section class="sec alt tech" id="vetrina" aria-labelledby="vetrina-t">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Vetrina e sponsor</span>
         <h2 id="vetrina-t">Il tuo evento sul telefono di ogni giocatore. <em>E gli sponsor si vedono davvero.</em></h2>
-        <p class="lede">Non un PDF perso nel gruppo: ogni iscritto trova il tuo evento nell&rsquo;app EasyKick, e chi non gioca può scoprirlo nella sezione Eventi.</p>
+        <p class="lede">Logo e sito degli sponsor nella scheda dell&rsquo;evento dell&rsquo;app EasyKick e una fascia sponsor su tutte le locandine. Scrivi il nome del tuo sponsor e guarda:</p>
       </div>
-      <div class="cards three">
-        <div><span class="lbl">Nell&rsquo;app</span><h3>Tutto il torneo in tasca</h3><p>Calendario, risultati, classifica, formazioni, comunicati, MVP, pagelle e pronostici.</p></div>
-        <div><span class="lbl">Sponsor</span><h3>Loghi in vista</h3><p>Logo e sito degli sponsor nella scheda dell&rsquo;evento e una fascia sponsor su tutte le locandine.</p></div>
-        <div><span class="lbl">Social</span><h3>Locandine pronte da pubblicare</h3><p>Giornata, risultati, classifica e vincitori, in formato post e storia, con un editor per ritoccarle.</p></div>
+      <label class="sp-field reveal" for="sp-input">Il nome del tuo sponsor
+        <input id="sp-input" type="text" maxlength="24" autocomplete="off" placeholder="Es. Bar dello Sport" />
+        <span class="illu-note">Anteprima illustrativa: resta sul tuo dispositivo, non viene inviata.</span>
+      </label>
+      <div class="spx mt">
+        <div class="boards reveal" role="img" aria-label="Cartelloni illuminati a bordo campo, di sera: due mostrano il nome dello sponsor">
+          <img src="/assets/business/img/sponsor-bordocampo-960.webp" srcset="/assets/business/img/sponsor-bordocampo-960.webp 960w, /assets/business/img/sponsor-bordocampo-1920.webp 1920w" sizes="(min-width: 960px) 680px, 100vw" alt="" width="1920" height="1080" loading="lazy" />
+          <span class="bd b3 sp-out" aria-hidden="true">Il tuo sponsor</span>
+          <span class="bd b4 ev-out" aria-hidden="true">Torneo del Borgo</span>
+          <span class="bd b5 sp-out" aria-hidden="true">Il tuo sponsor</span>
+        </div>
+        <div class="poster reveal" data-d="1" role="img" aria-label="Locandina di esempio dei risultati di giornata con la fascia dello sponsor in basso">
+          <div class="ph"><b>Risultati</b><img src="/assets/easykick_logo_horizontal.svg" alt="" width="70" height="16" /></div>
+          <div class="pb">
+            <span class="ev">Torneo del Borgo &middot; Giornata 4</span>
+            <h3>Partita della settimana</h3>
+            <div class="score"><span>Atletico Bar Sport</span><b>3&ndash;2</b><span>Real Sporting Bellavista</span></div>
+          </div>
+          <div class="pf"><small>Con il sostegno di</small> <span class="sp-out">Il tuo sponsor</span></div>
+        </div>
+      </div>
+      <div class="cards three mt">
+        <div class="live reveal"><span class="lbl">Nell&rsquo;app</span><h3>Tutto il torneo in tasca</h3><p>Calendario, risultati, classifica, formazioni, comunicati, MVP, pagelle e pronostici. E chi non gioca può scoprire l&rsquo;evento nella sezione Eventi.</p></div>
+        <div class="live reveal" data-d="1"><span class="lbl">Sponsor</span><h3>Loghi in vista</h3><p>Logo e sito degli sponsor nella scheda dell&rsquo;evento e una fascia sponsor su tutte le locandine.</p></div>
+        <div class="live reveal" data-d="2"><span class="lbl">Social</span><h3>Locandine pronte da pubblicare</h3><p>Giornata, risultati, classifica e vincitori, in formato post e storia, con un editor per ritoccarle.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="sec alt" id="funzioni" aria-labelledby="dentro">
+  <section class="sec" id="funzioni" aria-labelledby="dentro">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Dentro EasyKick Business</span>
-        <h2 id="dentro">Tutto l&rsquo;evento, anche dal telefono a bordo campo.</h2>
+        <h2 id="dentro">Tutto l&rsquo;evento, <em>anche dal telefono a bordo campo.</em></h2>
       </div>
       <div class="feat">
         <div class="feat-tabs" data-shots="shot-img">
@@ -170,18 +220,18 @@
     </div>
   </section>
 
-  <section class="sec" id="come-si-parte" aria-labelledby="parte">
+  <section class="sec alt" id="come-si-parte" aria-labelledby="parte">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head reveal">
         <span class="eyebrow">Come si parte</span>
-        <h2 id="parte">Dal primo messaggio al primo fischio.</h2>
+        <h2 id="parte">Dal primo messaggio <em>al primo fischio.</em></h2>
       </div>
       <ol class="start">
-        <li><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti il tuo evento</h3><p>Online o dal vivo: formato, squadre, campi, regolamento. Ti mostriamo l&rsquo;app sul tuo caso.</p></li>
-        <li><span class="when">2 &middot; Prima delle iscrizioni</span><h3>Crei l&rsquo;evento</h3><p>Con la procedura guidata, da solo o insieme a noi. Poi condividi il link con i capitani.</p></li>
-        <li><span class="when">3 &middot; Ogni giornata</span><h3>Si gioca</h3><p>Appello, risultati, classifica, comunicato e locandine. Il resto lo fa l&rsquo;app.</p></li>
+        <li class="reveal"><span class="when">1 &middot; Demo gratuita</span><h3>Ci racconti il tuo evento</h3><p>Online o dal vivo: formato, squadre, campi, regolamento. Ti mostriamo l&rsquo;app sul tuo caso.</p></li>
+        <li class="reveal" data-d="1"><span class="when">2 &middot; Prima delle iscrizioni</span><h3>Crei l&rsquo;evento</h3><p>Con la procedura guidata, da solo o insieme a noi. Poi condividi il link con i capitani.</p></li>
+        <li class="reveal" data-d="2"><span class="when">3 &middot; Ogni giornata</span><h3>Si gioca</h3><p>Appello, risultati, classifica, comunicato e locandine. Il resto lo fa l&rsquo;app.</p></li>
       </ol>
-      <div class="demo-cta">
+      <div class="demo-cta live reveal">
         <div>
           <h3>Hai già un torneo in mente?</h3>
           <p class="muted">In demo lo impostiamo insieme sul tuo caso, poi ti prepariamo una proposta su misura.</p>
@@ -191,9 +241,9 @@
     </div>
   </section>
 
-  <section class="sec alt" id="domande" aria-labelledby="faq">
+  <section class="sec" id="domande" aria-labelledby="faq">
     <div class="container">
-      <div class="sec-head"><span class="eyebrow">Domande</span><h2 id="faq">Quello che ci chiedono gli organizzatori.</h2></div>
+      <div class="sec-head reveal"><span class="eyebrow">Domande</span><h2 id="faq">Quello che ci chiedono gli organizzatori.</h2></div>
       <div class="faq">
         <details open><summary>Le squadre devono usare l&rsquo;app?</summary><p>Conviene: i capitani iscrivono la squadra e gestiscono la rosa dall&rsquo;app, e i giocatori seguono tutto dal telefono. Se una squadra non la usa, la inserisci tu a mano.</p></details>
         <details><summary>Il mio campionato è già iniziato: posso portarlo dentro?</summary><p>Squadre e rose si possono inserire anche a mano, senza aspettare che i capitani scarichino l&rsquo;app. Come portare dentro il tuo campionato lo vediamo insieme in demo.</p></details>
@@ -205,10 +255,10 @@
     </div>
   </section>
 
-  <section class="sec" id="contatti" aria-labelledby="parliamone">
+  <section class="sec alt" id="contatti" aria-labelledby="parliamone">
     <div class="container">
       <div class="contact">
-        <div class="contact-side">
+        <div class="contact-side reveal">
           <span class="eyebrow">Demo gratuita</span>
           <h2 id="parliamone">Ti rispondiamo noi che l&rsquo;app la costruiamo.</h2>
           <p class="muted">Lasciaci due righe: ti ricontattiamo per fissare la demo, online o dal vivo, o per rispondere alle tue domande.</p>
@@ -334,5 +384,6 @@
 
 <script src="/assets/business/business.js"></script>
 <script>EKBusiness.init({page: 'organizzatori', aud: 'o', per: 'organizzatori'});</script>
+<script src="/assets/business/moderna.js" defer></script>
 </body>
 </html>
